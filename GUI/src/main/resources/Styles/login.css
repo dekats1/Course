@@ -1,0 +1,53 @@
+.login_container{
+    -fx-background-color:#EEEEEE;
+}
+
+.login_logo_conainer{
+    -fx-background-color: #109c60;
+    -fx-alignment: center;
+}
+
+.login_logo_conainer Text{
+    -fx-font-size: 2em;
+    -fx-fill: #FFFFFF;
+}
+
+.account_selector{
+    -fx-fill: #0efa00;
+    -fx-font-size: 1.1em;
+
+}
+
+.login_from_container {
+    -fx-spacing: 20;
+    -fx-alignment: center;
+}
+.login_from_container Label {
+    -fx-font-size: 1.1em;
+    -fx-font-weight: bold;
+}
+.input_field{
+    -fx-background-color: white;
+    -fx-pref-height: 35;
+    -fx-font-size: 1.2em;
+}
+
+.login_from_container Button{
+    -fx-background-color: #64a864;
+    -fx-text-fill: white;
+    -fx-pref-width: 360;
+    -fx-pref-height: 30;
+    -fx-font-size: 1.2em;
+    -fx-border-radius: 15px;
+}
+
+.login_from_container Button:hover{
+   -fx-cursor: hand;
+    -fx-background-color: #85d885;
+}
+
+.error_lbl{
+    -fx-text-fill: red;
+    -fx-padding: 0px;
+    -fx-end-margin: 0px;
+}

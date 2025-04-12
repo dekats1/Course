@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="login_container" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.LoginController">
+   <VBox layoutX="7.0" prefHeight="400.0" prefWidth="200.0" styleClass="login_logo_conainer" stylesheets="@../Styles/login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+         <ImageView fitHeight="87.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../Images/logo.png" />
+            </image>
+         </ImageView>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Viva " />
+      </children>
+   </VBox>
+   <VBox layoutX="251.0" layoutY="59.0" prefHeight="360.0" prefWidth="360.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <children>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Авторизация">
+            <font>
+               <Font name="SansSerif Regular" size="20.0" />
+            </font>
+         </Text>
+         <TextField fx:id="userNameFld" promptText="UserName" styleClass="input_field" />
+         <PasswordField fx:id="passwordFld" promptText="Password" styleClass="input_field" />
+         <Button fx:id="loginBtn" mnemonicParsing="false" text="Войти" />
+         <Label fx:id="errorLbl" styleClass="error_lbl"  />
+      </children>
+      <styleClass>
+         <String fx:value="account_selector" />
+         <String fx:value="login_from_container" />
+      </styleClass>
+   </VBox>
+</AnchorPane>

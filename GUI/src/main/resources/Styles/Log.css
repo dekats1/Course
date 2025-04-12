@@ -1,0 +1,40 @@
+/* Logs.css */
+
+.anchor-pane {
+    -fx-background-color: #f2f2f2;
+}
+
+.header-text {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #333333;
+}
+
+.button {
+    -fx-background-color: #3f51b5;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #303f9f;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.table-column {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.hBox{
+    -fx-alignment: center;
+}
+

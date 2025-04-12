@@ -1,0 +1,84 @@
+/* AdminProfile.css */
+
+.anchor-pane {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 0;
+}
+
+.container {
+    -fx-padding: 30 40;
+}
+
+.header-text {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-fill: #333;
+}
+
+.content-box {
+    -fx-background-color: white;
+    -fx-padding: 0;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #ddd;
+}
+
+.profile-box {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+
+.avatar {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0.1, 0, 2);
+    -fx-background-radius: 50%;
+}
+
+.password-box {
+    -fx-pref-width: 300;
+    -fx-alignment: center;
+}
+.password-box PasswordField{
+    -fx-background-radius: 10px;
+}
+
+.password-box .section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #43a047;
+}
+
+.footer-box {
+    -fx-background-color: #eaeaea;
+    -fx-padding: 15 20;
+    -fx-background-radius: 8;
+    -fx-border-color: #ccc;
+}
+
+.logout-button {
+    -fx-background-color: #e53935;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-background-color: #c62828;
+}
+
+.error_label{
+    -fx-text-fill: red;
+}

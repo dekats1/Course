@@ -1,0 +1,52 @@
+/* Основная панель ячейки */
+.anchor-pane {
+    -fx-background-color: #d1d0d0;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 3, 0, 0, 2);
+}
+
+/* Аватар */
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 2);
+}
+
+.hbox {
+    -fx-spacing: 30px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 10px;
+}
+
+.vbox-label {
+    -fx-spacing: 2px;
+    -fx-alignment: center-left;
+    -fx-min-width: 120px;
+    -fx-pref-width: 120px;
+    -fx-max-width: 120px;
+}
+
+.label-title {
+    -fx-font-size: 11px;
+    -fx-text-fill: #555555;
+    -fx-font-weight: bold;
+}
+
+.label-value {
+    -fx-font-size: 13px;
+    -fx-text-fill: #333333;
+    -fx-font-weight: normal;
+}
+
+.button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 5px 10px;
+}
+
+.button:hover {
+    -fx-background-color: #c0392b;
+}
