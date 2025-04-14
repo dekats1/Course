@@ -10,16 +10,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
 public class LoginController implements Initializable {
-    @FXML private TextField userNameFld;
-    @FXML private PasswordField passwordFld;
-    @FXML private Label errorLbl;
-    @FXML private Button loginBtn;
+    @FXML
+    private TextField userNameFld;
+    @FXML
+    private PasswordField passwordFld;
+    @FXML
+    private Label errorLbl;
+    @FXML
+    private Button loginBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -35,10 +38,16 @@ public class LoginController implements Initializable {
             return;
         }
 
+        System.out.println(username);
+
         ConnectionServer connection = Model.getInstance().getConnectionServer();
         connection.sendObject(new AuthRequest(username, password));
 
+        System.out.println(connection);
+
         AuthResponse response = (AuthResponse) connection.receiveObject();
+
+        System.out.println(response);
 
         if (response.isSuccess()) {
             Model.getInstance().setCurrentRole(response.getRole());
@@ -54,8 +63,8 @@ public class LoginController implements Initializable {
 
         switch (role) {
             case "admin" -> Model.getInstance().getViewFactory().showAdminWindow();
-           // case "seller" -> Model.getInstance().getViewFactory().showSellerWindow();
-           // default -> Model.getInstance().getViewFactory().showErrorWindow("Неизвестная роль: " + role);
+            // case "seller" -> Model.getInstance().getViewFactory().showSellerWindow();
+            // default -> Model.getInstance().getViewFactory().showErrorWindow("Неизвестная роль: " + role);
         }
     }
 }

@@ -12,6 +12,9 @@ public class AdminHandler extends RoleHandler {
 
     @Override
     public void handle() throws IOException, ClassNotFoundException {
+        while (true) {
+
+        }
 
     }
 }

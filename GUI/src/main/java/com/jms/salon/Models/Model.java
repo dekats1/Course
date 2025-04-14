@@ -1,7 +1,5 @@
 package com.jms.salon.Models;
 
-
-
 import com.jms.salon.Views.ViewFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

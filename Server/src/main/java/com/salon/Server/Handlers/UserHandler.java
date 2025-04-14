@@ -3,6 +3,7 @@ package com.salon.Server.Handlers;
 import com.salon.Server.Services.AuthRequest;
 import com.salon.Server.Services.AuthResponse;
 import com.salon.Server.Services.AuthService;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -22,38 +23,29 @@ public class UserHandler implements Runnable {
 
             out.flush();
 
-            // 1. Принимаем AuthRequest от клиента
-            Object request = in.readObject();
-            System.out.println("Received request: " + request);
+            while (true) {
+                Object request = in.readObject();
+                System.out.println("Received request: " + request);
 
-            if (!(request instanceof AuthRequest authRequest)) {
-                out.writeObject(new AuthResponse(false, null, "Invalid request format"));
-                return;
-            }
+                if (!(request instanceof AuthRequest authRequest)) {
+                    out.writeObject(new AuthResponse(false, null, "Invalid request format"));
+                    continue;
+                }
 
-            System.out.println("Auth attempt for user: " + authRequest.getUsername());
+                System.out.println("Auth attempt for user: " + authRequest.getUsername());
 
-            // 2. Аутентифицируем через AuthService
-            AuthResponse authResponse = authService.authenticate(
-                    authRequest.getUsername(),
-                    authRequest.getPassword()
-            );
+                AuthResponse authResponse = authService.authenticate(authRequest.getUsername(), authRequest.getPassword());
 
-            // 3. Отправляем ответ клиенту
-            out.writeObject(authResponse);
-            System.out.println("Auth response sent: " + authResponse.isSuccess());
+                out.writeObject(authResponse);
+                System.out.println("Auth response sent: " + authResponse.isSuccess());
 
-            // 4. Если успешно - создаем обработчик роли
-            if (authResponse.isSuccess()) {
-                RoleHandler handler = createRoleHandler(
-                        authResponse.getRole(),
-                        userSocket,
-                        in,
-                        out
-                );
+                if (authResponse.isSuccess()) {
+                    RoleHandler handler = createRoleHandler(authResponse.getRole(), userSocket, in, out);
 
-                if (handler != null) {
-                    handler.handle();
+                    if (handler != null) {
+                        handler.handle();
+                    }
+                    break;
                 }
             }
 
@@ -69,8 +61,8 @@ public class UserHandler implements Runnable {
         }
     }
 
-    private RoleHandler createRoleHandler(String role, Socket socket,
-                                          ObjectInputStream in, ObjectOutputStream out) {
+
+    private RoleHandler createRoleHandler(String role, Socket socket, ObjectInputStream in, ObjectOutputStream out) {
         System.out.println("Creating handler for role: " + role);
         return switch (role.toLowerCase()) {
             case "admin" -> new AdminHandler(socket, in, out);

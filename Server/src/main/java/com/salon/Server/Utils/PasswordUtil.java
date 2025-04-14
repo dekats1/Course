@@ -1,4 +1,3 @@
-// Server.Utils.PasswordUtil
 package com.salon.Server.Utils;
 
 import java.security.MessageDigest;

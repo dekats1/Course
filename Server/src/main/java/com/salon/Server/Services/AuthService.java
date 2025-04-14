@@ -9,6 +9,7 @@ import java.sql.*;
 public class AuthService {
     public AuthResponse authenticate(String username, String password) {
         String query = "SELECT userID, password, salt, roleID FROM users WHERE username = ?";
+        String roleQuery = "SELECT roleName FROM roles WHERE roleID = ?";  // Подзапрос для получения имени роли
 
         try (Connection conn = DataBaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -19,10 +20,20 @@ public class AuthService {
             if (rs.next()) {
                 String storedHash = rs.getString("password");
                 String salt = rs.getString("salt");
-                String role = rs.getString("roleID");
+                String roleID = rs.getString("roleID");
 
+                // Проверка пароля
                 if (PasswordUtil.checkPassword(password, storedHash, salt)) {
-                    return new AuthResponse(true, role, "Authentication successful");
+                    // Получаем имя роли из таблицы roles с использованием roleID
+                    try (PreparedStatement roleStmt = conn.prepareStatement(roleQuery)) {
+                        roleStmt.setString(1, roleID);
+                        ResultSet roleRs = roleStmt.executeQuery();
+
+                        if (roleRs.next()) {
+                            String roleName = roleRs.getString("roleName");
+                            return new AuthResponse(true, roleName, "Authentication successful");
+                        }
+                    }
                 }
             }
             return new AuthResponse(false, null, "Invalid credentials");
@@ -31,4 +42,5 @@ public class AuthService {
             return new AuthResponse(false, null, "Database error");
         }
     }
+
 }
