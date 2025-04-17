@@ -1,0 +1,95 @@
+/* saleHistory.css */
+.root {
+    -fx-background-color: #f8fafc;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-padding: 0;
+}
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #2c3e50;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 2, 0.5, 0, 1);
+}
+
+.filter-box {
+    -fx-padding: 8px 12px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 5, 0, 0, 1);
+}
+
+.search-box {
+    -fx-padding: 6px 10px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 5, 0, 0, 1);
+}
+
+.search-field {
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #95a5a6;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.search-button {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+}
+
+.search-button:hover {
+    -fx-opacity: 0.8;
+}
+
+.filter-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+    -fx-font-weight: 600;
+}
+
+.date-picker {
+    -fx-font-size: 14px;
+    -fx-pref-width: 130px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+
+.dash-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+    -fx-font-weight: 600;
+    -fx-padding: 0 5px;
+}
+
+.styled-list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 1);
+    -fx-padding: 5px;
+}
+
+.styled-list-view .list-cell {
+    -fx-padding: 10px 15px;
+    -fx-border-color: transparent transparent #f0f0f0 transparent;
+    -fx-border-width: 1px;
+}
+
+.styled-list-view .list-cell:filled:hover {
+    -fx-background-color: #f8f9fa;
+}
+
+.styled-list-view .list-cell:filled:selected {
+    -fx-background-color: #e3f2fd;
+}

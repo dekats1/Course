@@ -1,0 +1,80 @@
+.root {
+    -fx-background-color: #f8f9fa;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #2d3748;
+    -fx-padding: 5px 0;
+}
+
+.search-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 5px 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 3, 0, 0, 1);
+}
+
+.search-field {
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #a0aec0;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-pref-width: 250px;
+}
+
+.search-button {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+    -fx-padding: 5px;
+}
+
+.search-button:hover {
+    -fx-opacity: 0.8;
+}
+
+.products-list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 1);
+    -fx-padding: 5px;
+}
+
+.products-list-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 0 5px;
+}
+
+.products-list-view .scroll-bar:vertical .track {
+    -fx-background-color: #edf2f7;
+    -fx-background-radius: 5px;
+}
+
+.products-list-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #cbd5e0;
+    -fx-background-radius: 5px;
+}
+
+.products-list-view .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #a0aec0;
+}
+
+.products-list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 5px 0;
+}
+
+.products-list-view .list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+}

@@ -8,43 +8,44 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="51.0" maxWidth="750.0" prefHeight="51.0" prefWidth="713.0" styleClass="anchor-pane"
-            stylesheets="@../../Styles/SellerSell.css" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Admin.SellerSellController">
+<AnchorPane maxHeight="51.0" maxWidth="750.0" prefHeight="51.0" prefWidth="733.0" styleClass="anchor-pane" stylesheets="@../../Styles/SellerAndManagerSell.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Admin.SellerSellController">
     <children>
-        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="15.0" layoutY="12.0" pickOnBounds="true"
-                   preserveRatio="true" styleClass="image-view">
+        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="15.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
             <image>
-                <Image url="@../../Images/user.png"/>
+                <Image url="@../../Images/user.png" />
             </image>
         </ImageView>
-        <HBox layoutX="60.0" layoutY="5.0" prefHeight="40.0" prefWidth="550.0" styleClass="hbox"
-              AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="5.0">
+        <HBox layoutX="60.0" layoutY="5.0" prefHeight="40.0" prefWidth="550.0" styleClass="hbox" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="5.0">
             <children>
-                <VBox spacing="2" styleClass="vbox-label">
-                    <Label styleClass="label-title" text="Имя:"/>
-                    <Label fx:id="nameLbl" styleClass="label-value" text="Иван"/>
+                <VBox minWidth="72.0" prefHeight="40.0" prefWidth="104.0" spacing="2" styleClass="vbox-label">
+                    <Label styleClass="label-title" text="Имя:" />
+                    <Label fx:id="nameLbl" styleClass="label-value" text="Иван" />
                 </VBox>
-                <VBox spacing="2" styleClass="vbox-label">
-                    <Label styleClass="label-title" text="Фамилия:"/>
-                    <Label fx:id="surnameLbl" styleClass="label-value" text="Иванов"/>
+                <VBox minWidth="92.0" prefHeight="40.0" prefWidth="102.0" spacing="2" styleClass="vbox-label">
+                    <Label styleClass="label-title" text="Фамилия:" />
+                    <Label fx:id="surnameLbl" styleClass="label-value" text="Иванов" />
                 </VBox>
-                <VBox spacing="2" styleClass="vbox-label">
-                    <Label styleClass="label-title" text="Логин:"/>
-                    <Label fx:id="loginLbl" styleClass="label-value" text="ivanov"/>
+                <VBox minWidth="82.0" prefHeight="40.0" prefWidth="115.0" spacing="2" styleClass="vbox-label">
+                    <Label styleClass="label-title" text="Логин:" />
+                    <Label fx:id="loginLbl" styleClass="label-value" text="ivanov" />
                 </VBox>
-                <VBox spacing="2" styleClass="vbox-label">
-                    <Label styleClass="label-title" text="Дата:"/>
-                    <Label fx:id="dateLbl" styleClass="label-value" text="01.01.2023"/>
+                <VBox minWidth="70.0" prefHeight="40.0" prefWidth="70.0" spacing="2" styleClass="vbox-label">
+                    <Label styleClass="label-title" text="Дата:" />
+                    <Label fx:id="dateLbl" styleClass="label-value" text="01-01-2023" />
                 </VBox>
+            <VBox maxWidth="92.0" prefHeight="40.0" prefWidth="92.0" spacing="2" styleClass="vbox-label">
+               <children>
+                  <Label styleClass="label-title" text="Кол-во продаж" />
+                  <Label fx:id="nameLbl1" styleClass="label-value" text="0" />
+               </children>
+            </VBox>
             </children>
         </HBox>
-        <Button fx:id="deleteBtn" layoutX="623.4000000000001" layoutY="10.0" minWidth="60.0" mnemonicParsing="false"
-                styleClass="button" text="Delete" AnchorPane.rightAnchor="15.0">
+        <Button fx:id="deleteBtn" layoutX="623.4000000000001" layoutY="10.0" minWidth="60.0" mnemonicParsing="false" styleClass="button" text="Delete" AnchorPane.rightAnchor="15.0">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../Images/delete-user.png"/>
+                        <Image url="@../../Images/delete-user.png" />
                     </image>
                 </ImageView>
             </graphic>

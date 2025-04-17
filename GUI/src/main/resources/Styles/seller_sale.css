@@ -1,0 +1,142 @@
+/* seller_sale.css */
+.root {
+    -fx-background-color: #f8fafc;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-padding: 0;
+}
+
+.title-label {
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #2d3748;
+    -fx-padding: 0;
+}
+
+.subtitle-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #718096;
+    -fx-font-weight: 400;
+}
+
+.form-grid {
+    -fx-background-color: white;
+    -fx-padding: 30px;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 2);
+    -fx-min-width: 600px;
+}
+
+.form-label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #4a5568;
+    -fx-font-weight: 600;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.form-combo {
+    -fx-font-size: 15px;
+    -fx-background-color: white;
+    -fx-border-color: #cbd5e0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 12px;
+    -fx-pref-width: 300px;
+}
+
+.form-combo:hover {
+    -fx-border-color: #a0aec0;
+}
+
+.form-combo:focused {
+    -fx-border-color: #4299e1;
+    -fx-effect: innershadow(gaussian, rgba(66,153,225,0.2), 0, 0, 3, 0);
+}
+
+.quantity-spinner {
+    -fx-font-size: 15px;
+    -fx-pref-width: 120px;
+    -fx-background-color: white;
+    -fx-border-color: #cbd5e0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 12px;
+}
+
+.quantity-spinner .text-field {
+    -fx-padding: 8px 12px;
+}
+
+.quantity-spinner .increment-arrow-button,
+.quantity-spinner .decrement-arrow-button {
+    -fx-background-color: #edf2f7;
+    -fx-padding: 3px;
+}
+
+.quantity-spinner .increment-arrow-button:hover,
+.quantity-spinner .decrement-arrow-button:hover {
+    -fx-background-color: #e2e8f0;
+}
+
+.unit-label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #718096;
+    -fx-font-weight: 500;
+}
+
+.price-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #2b6cb0;
+    -fx-font-weight: 600;
+}
+
+.total-label {
+    -fx-font-size: 17px;
+    -fx-text-fill: #2d3748;
+    -fx-font-weight: 700;
+}
+
+.total-sum-label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #2f855a;
+    -fx-font-weight: 700;
+}
+
+.separator {
+    -fx-padding: 5px 0;
+}
+
+.action-button {
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-padding: 10px 24px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-min-width: 180px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+.confirm-button {
+    -fx-background-color: #38a169;
+    -fx-text-fill: white;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #2f855a;
+}
+
+.cancel-button {
+    -fx-background-color: white;
+    -fx-text-fill: #e53e3e;
+    -fx-border-color: #e53e3e;
+    -fx-border-width: 1px;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #fff5f5;
+}

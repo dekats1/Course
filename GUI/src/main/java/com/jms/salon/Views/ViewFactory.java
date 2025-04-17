@@ -11,11 +11,15 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class ViewFactory {
 
     //Product
     private AnchorPane productView;
     private AnchorPane addProductView;
+    private AnchorPane productsForSellerView;
+
 
     //Admin View
     private final ObjectProperty<AdminMenuOption> adminSelectedMenuItem;
@@ -26,20 +30,22 @@ public class ViewFactory {
 
 
     //Seller View
-    private final StringProperty sellerSelectedMenuItem;
-
+    private final ObjectProperty<SellerMenuOption> sellerSelectedMenuItem;
+    private AnchorPane sellView;
+    private AnchorPane sellHistoryView;
+    private AnchorPane sellerProfileView;
 
 
     //Manager View
-    private final StringProperty managerSelectedMenuItem;
+    private final ObjectProperty<ManagerMenuOption> managerSelectedMenuItem;
 
 
 
 
     public ViewFactory() {
         this.adminSelectedMenuItem = new SimpleObjectProperty<>();
-        this.managerSelectedMenuItem = new SimpleStringProperty("");
-        this.sellerSelectedMenuItem = new SimpleStringProperty("");
+        this.managerSelectedMenuItem = new SimpleObjectProperty<>();
+        this.sellerSelectedMenuItem = new SimpleObjectProperty<>();
     }
 
     /*
@@ -107,30 +113,62 @@ public class ViewFactory {
     /*
     * Seller View
      */
-    public StringProperty getSellerSelectedMenuItem() {
+    public ObjectProperty<SellerMenuOption> getSellerSelectedMenuItem() {
         return sellerSelectedMenuItem;
     }
 
-     /*public void showSellerWindow() {
+     public void showSellerWindow() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/Seller/Seller.fxml"));
         createStage(fxmlLoader);
-    }*/
+    }
 
+    public AnchorPane getSellView(){
+        if (sellView == null) {
+            try {
+                sellView = new FXMLLoader(getClass().getResource("/FXML/Seller/Sale.fxml")).load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sellView;
+    }
 
+    public AnchorPane getSellHistoryView(){
+        if (sellHistoryView == null) {
+            try {
+                sellHistoryView = new FXMLLoader(getClass().getResource("/FXML/Seller/SalesHistory.fxml")).load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sellHistoryView;
+    }
+
+    public AnchorPane getSellerProfileView(){
+        if (sellerProfileView == null) {
+            try{
+                sellerProfileView = new FXMLLoader(getClass().getResource("/FXML/Seller/SellerProfile.fxml")).load();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return sellerProfileView;
+    }
 
 
     /*
     *Manager View
      */
 
-    public StringProperty getManagerSelectedMenuItem() {
+    public ObjectProperty<ManagerMenuOption> getManagerSelectedMenuItem() {
         return managerSelectedMenuItem;
     }
 
-   /* public  void showManagerWindow() {
+    public  void showManagerWindow() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/Manager/Manager.fxml"));
         createStage(fxmlLoader);
-    }    */
+    }
 
     /*
     *Product View
@@ -160,6 +198,17 @@ public class ViewFactory {
         return addProductView;
     }
 
+    public AnchorPane getProductsForSellerView(){
+        if (productsForSellerView == null) {
+            try {
+                productsForSellerView = new FXMLLoader(getClass().getResource("/FXML/Product/ProductForSeller.fxml")).load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return productsForSellerView;
+    }
+
     /*
     *Login Window
      */
@@ -182,10 +231,9 @@ public class ViewFactory {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setResizable(false);
-            stage.setTitle("Vivo");
+            stage.setTitle("Divan4ik");
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo.png")));
             stage.show();
-
     }
 
     public void closeStage(Stage stage) {

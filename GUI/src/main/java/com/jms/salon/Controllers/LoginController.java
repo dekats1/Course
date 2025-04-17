@@ -43,11 +43,11 @@ public class LoginController implements Initializable {
         ConnectionServer connection = Model.getInstance().getConnectionServer();
         connection.sendObject(new AuthRequest(username, password));
 
-        System.out.println(connection);
+        //System.out.println(connection);
 
         AuthResponse response = (AuthResponse) connection.receiveObject();
 
-        System.out.println(response);
+        //System.out.println(response);
 
         if (response.isSuccess()) {
             Model.getInstance().setCurrentRole(response.getRole());
@@ -63,7 +63,7 @@ public class LoginController implements Initializable {
 
         switch (role) {
             case "admin" -> Model.getInstance().getViewFactory().showAdminWindow();
-            // case "seller" -> Model.getInstance().getViewFactory().showSellerWindow();
+            case "seller" -> Model.getInstance().getViewFactory().showSellerWindow();
             // default -> Model.getInstance().getViewFactory().showErrorWindow("Неизвестная роль: " + role);
         }
     }

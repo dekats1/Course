@@ -9,7 +9,7 @@ import java.sql.*;
 public class AuthService {
     public AuthResponse authenticate(String username, String password) {
         String query = "SELECT userID, password, salt, roleID FROM users WHERE username = ?";
-        String roleQuery = "SELECT roleName FROM roles WHERE roleID = ?";  // Подзапрос для получения имени роли
+        String roleQuery = "SELECT roleName FROM roles WHERE roleID = ?";
 
         try (Connection conn = DataBaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -22,9 +22,7 @@ public class AuthService {
                 String salt = rs.getString("salt");
                 String roleID = rs.getString("roleID");
 
-                // Проверка пароля
                 if (PasswordUtil.checkPassword(password, storedHash, salt)) {
-                    // Получаем имя роли из таблицы roles с использованием roleID
                     try (PreparedStatement roleStmt = conn.prepareStatement(roleQuery)) {
                         roleStmt.setString(1, roleID);
                         ResultSet roleRs = roleStmt.executeQuery();

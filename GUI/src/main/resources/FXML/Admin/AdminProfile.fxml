@@ -11,23 +11,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="705.0" prefWidth="850.0" styleClass="anchor-pane" stylesheets="@../../Styles/AdminProfile.css"
+<AnchorPane prefHeight="705.0" prefWidth="850.0" styleClass="anchor-pane" stylesheets="@../../Styles/Profile.css"
             xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.jms.salon.Controllers.Admin.AdminProfileController">
 
     <children>
         <VBox alignment="TOP_CENTER" layoutY="2.4" prefHeight="705.0" prefWidth="850.0" spacing="20"
-              styleClass="container" stylesheets="@../../Styles/AdminProfile.css" AnchorPane.bottomAnchor="0.0"
+              styleClass="container" stylesheets="@../../Styles/Profile.css" AnchorPane.bottomAnchor="0.0"
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
-            <!-- Заголовок -->
             <Text styleClass="header-text" text="Профиль администратора"/>
 
-            <!-- Основной контент -->
             <HBox alignment="CENTER" prefHeight="587.0" prefWidth="770.0" spacing="40" styleClass="content-box"
-                  stylesheets="@../../Styles/AdminProfile.css">
+                  stylesheets="@../../Styles/Profile.css">
 
-                <!-- Левый блок -->
                 <VBox alignment="CENTER" spacing="15" styleClass="profile-box">
                     <ImageView fx:id="avatarImage" fitHeight="120" fitWidth="120" styleClass="avatar">
                         <image>
@@ -39,7 +36,6 @@
                     <Label fx:id="loginLabel" text="Логин: admin123"/>
                 </VBox>
 
-                <!-- Правый блок -->
                 <VBox prefHeight="412.0" prefWidth="362.0" spacing="15" styleClass="password-box">
                     <Text styleClass="section-title" text="Смена пароля"/>
                     <PasswordField fx:id="oldPasswordField" prefHeight="40.0" promptText="Старый пароль"/>
@@ -50,9 +46,8 @@
                 </VBox>
             </HBox>
 
-            <!-- Нижняя панель -->
             <HBox alignment="CENTER" prefHeight="66.0" prefWidth="762.0" spacing="20" styleClass="footer-box"
-                  stylesheets="@../../Styles/AdminProfile.css">
+                  stylesheets="@../../Styles/Profile.css">
                 <Label text="Роль: Администратор"/>
                 <Label text="Зарегистрирован: 01.01.2024"/>
                 <Region fx:id="spacer" HBox.hgrow="ALWAYS"/>

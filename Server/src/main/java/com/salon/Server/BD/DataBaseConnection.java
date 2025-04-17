@@ -37,32 +37,32 @@ public class DataBaseConnection {
     }
 
     private static void createDefaultAdminIfNotExists(Connection conn) throws SQLException {
-        String checkSql = "SELECT COUNT(*) FROM Users WHERE UserName = 'admin'";
+        String checkSql = "SELECT COUNT(*) FROM Users WHERE UserName = 'dekats'";
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(checkSql)) {
 
             rs.next();
             if (rs.getInt(1) == 0) {
                 String salt = PasswordUtil.generateSalt();
-                String passwordHash = PasswordUtil.hashPassword("admin123", salt);
+                String passwordHash = PasswordUtil.hashPassword("123123", salt);
 
                 String insertSql = "INSERT INTO Users (UserName, Password, Salt, FirstName, LastName, RoleID) " +
-                        "VALUES (?, ?, ?, ?, ?, (SELECT RoleID FROM Roles WHERE RoleName = 'admin'))";
+                        "VALUES (?, ?, ?, ?, ?, (SELECT RoleID FROM Roles WHERE RoleName = 'seller'))";
 
                 try (PreparedStatement pstmt = conn.prepareStatement(insertSql)) {
-                    pstmt.setString(1, "admin");
+                    pstmt.setString(1, "dekats");
                     pstmt.setString(2, passwordHash);
                     pstmt.setString(3, salt);
-                    pstmt.setString(4, "System");
-                    pstmt.setString(5, "Administrator");
+                    pstmt.setString(4, "Denis");
+                    pstmt.setString(5, "Katsko");
 
                     int affectedRows = pstmt.executeUpdate();
                     if (affectedRows > 0) {
-                        System.out.println("Default admin account created successfully");
+                        System.out.println("Default seller account created successfully");
                     }
                 }
             } else {
-                System.out.println("Admin account already exists");
+                System.out.println("seller account already exists");
             }
         }
     }

@@ -13,7 +13,6 @@ public class AuthResponse implements Serializable {
         this.message = message;
     }
 
-    // Геттеры
     public boolean isSuccess() { return success; }
     public String getRole() { return role; }
     public String getMessage() { return message; }
