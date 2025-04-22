@@ -36,7 +36,7 @@
                 <VBox maxWidth="92.0" prefHeight="40.0" prefWidth="92.0" spacing="2" styleClass="vbox-label">
                     <children>
                         <Label styleClass="label-title" text="Кол-во отчётов" />
-                        <Label fx:id="nameLbl1" styleClass="label-value" text="0" />
+                        <Label fx:id="reportCountLbl" styleClass="label-value" text="0" />
                     </children>
                 </VBox>
             </children>

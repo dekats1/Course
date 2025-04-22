@@ -1,33 +1,31 @@
 package com.jms.salon.Models;
 
 import com.jms.salon.Views.ViewFactory;
+import com.salon.Server.Services.Export.Manager;
+import com.salon.Server.Services.Export.Product;
+import com.salon.Server.Services.Export.Seller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.io.IOException;
 
 public class Model {
     private static Model instance;
     private final ViewFactory viewFactory;
     private ConnectionServer connectionServer;
     private String currentRole;
+    private String currentUser;
+
+    private final ObservableList<Product> products = FXCollections.observableArrayList();
+    private final ObservableList<Seller> sellers = FXCollections.observableArrayList();
+    private final ObservableList<Manager> managers = FXCollections.observableArrayList();
 
     private Model() {
         this.viewFactory = new ViewFactory();
-        try {
-            this.connectionServer = new ConnectionServer();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        this.connectionServer = new ConnectionServer();
     }
 
     public synchronized ConnectionServer getConnectionServer() {
         if (connectionServer == null || connectionServer.isClosed()) {
-            try {
-                connectionServer = new ConnectionServer();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            connectionServer = new ConnectionServer();
         }
         return connectionServer;
     }
@@ -40,8 +38,16 @@ public class Model {
         return currentRole;
     }
 
+    public void setCurrentUser(String user) {
+        this.currentUser = user;
+    }
 
-    private final ObservableList<Product> products = FXCollections.observableArrayList();
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
+
+
 
     public ObservableList<Product> getProducts() {
         return products;
@@ -55,6 +61,13 @@ public class Model {
         products.remove(product);
     }
 
+    public ObservableList<Seller> getSellers() {return sellers;}
+    public void addSeller(Seller seller) { sellers.add(seller); }
+    public void removeSeller(Seller seller) { sellers.remove(seller); }
+
+    public ObservableList<Manager> getManagers() {return managers;}
+    public void addManager(Manager manager) { managers.add(manager); }
+    public void removeManager(Manager manager) { managers.remove(manager); }
 
     public synchronized static Model getInstance(){
         if(instance == null){
@@ -65,4 +78,6 @@ public class Model {
     public ViewFactory getViewFactory(){
         return viewFactory;
     }
+
+
 }

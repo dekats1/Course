@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class AuthService {
     public AuthResponse authenticate(String username, String password) {
-        String query = "SELECT userID, password, salt, roleID FROM users WHERE username = ?";
+        String query = "SELECT password, salt, roleID FROM users WHERE username = ?";
         String roleQuery = "SELECT roleName FROM roles WHERE roleID = ?";
 
         try (Connection conn = DataBaseConnection.getConnection();

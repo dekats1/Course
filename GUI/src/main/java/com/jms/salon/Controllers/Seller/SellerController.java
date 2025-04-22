@@ -1,7 +1,6 @@
 package com.jms.salon.Controllers.Seller;
 
 import com.jms.salon.Models.Model;
-import com.jms.salon.Views.AdminMenuOption;
 import com.jms.salon.Views.SellerMenuOption;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.Initializable;
@@ -27,7 +26,7 @@ public class SellerController implements Initializable {
                     Model.getInstance().getViewFactory().getSellerSelectedMenuItem().removeListener(listener);
 
                     // Очищаем все закешированные представления
-                    Model.getInstance().getViewFactory().clearAdminCache();
+                    Model.getInstance().getViewFactory().clearSellerCache();
 
                     Stage stage = (Stage) sellerParent.getScene().getWindow();
                     Model.getInstance().getViewFactory().closeStage(stage);

@@ -38,19 +38,16 @@ public class LoginController implements Initializable {
             return;
         }
 
-        System.out.println(username);
+        //System.out.println(username);
 
         ConnectionServer connection = Model.getInstance().getConnectionServer();
         connection.sendObject(new AuthRequest(username, password));
 
-        //System.out.println(connection);
-
         AuthResponse response = (AuthResponse) connection.receiveObject();
-
-        //System.out.println(response);
 
         if (response.isSuccess()) {
             Model.getInstance().setCurrentRole(response.getRole());
+            Model.getInstance().setCurrentUser(username);
             openAppWindow(response.getRole());
         } else {
             errorLbl.setText(response.getMessage());

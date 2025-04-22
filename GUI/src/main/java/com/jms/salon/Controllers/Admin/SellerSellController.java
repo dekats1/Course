@@ -15,6 +15,7 @@ public class SellerSellController implements Initializable {
     @FXML private Label surnameLbl;
     @FXML private Label loginLbl;
     @FXML private Label dateLbl;
+    @FXML private Label countSellLbl;
     @FXML private Button deleteBtn;
 
     private AnchorPane itemPane;
@@ -29,11 +30,13 @@ public class SellerSellController implements Initializable {
         });
     }
 
-    public void setSellerInfo(String name, String surname, String login, String date) {
+    public void setSellerInfo(String name, String surname, String login, String date, int count) {
         nameLbl.setText(name);
         surnameLbl.setText(surname);
         loginLbl.setText(login);
         dateLbl.setText(date);
+        countSellLbl.setText(String.valueOf(count));
+
     }
 
     public void setItemPane(AnchorPane pane) {

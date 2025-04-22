@@ -1,25 +1,33 @@
 package com.jms.salon.Controllers.Product;
 
-import com.jms.salon.Models.Product;
+import com.salon.Server.Services.Export.Product;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProductSellController implements Initializable {
-    @FXML private Label categoryLabel;
-    @FXML private Label costLabel;
-    @FXML private Button deleteButton;
-    @FXML private Label descriptionLabel;
-    @FXML private Button editButton;
-    @FXML private Label nameLabel;
-    @FXML private Label priceLabel;
-    @FXML private Label quantityLabel;
-    @FXML private Label salesLabel;
+    @FXML
+    private Label categoryLabel;
+    @FXML
+    private Label costLabel;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Label descriptionLabel;
+    @FXML
+    private Button editButton;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label priceLabel;
+    @FXML
+    private Label quantityLabel;
+    @FXML
+    private Label salesLabel;
     
     private Runnable deleteAction;
 

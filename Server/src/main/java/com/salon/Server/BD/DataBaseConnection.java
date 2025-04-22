@@ -37,24 +37,26 @@ public class DataBaseConnection {
     }
 
     private static void createDefaultAdminIfNotExists(Connection conn) throws SQLException {
-        String checkSql = "SELECT COUNT(*) FROM Users WHERE UserName = 'dekats'";
+        String checkSql = "SELECT COUNT(*) FROM Users WHERE UserName = 'admin'";
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(checkSql)) {
 
             rs.next();
             if (rs.getInt(1) == 0) {
                 String salt = PasswordUtil.generateSalt();
-                String passwordHash = PasswordUtil.hashPassword("123123", salt);
+                String passwordHash = PasswordUtil.hashPassword("admin", salt);
 
-                String insertSql = "INSERT INTO Users (UserName, Password, Salt, FirstName, LastName, RoleID) " +
-                        "VALUES (?, ?, ?, ?, ?, (SELECT RoleID FROM Roles WHERE RoleName = 'seller'))";
+                String insertSql = "INSERT INTO Users (UserName, Password, Salt, FirstName, LastName, RoleID, dateAt) " +
+                        "VALUES (?, ?, ?, ?, ?, (SELECT RoleID FROM Roles WHERE RoleName = 'admin'), ?)";
 
                 try (PreparedStatement pstmt = conn.prepareStatement(insertSql)) {
-                    pstmt.setString(1, "dekats");
+                    pstmt.setString(1, "admin");
                     pstmt.setString(2, passwordHash);
                     pstmt.setString(3, salt);
-                    pstmt.setString(4, "Denis");
-                    pstmt.setString(5, "Katsko");
+                    pstmt.setString(4, "System");
+                    pstmt.setString(5, "Desktop");
+                    pstmt.setString(6, "20-04-2025");
+
 
                     int affectedRows = pstmt.executeUpdate();
                     if (affectedRows > 0) {

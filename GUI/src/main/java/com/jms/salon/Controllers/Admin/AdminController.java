@@ -1,7 +1,9 @@
 package com.jms.salon.Controllers.Admin;
 
+import com.jms.salon.Models.ConnectionServer;
 import com.jms.salon.Models.Model;
 import com.jms.salon.Views.AdminMenuOption;
+import com.salon.Server.Services.Admin.AdminRequest;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
@@ -34,6 +36,8 @@ public class AdminController implements Initializable {
                     Stage stage = (Stage) adminParent.getScene().getWindow();
                     Model.getInstance().getViewFactory().closeStage(stage);
                     Model.getInstance().getViewFactory().showLoginWindow();
+                    ConnectionServer connectionServer = Model.getInstance().getConnectionServer();
+                    connectionServer.sendObject(new AdminRequest("Exit"));
                 }
                 default -> adminParent.setCenter(Model.getInstance().getViewFactory().getSellerEditView());
             }

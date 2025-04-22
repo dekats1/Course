@@ -1,4 +1,9 @@
 module com.salon.Server {
     requires java.sql;
+    requires mysql.connector.j;
+    requires javafx.base;
+    requires jdk.jdi;
     exports com.salon.Server.Services;  // Экспортируем необходимые классы
+    exports com.salon.Server.Services.Export;
+    exports com.salon.Server.Services.Admin;
 }

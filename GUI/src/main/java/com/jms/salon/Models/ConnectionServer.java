@@ -13,12 +13,17 @@ public class ConnectionServer implements AutoCloseable {
     private final String HOST = "localhost";
     private final int PORT = 8888;
 
-    public ConnectionServer() throws IOException {
-        socket = new Socket(HOST, PORT);
-        out = new ObjectOutputStream(socket.getOutputStream());
-        out.flush();
-        in = new ObjectInputStream(socket.getInputStream());
-        System.out.println("Подключение к серверу успешно установлено.");
+    public ConnectionServer() {
+        try {
+            socket = new Socket(HOST, PORT);
+            out = new ObjectOutputStream(socket.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(socket.getInputStream());
+            System.out.println("Подключение к серверу успешно установлено.");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public synchronized void sendObject(Object obj){
@@ -34,8 +39,10 @@ public class ConnectionServer implements AutoCloseable {
         try {
             return in.readObject();
         } catch (IOException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }

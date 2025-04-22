@@ -15,6 +15,7 @@ public class ManagerSellController implements Initializable {
     @FXML private Label surnameLbl;
     @FXML private Label loginLbl;
     @FXML private Label dateLbl;
+    @FXML private Label reportCountLbl;
     @FXML private Button deleteBtn;
 
     private AnchorPane itemPane;
@@ -29,11 +30,12 @@ public class ManagerSellController implements Initializable {
         });
     }
 
-    public void setManagerInfo(String name, String surname, String login, String date) {
+    public void setManagerInfo(String name, String surname, String login, String date, int reportCount) {
         nameLbl.setText(name);
         surnameLbl.setText(surname);
         loginLbl.setText(login);
         dateLbl.setText(date);
+        reportCountLbl.setText(String.valueOf(reportCount));
     }
 
     public void setItemPane(AnchorPane pane) {

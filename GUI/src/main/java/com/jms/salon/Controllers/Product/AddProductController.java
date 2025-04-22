@@ -1,13 +1,16 @@
 package com.jms.salon.Controllers.Product;
 
 import com.jms.salon.Models.Model;
-import com.jms.salon.Models.Product;
+import com.salon.Server.Services.Admin.AdminRequest;
+import com.salon.Server.Services.Export.Manager;
+import com.salon.Server.Services.Export.Product;
 import com.jms.salon.Views.AdminMenuOption;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddProductController implements Initializable {
@@ -28,13 +31,7 @@ public class AddProductController implements Initializable {
     }
 
     private void setupCategoryComboBox() {
-        categoryComboBox.getItems().addAll(
-                "Электроника",
-                "Одежда",
-                "Продукты",
-                "Книги",
-                "Другое"
-        );
+        categoryComboBox.getItems().addAll(Product.getCategories());
     }
 
     private void setupNumericFields() {
@@ -70,6 +67,7 @@ public class AddProductController implements Initializable {
                 Model.getInstance().addProduct(product);
                 Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.Products);
                 clearFields();
+                Model.getInstance().getConnectionServer().sendObject(new AdminRequest("AddProduct", product));
             }
         });
     }

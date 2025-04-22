@@ -1,9 +1,19 @@
 package com.salon.Server.Handlers;
 
+import com.salon.Server.Services.Admin.AdminRequest;
+import com.salon.Server.Services.Admin.Response.ManagerResponse;
+import com.salon.Server.Services.Admin.Response.Profile;
+import com.salon.Server.Services.Product.ProductsResponse;
+import com.salon.Server.Services.Admin.Response.SellerResponse;
+import com.salon.Server.Services.Export.Manager;
+import com.salon.Server.Services.Export.Product;
+import com.salon.Server.Services.Export.Seller;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 public class AdminHandler extends RoleHandler {
     public AdminHandler(Socket clientSocket, ObjectInputStream in, ObjectOutputStream out) {
@@ -12,8 +22,68 @@ public class AdminHandler extends RoleHandler {
 
     @Override
     public void handle() throws IOException, ClassNotFoundException {
-        while (true) {
+        while (!exit) {
+            AdminRequest request = (AdminRequest) in.readObject();
+            switch (request.getRequest()) {
+                case "AllSellers"-> {
+                    List<Seller> sellers = SellerResponse.takeAllSellers();
+                    out.writeObject(sellers);
+                    break;
+                }
 
+                case "AddSeller"->{
+                    SellerResponse.addSeller(request.getSeller());
+                    break;
+                }
+                case "DelSeller"->{
+                    SellerResponse.delSeller(request.getName());
+                    break;
+                }
+                case "AllManagers"->{
+                    List<Manager> managers = ManagerResponse.taleAllManagers();
+                    out.writeObject(managers);
+                    break;
+                }
+                case "AddManager"->{
+                    ManagerResponse.addManager(request.getManager());
+                    break;
+                }
+                case "DelManager"->{
+                    ManagerResponse.delManager(request.getName());
+                    break;
+                }
+                case "AllProducts"->{
+                    List<Product> products = ProductsResponse.takeAllProducts();
+                    List<String> cat = Product.getCategories();
+
+                    out.writeObject(products);
+                    break;
+                }
+
+                case "AllCategories"->{
+                    List<String> cat = Product.getCategories();
+                    out.writeObject(cat);
+                }
+                case "AddProduct"->{
+                    ProductsResponse.addProduct(request.getProduct());
+                    break;
+                }
+                case "DelProduct"->{
+                    ProductsResponse.deleteProduct(request.getName());
+                    break;
+                }
+                case "GetPhoto"->{
+                    out.writeObject(Profile.getPhoto(request.getName()));
+                    break;
+                }
+                case "SetPhoto"->{
+                    Profile.updateUserPhoto(request.getName(),request.getPhotoPath());
+                }
+                case "Exit"->{
+                    exit = true;
+                    break;
+                }
+            }
         }
 
     }

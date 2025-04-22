@@ -248,4 +248,12 @@ public class ViewFactory {
         adminSelectedMenuItem.set(null);
     }
 
+    public void clearSellerCache() {
+        sellView = null;
+        sellHistoryView = null;
+        sellerProfileView = null;
+        productsForSellerView = null;
+
+    }
+
 }

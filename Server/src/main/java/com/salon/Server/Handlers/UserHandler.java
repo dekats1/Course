@@ -45,7 +45,7 @@ public class UserHandler implements Runnable {
                     if (handler != null) {
                         handler.handle();
                     }
-                    break;
+                    //break;
                 }
             }
 
