@@ -26,7 +26,7 @@ public class ProductController implements Initializable {
     @FXML
     private Button addProductBtn;
 
-    private static Product product;
+    private static Product selectedProduct;
 
     private ObservableList<Product> products = FXCollections.observableArrayList();
 
@@ -76,11 +76,11 @@ public class ProductController implements Initializable {
         }
     }
 
-    public static Product getProduct() {
-        return product;
+    public static Product getSelectedProduct() {
+        return selectedProduct;
     }
 
-    public static void setProduct(Product product) {
-        ProductController.product = product;
+    public static void setSelectedProduct(Product product) {
+        ProductController.selectedProduct = product;
     }
 }

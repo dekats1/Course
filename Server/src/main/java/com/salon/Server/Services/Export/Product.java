@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Product implements Serializable {
+    private int productId;
     private String name;
     private String description;
     private String category;
@@ -11,6 +12,17 @@ public class Product implements Serializable {
     private double cost;
     private int quantity;
     private static List<String> categories;
+
+    public Product(int productId, String name, String description, String category,
+                   double price, double cost, int quantity) {
+        this.productId = productId;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.price = price;
+        this.cost = cost;
+        this.quantity = quantity;
+    }
 
     public Product(String name, String description, String category,
                    double price, double cost, int quantity) {
@@ -22,7 +34,9 @@ public class Product implements Serializable {
         this.quantity = quantity;
     }
 
-
+    public int getProductId() {
+        return productId;
+    }
     public String getName() {
         return name;
     }
@@ -49,6 +63,10 @@ public class Product implements Serializable {
 
     public static List<String> getCategories() {
         return categories;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public void setName(String name) {

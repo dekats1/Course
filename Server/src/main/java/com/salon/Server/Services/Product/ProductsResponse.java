@@ -12,7 +12,7 @@ import java.util.List;
 public class ProductsResponse {
     public static List<Product> takeAllProducts() {
         List<Product> products = new ArrayList<>();
-        String sql = "SELECT p.ProductName, p.Description, " +
+        String sql = "SELECT p.productID, p.ProductName, p.Description, " +
                 "c.CategoryName, p.SalePrice, p.CostPrice, p.StockLevel " +
                 "FROM Products p " +
                 "LEFT JOIN Category c ON p.CategoryID = c.CategoryID";
@@ -26,6 +26,7 @@ public class ProductsResponse {
 
             while (rs.next()) {
                 Product product = new Product(
+                        rs.getInt("productID"),
                         rs.getString("ProductName"),
                         rs.getString("Description"),
                         rs.getString("CategoryName"),
@@ -114,7 +115,6 @@ public class ProductsResponse {
             try (PreparedStatement deleteDetailsStmt = conn.prepareStatement(deleteDetailsSql);
                  PreparedStatement deleteProductStmt = conn.prepareStatement(deleteProductSql)) {
 
-                // 1. Удляем связанные записи в SaleDetails
                 deleteDetailsStmt.setString(1, productName);
                 deleteDetailsStmt.executeUpdate();
 
@@ -130,6 +130,63 @@ public class ProductsResponse {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка подключения к БД: " + e.getMessage(), e);
+        }
+    }
+
+
+    public static void editProduct(Product product) {
+        if (product == null) {
+            throw new IllegalArgumentException("Product cannot be null");
+        }
+        if (product.getProductId() <= 0) {
+            throw new IllegalArgumentException("Invalid product ID");
+        }
+
+        try (Connection connection = DataBaseConnection.getConnection()) {
+            connection.setAutoCommit(false);
+
+            try {
+                int categoryId = getCategoryId(connection, product.getCategory());
+
+                String updateSql = "UPDATE Products SET ProductName = ?, Description = ?, "
+                        + "SalePrice = ?, CostPrice = ?, StockLevel = ?, CategoryID = ? "
+                        + "WHERE ProductID = ?";
+
+                try (PreparedStatement updateStmt = connection.prepareStatement(updateSql)) {
+                    updateStmt.setString(1, product.getName());
+                    updateStmt.setString(2, product.getDescription());
+                    updateStmt.setDouble(3, product.getPrice());
+                    updateStmt.setDouble(4, product.getCost());
+                    updateStmt.setInt(5, product.getQuantity());
+                    updateStmt.setInt(6, categoryId);
+                    updateStmt.setInt(7, product.getProductId());
+
+                    if (updateStmt.executeUpdate() == 0) {
+                        throw new RuntimeException("Product with ID " + product.getProductId() + " not found");
+                    }
+                }
+
+                connection.commit();
+                System.out.println("Product with ID " + product.getProductId() + " updated");
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException("Failed to update product", e);  // Пробрасываем исключение дальше
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Database connection error", e);
+        }
+    }
+
+    private static int getCategoryId(Connection connection, String categoryName) throws SQLException {
+        String sql = "SELECT CategoryID FROM Category WHERE CategoryName = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, categoryName);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("CategoryID");
+                }
+                throw new SQLException("Category '" + categoryName + "' not found");
+            }
         }
     }
 }

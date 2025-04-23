@@ -79,6 +79,7 @@ public class AdminRequest implements java.io.Serializable {
         this.errorMassage = errorMassage;
     }
 
+
     public String getRequest() {
         return request;
     }
@@ -110,5 +111,6 @@ public class AdminRequest implements java.io.Serializable {
     public Boolean getSuccess() {
         return isSuccess;
     }
+
 }
 

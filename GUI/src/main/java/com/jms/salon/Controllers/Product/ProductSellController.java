@@ -43,8 +43,12 @@ public class ProductSellController implements Initializable {
             }
         });
         editButton.setOnAction(event -> {
-            Product product = new Product(nameLabel.getText(), descriptionLabel.getText(), categoryLabel.getText(), Double.parseDouble(priceLabel.getText()), Double.parseDouble(costLabel.getText()), Integer.parseInt(quantityLabel.getText()));
-            ProductController.setProduct(product);
+            for(Product product: Model.getInstance().getProducts()){
+                if(product.getName().equals(nameLabel.getText())&& product.getDescription().equals(descriptionLabel.getText())){
+                    ProductController.setSelectedProduct(product);
+                    break;
+                }
+            }
             Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.EditProduct);
         });
     }
