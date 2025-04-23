@@ -5,6 +5,7 @@ public enum AdminMenuOption {
     Managers,
     Products,
     AddProduct,
+    EditProduct,
     Log,
     Profile,
     Exit

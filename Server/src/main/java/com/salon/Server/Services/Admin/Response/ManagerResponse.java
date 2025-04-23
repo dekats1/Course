@@ -1,6 +1,7 @@
 package com.salon.Server.Services.Admin.Response;
 
 import com.salon.Server.BD.DataBaseConnection;
+import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Manager;
 import com.salon.Server.Utils.PasswordUtil;
 
@@ -31,7 +32,7 @@ public class ManagerResponse {
         return managers;
     }
 
-    public static void addManager(Manager manager) {
+    public static AdminRequest addManager(Manager manager) {
         String checkSql = "SELECT COUNT(*) FROM Users WHERE UserName = ?";
         String insertSql = "INSERT INTO Users (UserName, Password, Salt, FirstName, LastName, RoleID, dateAt) "
                 + "VALUES (?, ?, ?, ?, ?, (SELECT RoleID FROM Roles WHERE RoleName = 'manager'), ?)";
@@ -57,16 +58,19 @@ public class ManagerResponse {
                             System.out.println("Manager account created successfully");
                         } else {
                             System.out.println("Failed to create manager account");
+                            return new AdminRequest(false,"Ошибка при добавлении пользователя");
                         }
                     }
                 } else {
                     System.out.println("Manager account already exists");
+                    return new AdminRequest(false,"Пользователь с данный логином занят");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Error adding manager: " + e.getMessage(), e);
         }
+        return new AdminRequest(true,"");
     }
 
     public static boolean delManager(String username) {

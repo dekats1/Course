@@ -26,6 +26,8 @@ public class ProductController implements Initializable {
     @FXML
     private Button addProductBtn;
 
+    private static Product product;
+
     private ObservableList<Product> products = FXCollections.observableArrayList();
 
     @Override
@@ -72,5 +74,13 @@ public class ProductController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Product getProduct() {
+        return product;
+    }
+
+    public static void setProduct(Product product) {
+        ProductController.product = product;
     }
 }

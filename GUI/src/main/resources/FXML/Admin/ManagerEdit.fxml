@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.Label?>
 <AnchorPane prefHeight="750.0" prefWidth="850.0" styleClass="anchor-pane" stylesheets="@../../Styles/SellerEdit.css"
             xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.jms.salon.Controllers.Admin.ManagerEditController">
@@ -27,6 +28,8 @@
                 <Button fx:id="addSellerBtn" defaultButton="true" mnemonicParsing="false" styleClass="addButton"
                         text="Добавить"/>
             </children>
+            <Label fx:id="errorLbl" prefHeight="18.0" prefWidth="550.0" text="Label" textFill="RED"
+                   visible="false"/>
         </VBox>
         <ListView fx:id="managerListView" layoutX="31.0" layoutY="27.0" prefHeight="354.0" prefWidth="780.0"
                   AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0"/>

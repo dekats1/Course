@@ -11,16 +11,6 @@ public class Product implements Serializable {
     private double cost;
     private int quantity;
     private static List<String> categories;
-    public Product(String name, String description, String category, double price, double cost,
-                   int quantity, List<String> categories) {
-        this.name = name;
-        this.description = description;
-        this.category = category;
-        this.price = price;
-        this.cost = cost;
-        this.quantity = quantity;
-        Product.categories = categories;
-    }
 
     public Product(String name, String description, String category,
                    double price, double cost, int quantity) {

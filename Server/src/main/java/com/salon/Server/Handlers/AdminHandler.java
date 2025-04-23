@@ -3,11 +3,11 @@ package com.salon.Server.Handlers;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Admin.Response.ManagerResponse;
 import com.salon.Server.Services.Admin.Response.Profile;
-import com.salon.Server.Services.Product.ProductsResponse;
 import com.salon.Server.Services.Admin.Response.SellerResponse;
 import com.salon.Server.Services.Export.Manager;
 import com.salon.Server.Services.Export.Product;
 import com.salon.Server.Services.Export.Seller;
+import com.salon.Server.Services.Product.ProductsResponse;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,7 +32,7 @@ public class AdminHandler extends RoleHandler {
                 }
 
                 case "AddSeller"->{
-                    SellerResponse.addSeller(request.getSeller());
+                    out.writeObject(SellerResponse.addSeller(request.getSeller()));
                     break;
                 }
                 case "DelSeller"->{
@@ -45,7 +45,7 @@ public class AdminHandler extends RoleHandler {
                     break;
                 }
                 case "AddManager"->{
-                    ManagerResponse.addManager(request.getManager());
+                    out.writeObject(ManagerResponse.addManager(request.getManager()));
                     break;
                 }
                 case "DelManager"->{
@@ -65,7 +65,7 @@ public class AdminHandler extends RoleHandler {
                     out.writeObject(cat);
                 }
                 case "AddProduct"->{
-                    ProductsResponse.addProduct(request.getProduct());
+                    out.writeObject(ProductsResponse.addProduct(request.getProduct()));
                     break;
                 }
                 case "DelProduct"->{

@@ -27,6 +27,7 @@ public class ViewFactory {
     private AnchorPane managerEditView;
     private AnchorPane logView;
     private AnchorPane adminProfileView;
+    private AnchorPane editProductView;
 
 
     //Seller View
@@ -102,6 +103,18 @@ public class ViewFactory {
             }
         }
         return adminProfileView;
+    }
+
+    public AnchorPane getEditProductView(){
+        if (editProductView == null) {
+            try {
+                editProductView = new FXMLLoader(getClass().getResource("/FXML/Product/ProductEdit.fxml")).load();
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+        return editProductView;
     }
 
     public void showAdminWindow(){

@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +24,7 @@ import java.util.ResourceBundle;
 
 public class ManagerEditController implements Initializable {
 
+    public Label errorLbl;
     @FXML
     private ListView<AnchorPane> managerListView;
     @FXML
@@ -42,13 +44,21 @@ public class ManagerEditController implements Initializable {
         connectionServer.sendObject(new AdminRequest("AllManagers"));
 
         addSellerBtn.setOnAction(event -> {
+            errorLbl.setVisible(false);
             String login = loginField.getText();
             String firstName = firstNameField.getText();
             String lastName = lastNameField.getText();
             String password = passwordField.getText();
             String date = LocalDate.now().toString();
             connectionServer.sendObject(new AdminRequest("AddManager", new Manager(login, firstName, lastName, password, date)));
-            addManager(new Manager(login, firstName, lastName, password, date));
+           AdminRequest res = (AdminRequest) connectionServer.receiveObject();
+            if(res.getSuccess())
+                addManager(new Manager(login, firstName, lastName, password, date));
+            else {
+                errorLbl.setText(res.getErrorMassage());
+                errorLbl.setVisible(true);
+            }
+           
         });
 
         Model.getInstance().getManagers().setAll((List<Manager>) connectionServer.receiveObject());

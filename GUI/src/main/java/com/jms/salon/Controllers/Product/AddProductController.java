@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddProductController implements Initializable {
+    public Label errorLbl;
     @FXML private Button cancelButton;
     @FXML private ComboBox<String> categoryComboBox;
     @FXML private TextField costField;
@@ -62,12 +63,20 @@ public class AddProductController implements Initializable {
         });
 
         saveButton.setOnAction(event -> {
+            errorLbl.setVisible(false);
             if (validateFields()) {
                 Product product = createProductFromFields();
-                Model.getInstance().addProduct(product);
-                Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.Products);
-                clearFields();
+
                 Model.getInstance().getConnectionServer().sendObject(new AdminRequest("AddProduct", product));
+                AdminRequest res = (AdminRequest) Model.getInstance().getConnectionServer().receiveObject();
+                if(res.getSuccess()) {
+                    Model.getInstance().addProduct(product);
+                    clearFields();
+                    Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.Products);
+                }else{
+                    errorLbl.setText(res.getErrorMassage());
+                    errorLbl.setVisible(true);
+                }
             }
         });
     }

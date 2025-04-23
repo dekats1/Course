@@ -1,6 +1,7 @@
 package com.salon.Server.Services.Product;
 
 import com.salon.Server.BD.DataBaseConnection;
+import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Product;
 
 import java.sql.*;
@@ -59,7 +60,7 @@ public class ProductsResponse {
         return categories;
     }
 
-    public static void addProduct(Product product) {
+    public static AdminRequest addProduct(Product product) {
         String checkSql = "SELECT COUNT(*) FROM Products WHERE ProductName = ?";
 
         String insertSql = "INSERT INTO Products (ProductName, Description, CategoryID, SalePrice, CostPrice, StockLevel) " +
@@ -85,15 +86,19 @@ public class ProductsResponse {
                             System.out.println("Продукт успешно добавлен в базу данных");
                         } else {
                             System.out.println("Не удалось добавить продукт");
+                            return new AdminRequest(false, "Не удалось добавить продукт");
+
                         }
                     }
                 } else {
                     System.out.println("Продукт с таким названием уже существует");
+                    return new AdminRequest(false, "Продукт с таким названием уже существует");
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка при добавлении продукта", e);
         }
+        return new AdminRequest(true, "");
     }
 
     public static boolean deleteProduct(String productName) {

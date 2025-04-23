@@ -26,6 +26,7 @@ public class AdminController implements Initializable {
                 case AdminMenuOption.AddProduct -> adminParent.setCenter(Model.getInstance().getViewFactory().getAddProductView());
                 case AdminMenuOption.Log -> adminParent.setCenter(Model.getInstance().getViewFactory().getLogView());
                 case AdminMenuOption.Profile -> adminParent.setCenter(Model.getInstance().getViewFactory().getAdminProfileView());
+                case AdminMenuOption.EditProduct -> adminParent.setCenter(Model.getInstance().getViewFactory().getEditProductView());
                 case AdminMenuOption.Exit -> {
                     // Удаляем listener
                     Model.getInstance().getViewFactory().getAdminSelectedMenuItem().removeListener(listener);

@@ -1,6 +1,7 @@
 package com.salon.Server.Services.Admin.Response;
 
 import com.salon.Server.BD.DataBaseConnection;
+import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Seller;
 import com.salon.Server.Utils.PasswordUtil;
 
@@ -27,7 +28,7 @@ public class SellerResponse {
         return sellers;
     }
 
-    public static void addSeller(Seller seller) {
+    public static AdminRequest addSeller(Seller seller) {
         String checkSql = "SELECT COUNT(*) FROM Users WHERE UserName = ?";
         String insertSql = "INSERT INTO Users (UserName, Password, Salt, FirstName, LastName, RoleID, dateAt) " +
                 "VALUES (?, ?, ?, ?, ?, (SELECT RoleID FROM Roles WHERE RoleName = 'seller'), ?)";
@@ -53,16 +54,19 @@ public class SellerResponse {
                             System.out.println("Seller account created successfully");
                         } else {
                             System.out.println("Failed to create seller account");
+                            return new AdminRequest(false,"Ошибка при добавлении пользователя");
                         }
                     }
                 } else {
                     System.out.println("Seller account already exists");
+                    return new AdminRequest(false,"Пользователь с данный логином занят");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Error adding seller: " + e.getMessage(), e);
         }
+        return new AdminRequest(true,"");
     }
 
     public static boolean delSeller(String userName) {
@@ -80,23 +84,20 @@ public class SellerResponse {
                  PreparedStatement deleteSalesStmt = conn.prepareStatement(deleteSalesSql);
                  PreparedStatement deleteUserStmt = conn.prepareStatement(deleteUserSql)) {
 
-                // 1. Удаляем детали продаж
                 deleteDetailsStmt.setString(1, userName);
                 deleteDetailsStmt.executeUpdate();
 
-                // 2. Удаляем сами продажи
                 deleteSalesStmt.setString(1, userName);
                 deleteSalesStmt.executeUpdate();
 
-                // 3. Удаляем пользователя
                 deleteUserStmt.setString(1, userName);
                 int affectedRows = deleteUserStmt.executeUpdate();
 
-                conn.commit(); // Подтверждаем транзакцию
+                conn.commit();
                 return affectedRows > 0;
 
             } catch (SQLException e) {
-                conn.rollback(); // Откатываем при ошибке
+                conn.rollback();
                 throw new RuntimeException("Error deleting seller and related data: " + e.getMessage(), e);
             }
         } catch (SQLException e) {

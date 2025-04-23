@@ -11,6 +11,8 @@ public class AdminRequest implements java.io.Serializable {
     private final Product product;
     private final String photoPath;
     private final String name;
+    private String errorMassage;
+    private Boolean isSuccess;
 
     public AdminRequest(String request, Seller seller) {
         this.request = request;
@@ -66,6 +68,17 @@ public class AdminRequest implements java.io.Serializable {
         this.name = name;
     }
 
+    public AdminRequest(Boolean isSuccess, String errorMassage) {
+        this.request = null;
+        this.seller = null;
+        this.manager = null;
+        this.product = null;
+        this.photoPath = null;
+        this.name = null;
+        this.isSuccess = isSuccess;
+        this.errorMassage = errorMassage;
+    }
+
     public String getRequest() {
         return request;
     }
@@ -88,6 +101,14 @@ public class AdminRequest implements java.io.Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public String getErrorMassage() {
+        return errorMassage;
+    }
+
+    public Boolean getSuccess() {
+        return isSuccess;
     }
 }
 

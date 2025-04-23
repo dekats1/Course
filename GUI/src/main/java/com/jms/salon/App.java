@@ -6,10 +6,12 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class App extends Application {
     @Override
     public void start(Stage stage){
+        Locale.setDefault(Locale.US);
         Model.getInstance().getConnectionServer();
         Model.getInstance().getViewFactory().showLoginWindow();
 
