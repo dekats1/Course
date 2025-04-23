@@ -8,7 +8,7 @@ public class AdminRequest implements java.io.Serializable {
     private final String request;
     private final Seller seller;
     private final Manager manager;
-    private final Product product;
+    private Product product;
     private final String photoPath;
     private final String name;
     private String errorMassage;
@@ -110,6 +110,10 @@ public class AdminRequest implements java.io.Serializable {
 
     public Boolean getSuccess() {
         return isSuccess;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
 }

@@ -74,6 +74,7 @@ public class AdminHandler extends RoleHandler {
                 }
                 case "EditProduct"->{
                     ProductsResponse.editProduct(request.getProduct());
+                    request.setProduct(null);
                 }
                 case "GetPhoto"->{
                     out.writeObject(Profile.getPhoto(request.getName()));

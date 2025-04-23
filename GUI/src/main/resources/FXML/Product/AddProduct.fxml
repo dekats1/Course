@@ -17,37 +17,29 @@
 
     <VBox alignment="TOP_CENTER" spacing="20" styleClass="main-container" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
 
-        <!-- Заголовок -->
         <Text styleClass="header-text" text="Добавление нового товара" />
 
-        <!-- Форма ввода -->
         <GridPane hgap="20" styleClass="form-grid" vgap="15">
             <columnConstraints>
                 <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="150" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="200" prefWidth="300" />
             </columnConstraints>
 
-            <!-- Название товара -->
             <Label styleClass="field-label" text="Название товара:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <TextField fx:id="nameField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-            <!-- Описание -->
             <Label styleClass="field-label" text="Описание:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <TextArea fx:id="descriptionField" styleClass="input-area" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-            <!-- Категория -->
             <Label styleClass="field-label" text="Категория:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
             <ComboBox fx:id="categoryComboBox" styleClass="combo-box" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-            <!-- Цена -->
             <Label styleClass="field-label" text="Цена продажи:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
             <TextField fx:id="priceField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-            <!-- Себестоимость -->
             <Label styleClass="field-label" text="Себестоимость:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
             <TextField fx:id="costField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-            <!-- Количество -->
             <Label styleClass="field-label" text="Количество:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
             <TextField fx:id="quantityField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <rowConstraints>
@@ -61,7 +53,6 @@
         </GridPane>
       <Label fx:id="errorLbl" text="Label" textFill="RED" visible="false" />
 
-        <!-- Кнопки действий -->
         <HBox alignment="CENTER" spacing="20" styleClass="button-box">
             <Button fx:id="saveButton" mnemonicParsing="false" styleClass="save-button" text="Сохранить" />
             <Button fx:id="cancelButton" mnemonicParsing="false" styleClass="cancel-button" text="Отмена" />

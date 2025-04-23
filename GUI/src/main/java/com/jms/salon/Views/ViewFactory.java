@@ -1,10 +1,8 @@
 package com.jms.salon.Views;
 
-import com.jms.salon.Controllers.Admin.AdminController;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -115,6 +113,10 @@ public class ViewFactory {
             }
         }
         return editProductView;
+    }
+
+    public void setEditProductView(AnchorPane editProductView){
+        this.editProductView = editProductView;
     }
 
     public void showAdminWindow(){

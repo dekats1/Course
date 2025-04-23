@@ -4,7 +4,6 @@ import com.jms.salon.Models.Model;
 import com.jms.salon.Views.AdminMenuOption;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Product;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -106,12 +105,38 @@ public class ProductEditController implements Initializable {
             ProductController.getSelectedProduct().setPrice(Double.parseDouble(priceField.getText().trim()));
         }
         Model.getInstance().getProducts().set(Model.getInstance().getProducts().indexOf(ProductController.getSelectedProduct()), ProductController.getSelectedProduct());
-        Product product = ProductController.getSelectedProduct();
-        Model.getInstance().getConnectionServer().sendObject(new AdminRequest("EditProduct",ProductController.getSelectedProduct()));
+        Product updatedProduct = new Product(
+                ProductController.getSelectedProduct().getProductId(),
+                ProductController.getSelectedProduct().getName(),
+                ProductController.getSelectedProduct().getDescription(),
+                ProductController.getSelectedProduct().getCategory(),
+                ProductController.getSelectedProduct().getPrice(),
+                ProductController.getSelectedProduct().getCost(),
+                ProductController.getSelectedProduct().getQuantity()
+        );
+
+        int index = Model.getInstance().getProducts().indexOf(ProductController.getSelectedProduct());
+
+        if (index != -1) {
+            Model.getInstance().getProducts().set(index, updatedProduct);
+        }
+
+        ProductController.setSelectedProduct(updatedProduct);
+        for (Product product : Model.getInstance().getProducts()) {
+            System.out.println(product.toString());
+        }
+        System.out.println(ProductController.getSelectedProduct().toString());
+        ProductController.setSelectedProduct(ProductController.getSelectedProduct());
+
+          Model.getInstance().getConnectionServer().sendObject(new AdminRequest("EditProduct",ProductController.getSelectedProduct()));
+
     }
 
     private void closeWindow() {
+        clearValue();
+        clearCurrentValue();
         Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.Products);
+        Model.getInstance().getViewFactory().setEditProductView(null);
     }
 
 
@@ -126,5 +151,22 @@ public class ProductEditController implements Initializable {
         if (categoryCombo != null) {
             categoryCombo.getSelectionModel().select(ProductController.getSelectedProduct().getCategory());
         }
+    }
+
+    private void clearValue() {
+        nameField.setText("");
+        descriptionArea.setText("");
+        priceField.setText("");
+        quantityField.setText("");
+        costField.setText("");
+    }
+
+    private void clearCurrentValue() {
+        currentCategoryLabel.setText("");
+        currentCostLabel.setText("");
+        currentDescriptionLabel.setText("");
+        currentNameLabel.setText("");
+        currentPriceLabel.setText("");
+        currentQuantityLabel.setText("");
     }
 }

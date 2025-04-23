@@ -143,7 +143,6 @@ public class ProductsResponse {
         }
 
         try (Connection connection = DataBaseConnection.getConnection()) {
-            connection.setAutoCommit(false);
 
             try {
                 int categoryId = getCategoryId(connection, product.getCategory());
@@ -166,10 +165,8 @@ public class ProductsResponse {
                     }
                 }
 
-                connection.commit();
                 System.out.println("Product with ID " + product.getProductId() + " updated");
             } catch (SQLException e) {
-                connection.rollback();
                 throw new RuntimeException("Failed to update product", e);  // Пробрасываем исключение дальше
             }
         } catch (SQLException e) {
