@@ -62,12 +62,10 @@ public class Model {
     }
 
     public ObservableList<Seller> getSellers() {return sellers;}
-    public void addSeller(Seller seller) { sellers.add(seller); }
-    public void removeSeller(Seller seller) { sellers.remove(seller); }
+
 
     public ObservableList<Manager> getManagers() {return managers;}
-    public void addManager(Manager manager) { managers.add(manager); }
-    public void removeManager(Manager manager) { managers.remove(manager); }
+
 
     public synchronized static Model getInstance(){
         if(instance == null){
