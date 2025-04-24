@@ -4,6 +4,8 @@ import com.salon.Server.Services.Export.Manager;
 import com.salon.Server.Services.Export.Product;
 import com.salon.Server.Services.Export.Seller;
 
+import java.util.Date;
+
 public class AdminRequest implements java.io.Serializable {
     private final String request;
     private final Seller seller;
@@ -15,6 +17,7 @@ public class AdminRequest implements java.io.Serializable {
     private String newPassword;
     private String errorMassage;
     private Boolean isSuccess;
+    private Date dateInfo;
 
     public AdminRequest(String request, Seller seller) {
         this.request = request;
@@ -68,6 +71,8 @@ public class AdminRequest implements java.io.Serializable {
         this.product = null;
         this.photoPath = null;
         this.name = name;
+        this.isSuccess = false;
+        this.errorMassage = null;
     }
 
     public AdminRequest(Boolean isSuccess, String errorMassage) {
@@ -79,6 +84,7 @@ public class AdminRequest implements java.io.Serializable {
         this.name = null;
         this.isSuccess = isSuccess;
         this.errorMassage = errorMassage;
+        this.dateInfo = null;
     }
 
     public AdminRequest(String request, String name, String password, String newPassword) {
@@ -92,7 +98,21 @@ public class AdminRequest implements java.io.Serializable {
         this.newPassword = newPassword;
         this.isSuccess = false;
         this.errorMassage = null;
+        this.dateInfo = null;
     }
+
+    public AdminRequest(String name, Date date) {
+        this.request = null;
+        this.seller = null;
+        this.manager = null;
+        this.product = null;
+        this.photoPath = null;
+        this.name = name;
+        this.dateInfo = date;
+        this.isSuccess = false;
+        this.errorMassage = null;
+    }
+
 
 
     public String getRequest() {
@@ -140,5 +160,8 @@ public class AdminRequest implements java.io.Serializable {
     }
 
 
+    public Date getDate() {
+        return dateInfo;
+    }
 }
 

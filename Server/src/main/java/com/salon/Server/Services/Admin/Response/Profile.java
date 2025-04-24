@@ -4,7 +4,14 @@ import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Utils.PasswordUtil;
 
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class Profile {
@@ -75,4 +82,25 @@ public class Profile {
         }
     }
 
+    public static AdminRequest userData(String userName) {
+        String sql = "SELECT FirstName, LastName, DateAt FROM Users WHERE UserName = ?";
+        try (Connection connection = DataBaseConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, userName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                String firstName = resultSet.getString("FirstName");
+                String lastName = resultSet.getString("LastName");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateAt = (Date) sdf.parse(resultSet.getString("DateAt"));
+                return new AdminRequest(firstName+ " " + lastName, dateAt);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

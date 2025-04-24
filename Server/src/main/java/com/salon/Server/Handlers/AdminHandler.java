@@ -86,6 +86,9 @@ public class AdminHandler extends RoleHandler {
                 case "ChangePassword"->{
                     out.writeObject(Profile.changePassword(request.getName(),request.getPassword(),request.getNewPassword()));
                 }
+                case "UserData"->{
+                    out.writeObject(Profile.userData(request.getName()));
+                }
                 case "Exit"->{
                     exit = true;
                     break;

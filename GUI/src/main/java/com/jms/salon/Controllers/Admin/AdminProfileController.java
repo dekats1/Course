@@ -16,6 +16,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 
 public class AdminProfileController {
     @FXML
@@ -119,9 +120,11 @@ public class AdminProfileController {
     private void loadUserData() {
         // Загрузка данных пользователя
         loginLabel.setText(Model.getInstance().getCurrentUser());
-
-//        nameLabel.setText(Model.getInstance().getCurrentUserName());
-//        regDateLbl.setText(Model.getInstance().getRegistrationDate());
+        Model.getInstance().getConnectionServer().sendObject(new AdminRequest("UserData", Model.getInstance().getCurrentUser()));
+        AdminRequest userData = (AdminRequest) Model.getInstance().getConnectionServer().receiveObject();
+        nameLabel.setText(userData.getName());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        regDateLbl.setText(formatter.format( userData.getDate()));
 
         // Загрузка аватара
         Model.getInstance().getConnectionServer()

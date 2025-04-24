@@ -1,6 +1,5 @@
 package com.jms.salon;
 
-import com.jms.salon.Models.ConnectionServer;
 import com.jms.salon.Models.Model;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -17,3 +16,4 @@ public class App extends Application {
 
     }
 }
+//1916
