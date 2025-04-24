@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerResponse {
-    public static List<Manager> taleAllManagers() {
+    public static List<Manager> takeAllManagers() {
         List<Manager> managers = new ArrayList<>();
         String query = "SELECT u.UserName, u.FirstName AS name, u.LastName AS lastName, "
                 + "COUNT(s.ReportID) AS reportCount, u.dateAt AS registrationDate "

@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -61,49 +62,51 @@ public class AdminProfileController {
     }
 
     private void onChangePassword() {
+        errorLbl.setVisible(false);
+        errorLbl.setText("");
+        errorLbl.setFill(Color.rgb(255, 0, 0));
         String oldPassword = oldPasswordField.getText();
         String newPassword = newPasswordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
-        // Валидация
         if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
             errorLbl.setVisible(true);
             errorLbl.setText("Все поля должны быть заполнены");
-            //showAlert(Alert.AlertType.ERROR, "Ошибка", "Все поля должны быть заполнены");
             return;
         }
 
         if (!newPassword.equals(confirmPassword)) {
             errorLbl.setVisible(true);
             errorLbl.setText("Новый пароль и подтверждение не совпадают");
-           // showAlert(Alert.AlertType.ERROR, "Ошибка", "Новый пароль и подтверждение не совпадают");
             return;
         }
 
         if (newPassword.length() < 6) {
             errorLbl.setVisible(true);
             errorLbl.setText("Пароль должен содержать минимум 6 символов");
-            //showAlert(Alert.AlertType.ERROR, "Ошибка", "Пароль должен содержать минимум 6 символов");
             return;
         }
 
-        // Создаем запрос на смену пароля
-//        AdminRequest request = new AdminRequest(
-//                "ChangePassword",
-//                Model.getInstance().getCurrentUser(),
-//                oldPassword,
-//                newPassword
-//        );
-//
-//        // Отправляем на сервер
-//        Boolean success = (Boolean) Model.getInstance().getConnectionServer().sendObject(request);
+        AdminRequest request = new AdminRequest(
+                "ChangePassword",
+                Model.getInstance().getCurrentUser(),
+                oldPassword,
+                newPassword
+        );
 
-//        if (success != null && success) {
-//           // showAlert(Alert.AlertType.INFORMATION, "Успех", "Пароль успешно изменен");
-//            clearPasswordFields();
-//        } else {
-//           // showAlert(Alert.AlertType.ERROR, "Ошибка", "Не удалось изменить пароль. Проверьте старый пароль.");
-//        }
+        Model.getInstance().getConnectionServer().sendObject(request);
+        AdminRequest success = (AdminRequest) Model.getInstance().getConnectionServer().receiveObject();
+
+        if (success.getSuccess()) {
+            errorLbl.setVisible(true);
+            errorLbl.setFill(Color.rgb(0, 255, 0));
+            errorLbl.setText("Пароль успешно изменен");
+            clearPasswordFields();
+        } else {
+            errorLbl.setVisible(true);
+            errorLbl.setFill(Color.rgb(255, 0, 0));
+            errorLbl.setText(success.getErrorMassage());
+        }
     }
 
     private void clearPasswordFields() {

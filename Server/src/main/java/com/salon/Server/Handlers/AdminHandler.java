@@ -40,7 +40,7 @@ public class AdminHandler extends RoleHandler {
                     break;
                 }
                 case "AllManagers"->{
-                    List<Manager> managers = ManagerResponse.taleAllManagers();
+                    List<Manager> managers = ManagerResponse.takeAllManagers();
                     out.writeObject(managers);
                     break;
                 }
@@ -82,6 +82,9 @@ public class AdminHandler extends RoleHandler {
                 }
                 case "SetPhoto"->{
                     Profile.updateUserPhoto(request.getName(),request.getPhotoPath());
+                }
+                case "ChangePassword"->{
+                    out.writeObject(Profile.changePassword(request.getName(),request.getPassword(),request.getNewPassword()));
                 }
                 case "Exit"->{
                     exit = true;
