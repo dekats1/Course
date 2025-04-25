@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="157.0" prefWidth="792.0" styleClass="product-cell" stylesheets="@../../Styles/ProductSeller.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Product.ProductSellForSellerController">
-    <effect>
-        <DropShadow color="rgba(0,0,0,0.1)" offsetX="0" offsetY="5" radius="10" />
-    </effect>
-
+<AnchorPane prefHeight="157.0" prefWidth="830.0" styleClass="product-cell" stylesheets="@../../Styles/Product.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Product.ProductСellController">
     <children>
-        <HBox spacing="20" styleClass="product-content" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <effect>
-                <InnerShadow color="rgba(0,0,0,0.1)" offsetX="0" offsetY="3" radius="3" />
-            </effect>
-
+        <HBox spacing="20" styleClass="product-content" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
             <children>
                 <VBox prefWidth="350" spacing="8" styleClass="product-info">
                     <children>
@@ -31,7 +22,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" spacing="10">
                             <Label styleClass="field-label" text="Описание:" />
-                            <Label fx:id="descriptionLabel" prefHeight="92.0" prefWidth="236.0" styleClass="field-value" wrapText="true" />
+                            <Label fx:id="descriptionLabel" styleClass="field-value" wrapText="true" />
                         </HBox>
                     </children>
                 </VBox>
@@ -50,6 +41,14 @@
                             <Label styleClass="field-label" text="Количество:" />
                             <Label fx:id="quantityLabel" styleClass="field-value-bold" />
                         </HBox>
+                        <HBox alignment="CENTER_RIGHT" spacing="10" />
+                    </children>
+                </VBox>
+
+                <VBox alignment="CENTER_RIGHT" spacing="10" styleClass="product-actions">
+                    <children>
+                        <Button fx:id="editButton" styleClass="edit-button" text="Редактировать" />
+                        <Button fx:id="deleteButton" styleClass="delete-button" text="Удалить" />
                     </children>
                 </VBox>
             </children>

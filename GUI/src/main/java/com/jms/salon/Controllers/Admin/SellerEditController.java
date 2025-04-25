@@ -5,7 +5,6 @@ import com.jms.salon.Models.Model;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Seller;
 import javafx.animation.FadeTransition;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -80,7 +79,7 @@ public class SellerEditController implements Initializable {
     }
 
     public void addSeller(Seller seller) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Admin/SellerSell.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Admin/SellerСell.fxml"));
         AnchorPane sellerCell;
         try {
             sellerCell = loader.load();
@@ -89,7 +88,7 @@ public class SellerEditController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        SellerSellController controller = loader.getController();
+        SellerСellController controller = loader.getController();
         controller.setSellerInfo(seller.getName(), seller.getLastName(), seller.getUserName(), seller.getDateAt(), seller.getSellCount());
         controller.setItemPane(sellerCell);
 

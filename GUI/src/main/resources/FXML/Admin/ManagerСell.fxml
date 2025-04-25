@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="51.0" maxWidth="750.0" prefHeight="51.0" prefWidth="733.0" styleClass="anchor-pane" stylesheets="@../../Styles/SellerAndManagerSell.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Admin.SellerSellController">
+<AnchorPane maxHeight="51.0" maxWidth="750.0" prefHeight="51.0" prefWidth="733.0" styleClass="anchor-pane" stylesheets="@../../Styles/SellerAndManagerSell.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Admin.ManagerСellController">
     <children>
         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="15.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
             <image>
@@ -33,12 +33,12 @@
                     <Label styleClass="label-title" text="Дата:" />
                     <Label fx:id="dateLbl" styleClass="label-value" text="01-01-2023" />
                 </VBox>
-            <VBox maxWidth="92.0" prefHeight="40.0" prefWidth="92.0" spacing="2" styleClass="vbox-label">
-               <children>
-                  <Label styleClass="label-title" text="Кол-во продаж" />
-                  <Label fx:id="countSellLbl" styleClass="label-value" text="0" />
-               </children>
-            </VBox>
+                <VBox maxWidth="92.0" prefHeight="40.0" prefWidth="92.0" spacing="2" styleClass="vbox-label">
+                    <children>
+                        <Label styleClass="label-title" text="Кол-во отчётов" />
+                        <Label fx:id="reportCountLbl" styleClass="label-value" text="0" />
+                    </children>
+                </VBox>
             </children>
         </HBox>
         <Button fx:id="deleteBtn" layoutX="623.4000000000001" layoutY="10.0" minWidth="60.0" mnemonicParsing="false" styleClass="button" text="Delete" AnchorPane.rightAnchor="15.0">

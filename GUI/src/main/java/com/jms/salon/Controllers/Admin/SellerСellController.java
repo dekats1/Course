@@ -5,17 +5,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import java.net.URL;
 
+import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ManagerSellController implements Initializable {
+public class SellerСellController implements Initializable {
 
     @FXML private Label nameLbl;
     @FXML private Label surnameLbl;
     @FXML private Label loginLbl;
     @FXML private Label dateLbl;
-    @FXML private Label reportCountLbl;
+    @FXML private Label countSellLbl;
     @FXML private Button deleteBtn;
 
     private AnchorPane itemPane;
@@ -30,12 +30,13 @@ public class ManagerSellController implements Initializable {
         });
     }
 
-    public void setManagerInfo(String name, String surname, String login, String date, int reportCount) {
+    public void setSellerInfo(String name, String surname, String login, String date, int count) {
         nameLbl.setText(name);
         surnameLbl.setText(surname);
         loginLbl.setText(login);
         dateLbl.setText(date);
-        reportCountLbl.setText(String.valueOf(reportCount));
+        countSellLbl.setText(String.valueOf(count));
+
     }
 
     public void setItemPane(AnchorPane pane) {

@@ -5,9 +5,6 @@ import com.jms.salon.Models.Model;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Product;
 import com.jms.salon.Views.AdminMenuOption;
-import com.sun.jdi.connect.spi.Connection;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -58,10 +55,10 @@ public class ProductController implements Initializable {
 
     private void addProductToView(Product product) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Product/ProductSell.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Product/ProductСell.fxml"));
             AnchorPane productCell = loader.load();
 
-            ProductSellController controller = loader.getController();
+            ProductСellController controller = loader.getController();
             controller.setProductInfo(product);
             controller.setDeleteAction(() -> {
                 Model.getInstance().getConnectionServer().sendObject(new AdminRequest("DelProduct", product.getName()));

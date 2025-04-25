@@ -1,4 +1,4 @@
-package com.salon.Server.Services.Admin.Response;
+package com.salon.Server.Services.Admin.Service;
 
 import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Admin.AdminRequest;
@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagerResponse {
+public class ManagerService {
     public static List<Manager> takeAllManagers() {
         List<Manager> managers = new ArrayList<>();
         String query = "SELECT u.UserName, u.FirstName AS name, u.LastName AS lastName, "

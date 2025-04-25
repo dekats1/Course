@@ -52,10 +52,10 @@ public class ProductForSellerController implements Initializable {
 
     private void addProductToView(Product product) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Product/ProductSellForSeller.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Product/ProductСellForSeller.fxml"));
             AnchorPane productCell = loader.load();
 
-            ProductSellForSellerController controller = loader.getController();
+            ProductСellForSellerController controller = loader.getController();
             controller.setProductInfo(product);
 
             productListView.getItems().add(productCell);

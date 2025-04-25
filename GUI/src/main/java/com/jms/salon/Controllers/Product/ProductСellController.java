@@ -11,9 +11,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static java.lang.System.*;
-
-public class ProductSellController implements Initializable {
+public class ProductСellController implements Initializable {
     @FXML
     private Label categoryLabel;
     @FXML

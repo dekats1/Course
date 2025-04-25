@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ProductsResponse {
+public class ProductsService {
     public static List<Product> takeAllProducts() {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT p.productID, p.ProductName, p.Description, " +

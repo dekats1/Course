@@ -1,14 +1,8 @@
 package com.salon.Server.Handlers;
 
-import com.salon.Server.Services.Admin.AdminRequest;
-import com.salon.Server.Services.Admin.Response.ManagerResponse;
-import com.salon.Server.Services.Admin.Response.Profile;
-import com.salon.Server.Services.Admin.Response.SellerResponse;
-import com.salon.Server.Services.Export.Manager;
 import com.salon.Server.Services.Export.Product;
-import com.salon.Server.Services.Export.Seller;
-import com.salon.Server.Services.Product.ProductsResponse;
-import com.salon.Server.Services.Seller.Response.Sell;
+import com.salon.Server.Services.Product.ProductsService;
+import com.salon.Server.Services.Seller.Service.SaleService;
 import com.salon.Server.Services.Seller.SellerRequest;
 
 import java.io.IOException;
@@ -29,7 +23,7 @@ public class SellerHandler extends RoleHandler {
             switch (request.getRequest()) {
 
                 case "AllProducts" -> {
-                    List<Product> products = ProductsResponse.takeAllProducts();
+                    List<Product> products = ProductsService.takeAllProducts();
 
                     out.writeObject(products);
                     break;
@@ -40,7 +34,7 @@ public class SellerHandler extends RoleHandler {
                     break;
                 }
                 case "MakeSale" ->{
-                    out.writeObject(Sell.makeSale(request.getUserName(),request.getProduct(),request.getQuantity()));
+                    out.writeObject(SaleService.makeSale(request.getUserName(),request.getProduct(),request.getQuantity()));
                     break;
                 }
                 case "Exit" -> {

@@ -1,4 +1,4 @@
-package com.salon.Server.Services.Admin.Response;
+package com.salon.Server.Services.Admin.Service;
 
 import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Admin.AdminRequest;
@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class Profile {
+public class ProfileService {
     public static String getPhoto(String userName) {
         final String sql = "SELECT ProfilePhotoPath FROM Users WHERE UserName = ?";
 

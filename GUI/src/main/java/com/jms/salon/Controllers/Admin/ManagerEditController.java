@@ -4,7 +4,6 @@ import com.jms.salon.Models.ConnectionServer;
 import com.jms.salon.Models.Model;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Manager;
-import com.salon.Server.Services.Export.Seller;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,7 +76,7 @@ public class ManagerEditController implements Initializable {
     }
 
     public void addManager(Manager manager) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Admin/ManagerSell.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Admin/ManagerСell.fxml"));
         AnchorPane managerCell;
         try {
             managerCell = loader.load();
@@ -86,7 +85,7 @@ public class ManagerEditController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        ManagerSellController controller = loader.getController();
+        ManagerСellController controller = loader.getController();
         controller.setManagerInfo(manager.getName(),manager.getLastName(),manager.getUserName(),manager.getDateAt(),manager.getReportCount());
         controller.setItemPane(managerCell);
 

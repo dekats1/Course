@@ -1,4 +1,4 @@
-package com.salon.Server.Services.Seller.Response;
+package com.salon.Server.Services.Seller.Service;
 
 import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Export.Product;
@@ -6,7 +6,7 @@ import com.salon.Server.Services.Seller.SellerRequest;
 
 import java.sql.*;
 
-public class Sell {
+public class SaleService {
     public static SellerRequest makeSale(String userName, Product product, int quantity) {
         Connection connection = null;
         try {

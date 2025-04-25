@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProductSellForSellerController implements Initializable {
+public class ProductСellForSellerController implements Initializable {
 
     @FXML
     private Label categoryLabel;
