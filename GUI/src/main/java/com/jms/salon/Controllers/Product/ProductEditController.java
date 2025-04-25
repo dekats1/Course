@@ -149,6 +149,7 @@ public class ProductEditController implements Initializable {
         currentQuantityLabel.setText(String.valueOf(ProductController.getSelectedProduct().getQuantity()));
 
         if (categoryCombo != null) {
+            categoryCombo.getItems().setAll(Product.getCategories());
             categoryCombo.getSelectionModel().select(ProductController.getSelectedProduct().getCategory());
         }
     }

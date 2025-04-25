@@ -50,10 +50,6 @@
                             <Label styleClass="field-label" text="Количество:" />
                             <Label fx:id="quantityLabel" styleClass="field-value-bold" />
                         </HBox>
-                        <HBox alignment="CENTER_RIGHT" spacing="10">
-                            <Label styleClass="field-label" text="Продажи:" />
-                            <Label fx:id="salesLabel" styleClass="field-value" />
-                        </HBox>
                     </children>
                 </VBox>
             </children>

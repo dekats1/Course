@@ -30,8 +30,6 @@ public class ProductSellController implements Initializable {
     private Label priceLabel;
     @FXML
     private Label quantityLabel;
-    @FXML
-    private Label salesLabel;
     
     private Runnable deleteAction;
 
@@ -61,7 +59,6 @@ public class ProductSellController implements Initializable {
         quantityLabel.setText(String.valueOf(product.getQuantity()));
         descriptionLabel.setText(product.getDescription());
         categoryLabel.setText(product.getCategory());
-        salesLabel.setText("0"); // дописать
     }
 
 
