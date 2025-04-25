@@ -8,6 +8,7 @@ import com.salon.Server.Services.Export.Manager;
 import com.salon.Server.Services.Export.Product;
 import com.salon.Server.Services.Export.Seller;
 import com.salon.Server.Services.Product.ProductsResponse;
+import com.salon.Server.Services.Seller.Response.Sell;
 import com.salon.Server.Services.Seller.SellerRequest;
 
 import java.io.IOException;
@@ -38,7 +39,10 @@ public class SellerHandler extends RoleHandler {
                     out.writeObject(cat);
                     break;
                 }
-
+                case "MakeSale" ->{
+                    out.writeObject(Sell.makeSale(request.getUserName(),request.getProduct(),request.getQuantity()));
+                    break;
+                }
                 case "Exit" -> {
                     exit = true;
                     break;

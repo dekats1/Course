@@ -6,8 +6,8 @@ import com.salon.Server.Services.Export.Product;
 import com.salon.Server.Services.Seller.SellerRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.List;
@@ -32,6 +32,8 @@ public class SaleController implements Initializable {
     private Spinner<Integer> quantitySpinner;
     @FXML
     private Label totalLabel;
+    @FXML
+    private Label errorLbl;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -41,18 +43,44 @@ public class SaleController implements Initializable {
         connectionServer.sendObject(new SellerRequest("AllCategories"));
         Product.setCategories((List<String>) connectionServer.receiveObject());
 
+        setupQuantitySpinner();
         setupCategorySelectionListener();
         loadInitialCategories();
-        setupQuantitySpinner();
         checkButton();
     }
 
     private void checkButton() {
-        makeSaleBtn.setOnAction(event -> {
+        errorLbl.setVisible(false);
 
+
+        makeSaleBtn.setOnAction(event -> {
+            if (quantitySpinner.getValue() > 0) {
+                Model.getInstance().getConnectionServer().sendObject(new SellerRequest("MakeSale",
+                        Model.getInstance().getCurrentUser(), Model.getInstance()
+                        .getProducts().stream()
+                        .filter(product -> product.getName().equals(productComboBox.getValue())).findFirst().get(),
+                        quantitySpinner.getValue()));
+
+                SellerRequest result = (SellerRequest) Model.getInstance().getConnectionServer().receiveObject();
+                if (result.getSuccess()) {
+                    errorLbl.setText(result.getErrorMessage());
+                    errorLbl.setTextFill(Color.rgb(0, 255, 0));
+                    errorLbl.setVisible(true);
+                } else {
+                    errorLbl.setTextFill(Color.rgb(255, 0, 0));
+                    errorLbl.setText(result.getErrorMessage());
+                    errorLbl.setVisible(true);
+                }
+            } else {
+                errorLbl.setTextFill(Color.rgb(255, 0, 0));
+                errorLbl.setText("Некорректное количество");
+                errorLbl.setVisible(true);
+            }
         });
 
+
         cancelBtn.setOnAction(event -> {
+            errorLbl.setVisible(false);
             loadInitialCategories();
         });
     }
@@ -92,14 +120,15 @@ public class SaleController implements Initializable {
 
         productComboBox.getItems().setAll(filteredProducts);
 
-        productComboBox.setPromptText("Выберите товар...");
-
         productComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 updateProductPrice(newVal);
                 quantitySpinner.getValueFactory().setValue(0);
             }
         });
+
+        productComboBox.getSelectionModel().select(0);
+
     }
 
     private void updateProductPrice(String productName) {
@@ -129,7 +158,6 @@ public class SaleController implements Initializable {
     }
 
     private void loadInitialCategories() {
-        productComboBox.setPromptText("Выберите товар...");
         productComboBox.setPlaceholder(new Label("Нет товаров в этой категории"));
         List<String> categories = Product.getCategories();
 

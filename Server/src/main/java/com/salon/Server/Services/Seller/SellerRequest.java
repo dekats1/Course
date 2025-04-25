@@ -9,6 +9,8 @@ public class SellerRequest implements Serializable {
     private final Product product;
     private final Boolean success;
     private final String errorMessage;
+    private String userName;
+    private int quantity;
 
     public SellerRequest(String request) {
         this.request = request;
@@ -31,6 +33,15 @@ public class SellerRequest implements Serializable {
         this.errorMessage = errorMessage;
     }
 
+    public SellerRequest(String request, String userName, Product product, int quantity) {
+        this.request = request;
+        this.product = product;
+        this.success = null;
+        this.errorMessage = null;
+        this.userName = userName;
+        this.quantity = quantity;
+    }
+
     public String getRequest() {
         return request;
     }
@@ -47,5 +58,12 @@ public class SellerRequest implements Serializable {
         return errorMessage;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 
 }

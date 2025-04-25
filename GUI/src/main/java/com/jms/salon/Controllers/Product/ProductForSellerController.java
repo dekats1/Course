@@ -1,9 +1,7 @@
 package com.jms.salon.Controllers.Product;
 
-import com.jms.salon.Models.ConnectionServer;
 import com.jms.salon.Models.Model;
 import com.salon.Server.Services.Export.Product;
-import com.salon.Server.Services.Seller.SellerRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
