@@ -16,13 +16,11 @@
 <AnchorPane prefHeight="750.0" prefWidth="850.0" styleClass="root" stylesheets="@../../Styles/seller_sale.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Seller.SaleController">
 
     <VBox alignment="TOP_CENTER" spacing="30" AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="50">
-        <!-- Заголовок -->
         <VBox alignment="CENTER" spacing="5">
             <Label styleClass="title-label" text="Оформление продажи" />
             <Label styleClass="subtitle-label" text="Заполните данные о продаваемом товаре" />
         </VBox>
 
-        <!-- Основная форма -->
         <GridPane hgap="25" styleClass="form-grid" vgap="20">
             <padding><Insets bottom="25" left="30" right="30" top="25" /></padding>
 
@@ -40,15 +38,12 @@
             <RowConstraints />
             </rowConstraints>
 
-            <!-- Категория товара -->
             <Label styleClass="form-label" text="Категория товара:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <ComboBox fx:id="categoryComboBox" styleClass="form-combo" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-            <!-- Товар -->
             <Label styleClass="form-label" text="Товар:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <ComboBox fx:id="productComboBox" styleClass="form-combo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-            <!-- Количество -->
             <Label styleClass="form-label" text="Количество:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
             <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <Spinner fx:id="quantitySpinner" editable="true" styleClass="quantity-spinner">
@@ -59,14 +54,12 @@
                 <Label styleClass="unit-label" text="шт." />
             </HBox>
 
-            <!-- Цена -->
             <Label styleClass="form-label" text="Цена за единицу:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
             <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <Label fx:id="priceLabel" styleClass="price-label" text="0.00" />
                 <Label styleClass="unit-label" text="руб." />
             </HBox>
 
-            <!-- Итого -->
             <Separator GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
             <Label styleClass="total-label" text="Итого к оплате:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
             <HBox alignment="CENTER_LEFT" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -75,10 +68,9 @@
             </HBox>
         </GridPane>
 
-        <!-- Кнопки действий -->
         <HBox alignment="CENTER" spacing="25">
-            <Button prefHeight="30.0" prefWidth="126.0" styleClass="confirm-button" text="Оформить продажу" />
-            <Button prefHeight="30.0" prefWidth="71.0" styleClass="cancel-button" text="Отменить" />
+            <Button fx:id="makeSaleBtn" prefHeight="30.0" prefWidth="126.0" styleClass="confirm-button" text="Оформить продажу" />
+            <Button fx:id="cancelBtn" prefHeight="30.0" prefWidth="71.0" styleClass="cancel-button" text="Отменить" />
         </HBox>
     </VBox>
 </AnchorPane>

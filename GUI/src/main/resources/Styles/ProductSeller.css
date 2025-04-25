@@ -1,0 +1,57 @@
+/* Основные цвета */
+.root {
+    -fx-primary-color: #4a6fa5;
+    -fx-secondary-color: #166088;
+    -fx-accent-color: #4fc3f7;
+    -fx-light-color: #f8f9fa;
+    -fx-dark-color: #343a40;
+}
+
+/* Стиль для ячейки продукта */
+.product-cell {
+    -fx-background-color: -fx-light-color;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+    -fx-padding: 15;
+}
+
+.product-content {
+    -fx-background-color: linear-gradient(to right, #ffffff, #f1f8fe);
+    -fx-background-radius: 8;
+    -fx-padding: 15;
+    -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 3);
+}
+
+/* Стили для текста */
+.field-label {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: -fx-dark-color;
+    -fx-font-weight: 600;
+}
+
+.field-value {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #495057;
+}
+
+.field-value-bold {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 15px;
+    -fx-text-fill: -fx-secondary-color;
+    -fx-font-weight: 700;
+}
+
+/* Специальные стили для блоков */
+.product-info {
+    -fx-border-color: -fx-accent-color;
+    -fx-border-width: 0 1px 0 0;
+    -fx-border-style: solid;
+    -fx-padding: 0 20 0 0;
+}
+
+.product-numbers {
+    -fx-padding: 0 0 0 20;
+}

@@ -28,8 +28,6 @@ public class ProductController implements Initializable {
 
     private static Product selectedProduct;
 
-    private ObservableList<Product> products = FXCollections.observableArrayList();
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ConnectionServer connectionServer = Model.getInstance().getConnectionServer();

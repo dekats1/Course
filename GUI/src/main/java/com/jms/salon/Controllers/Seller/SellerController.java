@@ -1,7 +1,10 @@
 package com.jms.salon.Controllers.Seller;
 
+import com.jms.salon.Models.ConnectionServer;
 import com.jms.salon.Models.Model;
 import com.jms.salon.Views.SellerMenuOption;
+import com.salon.Server.Services.Admin.AdminRequest;
+import com.salon.Server.Services.Seller.SellerRequest;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
@@ -27,6 +30,9 @@ public class SellerController implements Initializable {
 
                     // Очищаем все закешированные представления
                     Model.getInstance().getViewFactory().clearSellerCache();
+
+                    ConnectionServer connectionServer = Model.getInstance().getConnectionServer();
+                    connectionServer.sendObject(new SellerRequest("Exit"));
 
                     Stage stage = (Stage) sellerParent.getScene().getWindow();
                     Model.getInstance().getViewFactory().closeStage(stage);

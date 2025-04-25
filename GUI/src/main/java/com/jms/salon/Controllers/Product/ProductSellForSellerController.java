@@ -26,6 +26,12 @@ public class ProductSellForSellerController implements Initializable {
     private Label salesLabel;
 
     public void setProductInfo(Product product) {
+        nameLabel.setText(product.getName());
+        descriptionLabel.setText(product.getDescription());
+        categoryLabel.setText(product.getCategory());
+        priceLabel.setText(String.valueOf(product.getPrice()));
+        quantityLabel.setText(String.valueOf(product.getQuantity()));
+        costLabel.setText(String.valueOf(product.getCost()));
     }
 
     @Override
