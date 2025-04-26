@@ -3,6 +3,7 @@ package com.jms.salon.Controllers.Seller;
 import com.jms.salon.Models.ConnectionServer;
 import com.jms.salon.Models.Model;
 import com.salon.Server.Services.Export.Product;
+import com.salon.Server.Services.Export.Sale;
 import com.salon.Server.Services.Seller.SellerRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,16 +38,23 @@ public class SaleController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        loadData();
+        setupQuantitySpinner();
+        setupCategorySelectionListener();
+        loadInitialCategories();
+        checkButton();
+    }
+
+    private void loadData() {
         ConnectionServer connectionServer = Model.getInstance().getConnectionServer();
         connectionServer.sendObject(new SellerRequest("AllProducts"));
         Model.getInstance().getProducts().setAll((List<Product>) connectionServer.receiveObject());
         connectionServer.sendObject(new SellerRequest("AllCategories"));
         Product.setCategories((List<String>) connectionServer.receiveObject());
 
-        setupQuantitySpinner();
-        setupCategorySelectionListener();
-        loadInitialCategories();
-        checkButton();
+        Model.getInstance().getConnectionServer().sendObject(new SellerRequest("HistorySales", Model.getInstance().getCurrentUser()));
+        Model.getInstance().getSales().setAll((List<Sale>) Model.getInstance().getConnectionServer().receiveObject());
     }
 
     private void checkButton() {
@@ -60,9 +68,9 @@ public class SaleController implements Initializable {
                         .getProducts().stream()
                         .filter(product -> product.getName().equals(productComboBox.getValue())).findFirst().get(),
                         quantitySpinner.getValue()));
-
                 SellerRequest result = (SellerRequest) Model.getInstance().getConnectionServer().receiveObject();
                 if (result.getSuccess()) {
+                    Model.getInstance().getSales().add(result.getSale());
                     errorLbl.setText(result.getErrorMessage());
                     errorLbl.setTextFill(Color.rgb(0, 255, 0));
                     errorLbl.setVisible(true);

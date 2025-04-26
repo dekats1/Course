@@ -1,7 +1,10 @@
 package com.salon.Server.Handlers;
 
 import com.salon.Server.Services.Export.Product;
+import com.salon.Server.Services.Export.Sale;
 import com.salon.Server.Services.Product.ProductsService;
+import com.salon.Server.Services.Seller.Service.HistoryService;
+import com.salon.Server.Services.Seller.Service.ProfileService;
 import com.salon.Server.Services.Seller.Service.SaleService;
 import com.salon.Server.Services.Seller.SellerRequest;
 
@@ -24,7 +27,6 @@ public class SellerHandler extends RoleHandler {
 
                 case "AllProducts" -> {
                     List<Product> products = ProductsService.takeAllProducts();
-
                     out.writeObject(products);
                     break;
                 }
@@ -36,6 +38,24 @@ public class SellerHandler extends RoleHandler {
                 case "MakeSale" ->{
                     out.writeObject(SaleService.makeSale(request.getUserName(),request.getProduct(),request.getQuantity()));
                     break;
+                }
+                case "HistorySales"->{
+                    List<Sale> sales = HistoryService.takeHistorySales(request.getUserName());
+                    out.writeObject(sales);
+                    break;
+                }
+                case "GetPhoto"->{
+                    out.writeObject(ProfileService.getPhoto(request.getUserName()));
+                    break;
+                }
+                case "SetPhoto"->{
+                   ProfileService.updateUserPhoto(request.getUserName(),request.getPhotoPath());
+                }
+                case "ChangePassword"->{
+                    out.writeObject(ProfileService.changePassword(request.getUserName(),request.getPassword(),request.getNewPassword()));
+                }
+                case "UserData"->{
+                    out.writeObject(ProfileService.userData(request.getUserName()));
                 }
                 case "Exit" -> {
                     exit = true;

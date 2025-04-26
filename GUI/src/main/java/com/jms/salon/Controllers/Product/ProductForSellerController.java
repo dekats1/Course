@@ -30,7 +30,6 @@ public class ProductForSellerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
         Model.getInstance().getProducts().addListener((javafx.collections.ListChangeListener.Change<? extends Product> change) -> {
             refreshProductList(Model.getInstance().getProducts());
         });

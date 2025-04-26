@@ -3,6 +3,7 @@ package com.jms.salon.Models;
 import com.jms.salon.Views.ViewFactory;
 import com.salon.Server.Services.Export.Manager;
 import com.salon.Server.Services.Export.Product;
+import com.salon.Server.Services.Export.Sale;
 import com.salon.Server.Services.Export.Seller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ public class Model {
     private final ObservableList<Product> products = FXCollections.observableArrayList();
     private final ObservableList<Seller> sellers = FXCollections.observableArrayList();
     private final ObservableList<Manager> managers = FXCollections.observableArrayList();
+    private final ObservableList<Sale> sales = FXCollections.observableArrayList();
 
     private Model() {
         this.viewFactory = new ViewFactory();
@@ -46,9 +48,6 @@ public class Model {
         return currentUser;
     }
 
-
-
-
     public ObservableList<Product> getProducts() {
         return products;
     }
@@ -63,9 +62,9 @@ public class Model {
 
     public ObservableList<Seller> getSellers() {return sellers;}
 
-
     public ObservableList<Manager> getManagers() {return managers;}
 
+    public ObservableList<Sale> getSales() {return sales;}
 
     public synchronized static Model getInstance(){
         if(instance == null){

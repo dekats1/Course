@@ -24,7 +24,7 @@
             </HBox>
 
             <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="206.0" spacing="5" styleClass="search-box">
-                <TextField prefHeight="26.0" prefWidth="157.0" promptText="Поиск" styleClass="search-field" />
+                <TextField fx:id="searchField" prefHeight="26.0" prefWidth="157.0" promptText="Поиск" styleClass="search-field" />
                 <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" styleClass="search-button">
                     <graphic>
                         <ImageView fitHeight="18.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">

@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.jms.salon.Controllers.Seller.SalesHistorySellController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="70.0" prefWidth="750.0" styleClass="sale-cell" stylesheets="@../../Styles/SaleHistoryCell.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Seller.SalesHistorySellController">
 
+    <HBox alignment="CENTER_LEFT" spacing="15" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="10">
+
+        <!-- Индикатор продажи -->
+        <Rectangle fx:id="indicator" arcHeight="5" arcWidth="5" height="50" styleClass="sale-indicator" width="4" />
+
+        <!-- Основная информация -->
+        <VBox fx:id="mainInfoContainer" prefHeight="50.0" prefWidth="609.0" spacing="5">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="productNameLabel" styleClass="product-name" text="Название товара" />
+                <Label fx:id="quantityLabel" styleClass="product-quantity" text="1 шт." />
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label fx:id="priceLabel" styleClass="sale-price" text="2 500 Br" />
+                <Label fx:id="dateLabel" styleClass="sale-date" text="01.01.2023 14:30" />
+            </HBox>
+        </VBox>
+
+        <!-- Правая часть с дополнительной информацией -->
+        <VBox fx:id="rightInfoContainer" alignment="CENTER_RIGHT" spacing="3">
+            <Label fx:id="totalPriceLabel" styleClass="total-price" text="2 500 Br" />
+            <Label fx:id="sellerLoginLabel" styleClass="payment-method" text="Login" />
+        </VBox>
+    </HBox>
 </AnchorPane>

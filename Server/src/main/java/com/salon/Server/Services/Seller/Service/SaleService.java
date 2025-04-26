@@ -2,18 +2,19 @@ package com.salon.Server.Services.Seller.Service;
 
 import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Export.Product;
+import com.salon.Server.Services.Export.Sale;
 import com.salon.Server.Services.Seller.SellerRequest;
 
 import java.sql.*;
+
 
 public class SaleService {
     public static SellerRequest makeSale(String userName, Product product, int quantity) {
         Connection connection = null;
         try {
             connection = DataBaseConnection.getConnection();
-            connection.setAutoCommit(false); // Начинаем транзакцию
+            connection.setAutoCommit(false);
 
-            // 0. Проверка доступного количества (перед началом транзакции)
             String checkStockSQL = "SELECT StockLevel FROM Products WHERE ProductID = ? FOR UPDATE";
             int currentStock;
 
@@ -25,7 +26,6 @@ public class SaleService {
                     }
                     currentStock = rs.getInt("StockLevel");
 
-                    // Проверяем достаточно ли товара
                     if (currentStock < quantity) {
                         return new SellerRequest(false,
                                 String.format("Недостаточно товара. Доступно: %d, запрошено: %d",
@@ -34,7 +34,6 @@ public class SaleService {
                 }
             }
 
-            // 1. Создаем запись о продаже в таблице Sales
             String insertSaleSQL = "INSERT INTO Sales (SellerUserName, TotalAmount) VALUES (?, 0)";
             int saleId;
 
@@ -52,7 +51,6 @@ public class SaleService {
                 }
             }
 
-            // 2. Добавляем детали продажи в SaleDetails
             String insertDetailsSQL = """
             INSERT INTO SaleDetails 
                 (SaleID, ProductID, Quantity, SalePrice) 
@@ -68,7 +66,6 @@ public class SaleService {
                 detailsStmt.executeUpdate();
             }
 
-            // 3. Обновляем количество товара на складе с проверкой
             String updateStockSQL = """
             UPDATE Products 
             SET StockLevel = StockLevel - ? 
@@ -85,13 +82,8 @@ public class SaleService {
                 }
             }
 
-            // Фиксируем транзакцию
             connection.commit();
-
-            // Логируем успешную продажу
-            //logSale(connection, userName, saleId, product.getProductId(), quantity);
-
-            return new SellerRequest(true, "Продажа успешно оформлена. ID: " + saleId);
+            return new SellerRequest(true, "Продажа успешно оформлена. ID: " + saleId, new Sale(saleId, product.getName(), quantity, product.getPrice(), new java.util.Date(), userName));
 
         } catch (SQLException e) {
             // Откатываем транзакцию в случае ошибки
