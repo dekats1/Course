@@ -5,13 +5,20 @@ import com.jms.salon.Views.AdminMenuOption;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 
+import java.awt.*;
+import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminMenuController implements Initializable {
 
+    @FXML
+    private Label tgLabel;
+    @FXML
+    private Label instLabel;
     @FXML
     private Button exitBtn;
 
@@ -34,46 +41,48 @@ public class AdminMenuController implements Initializable {
 
         sellerBtn.setOnAction(event -> {
             onSellers();
-            System.out.println(Model.getInstance().getViewFactory().getAdminSelectedMenuItem().get()+"Sel");
-
             return;
         });
 
         managerBtn.setOnAction(event -> {
             onManagers();
-            System.out.println(Model.getInstance().getViewFactory().getAdminSelectedMenuItem().get()+"Man");
             return;
 
         });
 
        productBtn.setOnAction(event -> {
             onProducts();
-           System.out.println(Model.getInstance().getViewFactory().getAdminSelectedMenuItem().get()+"Prod");
-
            return;
 
         });
 
         logBtn.setOnAction(event -> {
             onLog();
-            System.out.println(Model.getInstance().getViewFactory().getAdminSelectedMenuItem().get()+"LOg");
             return;
 
         });
 
         exitBtn.setOnAction(event -> {
             onExit();
-            System.out.println(Model.getInstance().getViewFactory().getAdminSelectedMenuItem().get()+"Ex");
             return;
 
         });
 
         profileBtn.setOnAction(event -> {
             onProfile();
-            System.out.println(Model.getInstance().getViewFactory().getAdminSelectedMenuItem().get()+"Prof");
             return;
 
         });
+        tgLabel.setOnMouseClicked(e -> openUrl("https://t.me/divaniv"));
+        instLabel.setOnMouseClicked(e -> openUrl("https://instagram.com/viktory_iv_"));
+    }
+
+    private void openUrl(String url) {
+        try {
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void onProfile() {

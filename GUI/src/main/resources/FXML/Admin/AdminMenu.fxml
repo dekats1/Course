@@ -11,7 +11,7 @@
       xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.jms.salon.Controllers.Admin.AdminMenuController">
     <children>
-        <AnchorPane prefHeight="730.0" prefWidth="160.0" styleClass="left_container"
+        <AnchorPane prefHeight="747.0" prefWidth="180.0" styleClass="left_container"
                     stylesheets="@../../Styles/Menu.css">
             <children>
                 <VBox prefHeight="80.0" prefWidth="160.0" styleClass="title_container">
@@ -91,10 +91,32 @@
                         </Button>
                     </children>
                 </VBox>
-                <VBox layoutX="22.0" layoutY="614.0" prefHeight="95.0" prefWidth="136.0">
+                <VBox layoutX="21.0" layoutY="635.0" prefHeight="100.0" prefWidth="136.0"
+                      styleClass="support-container">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Тех. поддержка"/>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="support-title" text="Тех. поддержка"/>
+                        <VBox styleClass="support-contacts">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" styleClass="contact-item">
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true"
+                                               preserveRatio="true">
+                                        <image>
+                                            <Image url="@../../Images/telegram-icon.png"/>
+                                        </image>
+                                    </ImageView>
+                                    <Label fx:id="tgLabel" styleClass="contact-label" text=" @divaniv"/>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" styleClass="contact-item">
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true"
+                                               preserveRatio="true">
+                                        <image>
+                                            <Image url="@../../Images/instagram-icon.png"/>
+                                        </image>
+                                    </ImageView>
+                                    <Label fx:id="instLabel" styleClass="contact-label" text=" viktory_iv_"/>
+                                </HBox>
+                            </children>
+                        </VBox>
                     </children>
                 </VBox>
             </children>

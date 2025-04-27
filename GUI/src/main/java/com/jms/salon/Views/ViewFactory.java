@@ -2,7 +2,6 @@ package com.jms.salon.Views;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -37,8 +36,10 @@ public class ViewFactory {
 
     //Manager View
     private final ObjectProperty<ManagerMenuOption> managerSelectedMenuItem;
-
-
+    private AnchorPane reportView;
+    private AnchorPane reportHistoryView;
+    private AnchorPane statisticsView;
+    private AnchorPane managerProfileView;
 
 
     public ViewFactory() {
@@ -180,11 +181,54 @@ public class ViewFactory {
         return managerSelectedMenuItem;
     }
 
-    public  void showManagerWindow() {
+    public void showManagerWindow() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/Manager/Manager.fxml"));
         createStage(fxmlLoader);
     }
 
+    public AnchorPane getReportView(){
+        if (reportView == null) {
+            try {
+                reportView = new FXMLLoader(getClass().getResource("/FXML/Manager/Report.fxml")).load();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return reportView;
+    }
+
+    public AnchorPane getReportHistoryView(){
+        if (reportHistoryView == null) {
+            try {
+                reportHistoryView = new FXMLLoader(getClass().getResource("/FXML/Manager/reportHistory.fxml")).load();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return reportHistoryView;
+    }
+
+    public AnchorPane getStatisticsView(){
+        if (statisticsView == null) {
+            try {
+                statisticsView = new FXMLLoader(getClass().getResource("/FXML/Manager/Statistics.fxml")).load();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return statisticsView;
+    }
+
+    public AnchorPane getManagerProfileView(){
+        if (managerProfileView == null) {
+            try {
+                managerProfileView = new FXMLLoader(getClass().getResource("/FXML/Manager/ManagerProfile.fxml")).load();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return managerProfileView;
+    }
     /*
     *Product View
      */
@@ -268,7 +312,14 @@ public class ViewFactory {
         sellHistoryView = null;
         sellerProfileView = null;
         productsForSellerView = null;
+    }
 
+
+    public void clearManagerCache() {
+        reportView = null;
+        reportHistoryView = null;
+        managerProfileView = null;
+        statisticsView = null;
     }
 
 }

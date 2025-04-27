@@ -1,4 +1,4 @@
 package com.jms.salon.Controllers.Manager;
 
-public class ManagerProfile {
+public class ReportHistoryCellController {
 }

@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="750.0" prefWidth="850.0" styleClass="anchor-pane" stylesheets="@../../Styles/Profile.css"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.jms.salon.Controllers.Manager.ManagerProfileController">
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.jms.salon.Controllers.Manager.ManagerProfile"
-            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <VBox alignment="TOP_CENTER" layoutY="2.4" prefHeight="705.0" prefWidth="850.0" spacing="20"
+              styleClass="container" stylesheets="@../../Styles/Profile.css" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
+            <Text styleClass="header-text" text="Профиль менеджера"/>
+
+            <HBox alignment="CENTER" prefHeight="587.0" prefWidth="770.0" spacing="40" styleClass="content-box"
+                  stylesheets="@../../Styles/Profile.css">
+
+                <VBox alignment="CENTER" spacing="15" styleClass="profile-box">
+                    <ImageView fx:id="avatarImage" fitHeight="120" fitWidth="120" styleClass="avatar">
+                        <image>
+                            <Image url="@../../Images/user.png"/>
+                        </image>
+                    </ImageView>
+                    <Button fx:id="changeAvatarButton" styleClass="upload-button" text="Загрузить фото"/>
+                    <Label fx:id="nameLabel" text="Имя: Иван Иванов"/>
+                    <Label fx:id="loginLabel" text="Логин: admin123"/>
+                </VBox>
+
+                <VBox prefHeight="412.0" prefWidth="362.0" spacing="15" styleClass="password-box">
+                    <Text styleClass="section-title" text="Смена пароля"/>
+                    <PasswordField fx:id="oldPasswordField" prefHeight="40.0" promptText="Старый пароль"/>
+                    <PasswordField fx:id="newPasswordField" prefHeight="40.0" promptText="Новый пароль"/>
+                    <PasswordField fx:id="confirmPasswordField" prefHeight="40.0" promptText="Подтвердите пароль"/>
+                    <Text fx:id="errorLbl" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="error"
+                          visible="false"/>
+                    <Button fx:id="changePasswordButton" text="Изменить пароль"/>
+                    <Label styleClass="error_label" text="Error" visible="false"/>
+                </VBox>
+            </HBox>
+
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="762.0" spacing="20" styleClass="footer-box"
+                  stylesheets="@../../Styles/Profile.css">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Роль: "/>
+                <Label text="Менеджер"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Зарегистрирован:"/>
+                <Label fx:id="regDateLbl" text="01.01.2024"/>
+                <Region prefHeight="34.0" prefWidth="189.0" HBox.hgrow="ALWAYS"/>
+                <Button fx:id="logoutButton" styleClass="logout-button" text="Выйти из аккаунта"/>
+            </HBox>
+        </VBox>
+    </children>
 </AnchorPane>

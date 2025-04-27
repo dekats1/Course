@@ -67,7 +67,44 @@
 }
 
 
+.support-container {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 10;
+    -fx-padding: 12;
+    -fx-spacing: 8;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.05), 3, 0, 0, 1);
+}
 
+.support-title {
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+    -fx-fill: #2c3e50;
+    -fx-padding: 0 0 5 0;
+}
+
+.support-contacts {
+    -fx-spacing: 8;
+    -fx-padding: 5 0 0 0;
+}
+
+.contact-item {
+    -fx-spacing: 8;
+    -fx-alignment: center-left;
+}
+
+.contact-label {
+    -fx-text-fill: #3498db;
+    -fx-font-size: 1em;
+    -fx-cursor: hand;
+}
+
+.contact-label:hover {
+    -fx-text-fill: #2980b9;
+    -fx-underline: true;
+}
 
 
 

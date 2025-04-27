@@ -61,7 +61,7 @@ public class LoginController implements Initializable {
         switch (role) {
             case "admin" -> Model.getInstance().getViewFactory().showAdminWindow();
             case "seller" -> Model.getInstance().getViewFactory().showSellerWindow();
-            // default -> Model.getInstance().getViewFactory().showErrorWindow("Неизвестная роль: " + role);
+            case "manager" -> Model.getInstance().getViewFactory().showManagerWindow();
         }
     }
 }
