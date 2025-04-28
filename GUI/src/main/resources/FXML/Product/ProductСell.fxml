@@ -21,7 +21,7 @@
                             <Label fx:id="categoryLabel" styleClass="field-value" />
                         </HBox>
                         <HBox alignment="CENTER_LEFT" spacing="10">
-                            <Label styleClass="field-label" text="Описание:" />
+                            <Label minHeight="20.0" minWidth="63.0" styleClass="field-label" text="Описание:" />
                             <Label fx:id="descriptionLabel" styleClass="field-value" wrapText="true" />
                         </HBox>
                     </children>

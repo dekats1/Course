@@ -2,8 +2,10 @@ package com.jms.salon.Controllers.Product;
 
 import com.jms.salon.Models.Model;
 import com.jms.salon.Views.AdminMenuOption;
+import com.jms.salon.Views.ManagerMenuOption;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Product;
+import com.salon.Server.Services.Manager.ManagerRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -128,14 +130,22 @@ public class ProductEditController implements Initializable {
         System.out.println(ProductController.getSelectedProduct().toString());
         ProductController.setSelectedProduct(ProductController.getSelectedProduct());
 
-          Model.getInstance().getConnectionServer().sendObject(new AdminRequest("EditProduct",ProductController.getSelectedProduct()));
+        if (Model.getInstance().getCurrentRole().equals("admin")) {
+            Model.getInstance().getConnectionServer().sendObject(new AdminRequest("EditProduct",ProductController.getSelectedProduct()));
+        }else if (Model.getInstance().getCurrentRole().equals("manager")) {
+            Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("EditProduct",ProductController.getSelectedProduct()));
+        }
 
     }
 
     private void closeWindow() {
         clearValue();
         clearCurrentValue();
-        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.Products);
+        if (Model.getInstance().getCurrentRole().equals("admin")) {
+            Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.Products);
+        }else if (Model.getInstance().getCurrentRole().equals("manager")) {
+            Model.getInstance().getViewFactory().getManagerSelectedMenuItem().set(ManagerMenuOption.Products);
+        }
         Model.getInstance().getViewFactory().setEditProductView(null);
     }
 

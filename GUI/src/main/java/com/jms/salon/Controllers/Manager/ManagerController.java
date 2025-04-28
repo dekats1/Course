@@ -23,6 +23,8 @@ public class ManagerController implements Initializable {
                 case ManagerMenuOption.HistoryReport -> managerParent.setCenter(Model.getInstance().getViewFactory().getReportHistoryView());
                 case ManagerMenuOption.Statistics -> managerParent.setCenter(Model.getInstance().getViewFactory().getStatisticsView());
                 case ManagerMenuOption.Products -> managerParent.setCenter(Model.getInstance().getViewFactory().getProductView());
+                case ManagerMenuOption.AddProduct -> managerParent.setCenter(Model.getInstance().getViewFactory().getAddProductView());
+                case ManagerMenuOption.EditProduct -> managerParent.setCenter(Model.getInstance().getViewFactory().getEditProductView());
                 case ManagerMenuOption.Profile -> managerParent.setCenter(Model.getInstance().getViewFactory().getManagerProfileView());
                 case ManagerMenuOption.Exit -> {
                     // Удаляем listener

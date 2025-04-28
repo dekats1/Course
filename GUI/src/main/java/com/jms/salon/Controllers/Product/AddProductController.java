@@ -1,9 +1,11 @@
 package com.jms.salon.Controllers.Product;
 
 import com.jms.salon.Models.Model;
+import com.jms.salon.Views.ManagerMenuOption;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Product;
 import com.jms.salon.Views.AdminMenuOption;
+import com.salon.Server.Services.Manager.ManagerRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -57,24 +59,42 @@ public class AddProductController implements Initializable {
     private void setupButtonActions() {
         cancelButton.setOnAction(event -> {
             clearFields();
-            Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.Products);
+            if (Model.getInstance().getCurrentRole().equals("admin")) {
+                Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.Products);
+            }else if (Model.getInstance().getCurrentRole().equals("manager")) {
+                Model.getInstance().getViewFactory().getManagerSelectedMenuItem().set(ManagerMenuOption.Products);
+            }
         });
 
         saveButton.setOnAction(event -> {
             errorLbl.setVisible(false);
             if (validateFields()) {
                 Product product = createProductFromFields();
-
-                Model.getInstance().getConnectionServer().sendObject(new AdminRequest("AddProduct", product));
-                AdminRequest res = (AdminRequest) Model.getInstance().getConnectionServer().receiveObject();
-                if(res.getSuccess()) {
-                    Model.getInstance().addProduct(product);
-                    clearFields();
-                    Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.Products);
-                }else{
-                    errorLbl.setText(res.getErrorMassage());
-                    errorLbl.setVisible(true);
+               if (Model.getInstance().getCurrentRole().equals("admin")) {
+                   Model.getInstance().getConnectionServer().sendObject(new AdminRequest("AddProduct", product));
+                   AdminRequest res = (AdminRequest) Model.getInstance().getConnectionServer().receiveObject();
+                   if(res.getSuccess()) {
+                       Model.getInstance().addProduct(product);
+                       clearFields();
+                       Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.Products);
+                   }else{
+                       errorLbl.setText(res.getErrorMassage());
+                       errorLbl.setVisible(true);
+                   }
                 }
+               else if (Model.getInstance().getCurrentRole().equals("manager")) {
+                   Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("AddProduct", product));
+                   ManagerRequest res = (ManagerRequest) Model.getInstance().getConnectionServer().receiveObject();
+                   if(res.getSuccess()) {
+                       Model.getInstance().addProduct(product);
+                       clearFields();
+                       Model.getInstance().getViewFactory().getManagerSelectedMenuItem().set(ManagerMenuOption.Products);
+                   }else{
+                       errorLbl.setText(res.getErrorMassage());
+                       errorLbl.setVisible(true);
+                   }
+               }
+
             }
         });
     }

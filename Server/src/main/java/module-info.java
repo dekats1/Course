@@ -8,4 +8,5 @@ module com.salon.Server {
     exports com.salon.Server.Services.Admin;
     exports com.salon.Server.Services.Seller;
     exports com.salon.Server.Services.Manager;
+    exports com.salon.Server.Services.Manager.Service;
 }

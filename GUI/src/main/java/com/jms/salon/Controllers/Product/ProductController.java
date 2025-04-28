@@ -2,9 +2,11 @@ package com.jms.salon.Controllers.Product;
 
 import com.jms.salon.Models.ConnectionServer;
 import com.jms.salon.Models.Model;
+import com.jms.salon.Views.ManagerMenuOption;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Product;
 import com.jms.salon.Views.AdminMenuOption;
+import com.salon.Server.Services.Manager.ManagerRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,13 +30,24 @@ public class ProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ConnectionServer connectionServer = Model.getInstance().getConnectionServer();
-        connectionServer.sendObject(new AdminRequest("AllProducts"));
-        Model.getInstance().getProducts().setAll((List<Product>) connectionServer.receiveObject());
-        connectionServer.sendObject(new AdminRequest("AllCategories"));
-        Product.setCategories((List<String>) connectionServer.receiveObject());
-
+        if(Model.getInstance().getCurrentRole().equals("admin")) {
+            connectionServer.sendObject(new AdminRequest("AllProducts"));
+            Model.getInstance().getProducts().setAll((List<Product>) connectionServer.receiveObject());
+            connectionServer.sendObject(new AdminRequest("AllCategories"));
+            Product.setCategories((List<String>) connectionServer.receiveObject());
+        }
+        else if(Model.getInstance().getCurrentRole().equals("manager")) {
+            connectionServer.sendObject(new ManagerRequest("AllProducts"));
+            Model.getInstance().getProducts().setAll((List<Product>) connectionServer.receiveObject());
+            connectionServer.sendObject(new ManagerRequest("AllCategories"));
+            Product.setCategories((List<String>) connectionServer.receiveObject());
+        }
         addProductBtn.setOnAction(event -> {
-            Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.AddProduct);
+            if (Model.getInstance().getCurrentRole().equals("admin")) {
+                Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.AddProduct);
+            }else if(Model.getInstance().getCurrentRole().equals("manager")) {
+                Model.getInstance().getViewFactory().getManagerSelectedMenuItem().set(ManagerMenuOption.AddProduct);
+            }
         });
 
 
@@ -61,7 +74,12 @@ public class ProductController implements Initializable {
             ProductСellController controller = loader.getController();
             controller.setProductInfo(product);
             controller.setDeleteAction(() -> {
-                Model.getInstance().getConnectionServer().sendObject(new AdminRequest("DelProduct", product.getName()));
+                if (Model.getInstance().getCurrentRole().equals("admin")) {
+                    Model.getInstance().getConnectionServer().sendObject(new AdminRequest("DelProduct", product.getName()));
+                }
+                else if(Model.getInstance().getCurrentRole().equals("manager")) {
+                    Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("DelProduct", product.getName()));
+                }
                 Model.getInstance().removeProduct(product);
             });
 

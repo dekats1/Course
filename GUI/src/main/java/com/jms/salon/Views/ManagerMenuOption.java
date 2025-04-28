@@ -6,5 +6,7 @@ public enum ManagerMenuOption {
     Statistics,
     Products,
     Profile,
-    Exit;
+    Exit,
+    EditProduct,
+    AddProduct;
 }

@@ -6,10 +6,20 @@ import java.util.Date;
 public class Sale implements Serializable{
     private final int saleId;
     private final String productName;
-    private final int quantity;
-    private final double price;
+    private  int quantity;
+    private  double price;
+    private  double cost;
     private final Date date;
     private final String sellerName;
+
+    public Sale(){
+        this.saleId = -1;
+        this.productName = null;
+        this.quantity = 0;
+        this.price = 0;
+        this.date = null;
+        this.sellerName = null;
+    }
 
     public Sale(int saleId, String productName, int quantity, double price, Date date, String sellerName) {
         this.saleId = saleId;
@@ -18,7 +28,18 @@ public class Sale implements Serializable{
         this.price = price;
         this.date = date;
         this.sellerName = sellerName;
+        this.cost = 0;
     }
+    public Sale(int saleId, String productName, int quantity, double price, Date date, String sellerName, double cost) {
+        this.saleId = saleId;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
+        this.date = date;
+        this.sellerName = sellerName;
+        this.cost = cost;
+    }
+
 
     public int getSaleId() {
         return saleId;
@@ -38,6 +59,19 @@ public class Sale implements Serializable{
     public String getSellerName(){
         return sellerName;
     }
+    public double getCost(){
+        return cost;
+    }
 
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
 }

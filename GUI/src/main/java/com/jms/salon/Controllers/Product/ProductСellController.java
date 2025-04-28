@@ -2,6 +2,7 @@ package com.jms.salon.Controllers.Product;
 
 import com.jms.salon.Models.Model;
 import com.jms.salon.Views.AdminMenuOption;
+import com.jms.salon.Views.ManagerMenuOption;
 import com.salon.Server.Services.Export.Product;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,7 +46,11 @@ public class ProductСellController implements Initializable {
                     break;
                 }
             }
-            Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.EditProduct);
+            if (Model.getInstance().getCurrentRole().equals("admin")) {
+                Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.EditProduct);
+            }else if (Model.getInstance().getCurrentRole().equals("manager")) {
+                Model.getInstance().getViewFactory().getManagerSelectedMenuItem().set(ManagerMenuOption.EditProduct);
+            }
         });
     }
 
