@@ -305,6 +305,9 @@ public class ViewFactory {
         logView = null;
         adminProfileView = null;
         adminSelectedMenuItem.set(null);
+        productView = null;
+        editProductView = null;
+        addProductView = null;
     }
 
     public void clearSellerCache() {
@@ -320,6 +323,10 @@ public class ViewFactory {
         reportHistoryView = null;
         managerProfileView = null;
         statisticsView = null;
+        productView = null;
+        editProductView = null;
+        addProductView = null;
+
     }
 
 }

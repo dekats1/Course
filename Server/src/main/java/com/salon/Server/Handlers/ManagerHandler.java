@@ -5,8 +5,10 @@ import com.salon.Server.Services.Export.ReportSale;
 import com.salon.Server.Services.Export.Seller;
 import com.salon.Server.Services.Manager.ManagerRequest;
 import com.salon.Server.Services.Manager.Service.ProfileService;
+import com.salon.Server.Services.Manager.Service.ReportHistoryService;
 import com.salon.Server.Services.Manager.Service.ReportService;
 import com.salon.Server.Services.Product.ProductsServiceForManager;
+import com.salon.Server.Services.Seller.Service.HistoryService;
 
 
 import java.io.IOException;
@@ -71,7 +73,13 @@ public class ManagerHandler extends RoleHandler {
                     ProductsServiceForManager.editProduct(request.getProduct());
                     //request.setProduct(null);
                 }
-
+                case "ReportsForUser"->{
+                    out.writeObject(ReportHistoryService.getReportHistory(request.getUserName()));
+                    break;
+                }
+                case "DeleteReport"->{
+                    out.writeObject(ReportHistoryService.deleteReport(request.getId()));
+                }
                 case "GetPhoto"->{
                     out.writeObject(ProfileService.getPhoto(request.getUserName()));
                     break;

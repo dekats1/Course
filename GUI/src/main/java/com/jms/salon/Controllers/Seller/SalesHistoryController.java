@@ -29,17 +29,14 @@ public class SalesHistoryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Инициализация слушателей
         Model.getInstance().getSales().addListener((javafx.collections.ListChangeListener.Change<? extends Sale> change) -> {
             refreshFilteredSales();
         });
 
-        // Слушатель для поиска по названию товара
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             refreshFilteredSales();
         });
 
-        // Слушатели для DatePicker
         startDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
             refreshFilteredSales();
         });
@@ -48,7 +45,7 @@ public class SalesHistoryController implements Initializable {
             refreshFilteredSales();
         });
 
-        // Первоначальная загрузка данных
+
         loadSalesData();
     }
 
@@ -78,14 +75,13 @@ public class SalesHistoryController implements Initializable {
 
     private boolean matchesDateRange(Sale sale) {
         if (startDatePicker.getValue() == null && endDatePicker.getValue() == null) {
-            return true; // Нет фильтра по дате
+            return true;
         }
 
         try {
             Date saleDate = sale.getDate();
             if (saleDate == null) return false;
 
-            // Преобразуем LocalDate из DatePicker в строку для сравнения
             String saleDateStr = dateFormat.format(saleDate);
 
             if (startDatePicker.getValue() != null) {

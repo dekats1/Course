@@ -44,7 +44,7 @@ public class ReportService {
 
             stmt.setString(1, userName);
             stmt.setDate(2, Date.valueOf(startDate));
-            stmt.setDate(3, Date.valueOf(endDate));
+            stmt.setDate(3, Date.valueOf(endDate.plusDays(1)));
 
             ResultSet rs = stmt.executeQuery();
 
@@ -81,7 +81,7 @@ public class ReportService {
 
             stmt.setString(1, productName);
             stmt.setDate(2, Date.valueOf(startDate));
-            stmt.setDate(3, Date.valueOf(endDate));
+            stmt.setDate(3, Date.valueOf(endDate.plusDays(1)));
 
             ResultSet rs = stmt.executeQuery();
 

@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.jms.salon.Controllers.Manager.ReportHistoryController"
-            prefHeight="750.0" prefWidth="850.0">
+<AnchorPane prefHeight="750.0" prefWidth="850.0" stylesheets="@../../Styles/ReportHistory.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Manager.ReportHistoryController">
 
+    <VBox fx:id="mainContainer" styleClass="root" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+
+        <HBox fx:id="headerBox" styleClass="header-box">
+            <ImageView fx:id="headerIcon" fitHeight="32" fitWidth="32" styleClass="header-icon">
+            <image>
+               <Image url="@../../Images/analytics.png" />
+            </image></ImageView>
+            <Text styleClass="header-text" text="Журнал отчетов" />
+        </HBox>
+
+        <VBox styleClass="filter-panel">
+            <HBox alignment="CENTER_LEFT">
+                <ToggleButton fx:id="sellerReportBtn" maxWidth="130.0" prefWidth="74.0" text="По продавцам">
+                <styleClass>
+                    <String fx:value="toggle-button-left" />
+                    <String fx:value="toggle-button" />
+                </styleClass>
+                </ToggleButton>
+                <ToggleButton fx:id="productReportBtn" maxWidth="130.0" prefWidth="101.0" text="По товарам">
+                <styleClass>
+                    <String fx:value="toggle-button-right" />
+                    <String fx:value="toggle-button" />
+                </styleClass>
+            </ToggleButton>
+
+                <DatePicker fx:id="startDatePicker" promptText="Начальная дата" styleClass="modern-date-picker" />
+                <Text styleClass="date-separator" text="-" />
+                <DatePicker fx:id="endDatePicker" promptText="Конечная дата" styleClass="modern-date-picker" />
+
+                <Button fx:id="applyFilterBtn" prefHeight="34.0" prefWidth="146.0" styleClass="primary-button" text="Применить" />
+            </HBox>
+        </VBox>
+
+        <VBox styleClass="report-list-container" VBox.vgrow="ALWAYS">
+            <ListView fx:id="reportListView" styleClass="report-list-view" VBox.vgrow="ALWAYS">
+                <placeholder>
+                    <Label styleClass="empty-list-label" text="Нет доступных отчетов" />
+                </placeholder>
+            </ListView>
+        </VBox>
+
+        <HBox alignment="CENTER_RIGHT" styleClass="action-panel">
+            <Button fx:id="deleteBtn" styleClass="danger-button" text="Удалить">
+            <HBox.margin>
+               <Insets bottom="5.0" right="5.0" />
+            </HBox.margin></Button>
+        </HBox>
+    </VBox>
 </AnchorPane>

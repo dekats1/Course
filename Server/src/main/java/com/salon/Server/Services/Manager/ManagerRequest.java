@@ -11,6 +11,7 @@ import java.util.Date;
 public class ManagerRequest implements Serializable {
     private final String request;
     private final String userName;
+    public int getId;
     private  String password;
     private String newPassword;
     private String photoPath;
@@ -21,7 +22,8 @@ public class ManagerRequest implements Serializable {
     private Product product;
     private LocalDate startDate;
     private LocalDate endDate;
-    TypeReport reportType;
+    private TypeReport reportType;
+    private int id;
 
     public ManagerRequest(String request) {
         this.request = request;
@@ -128,6 +130,18 @@ public class ManagerRequest implements Serializable {
         this.report = null;
     }
 
+    public ManagerRequest(String request, int id) {
+        this.request = request;
+        this.userName = null;
+        this.reportType = null;
+        this.product = null;
+        this.success = null;
+        this.date = null;
+        this.report = null;
+        this.message = null;
+        this.id = id;
+    }
+
 
     public String getRequest() {
         return request;
@@ -167,5 +181,8 @@ public class ManagerRequest implements Serializable {
     }
     public TypeReport getReportType() {
         return reportType;
+    }
+    public int getId() {
+        return id;
     }
 }

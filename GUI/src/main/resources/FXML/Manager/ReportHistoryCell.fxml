@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.jms.salon.Controllers.Manager.ReportHistoryCellController"
-            prefHeight="750.0" prefWidth="850.0">
+<AnchorPane prefHeight="153.0" prefWidth="752.0" styleClass="report-cell" stylesheets="@../../Styles/ReportHistory.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Manager.ReportHistoryCellController">
 
+    <HBox alignment="CENTER_LEFT" spacing="15" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="10">
+
+        <VBox styleClass="report-icon-container">
+            <ImageView fx:id="reportIcon" fitHeight="40" fitWidth="40">
+            <image>
+               <Image url="@../../Images/sale.png" />
+            </image></ImageView>
+        </VBox>
+
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Text fx:id="reportTitle" styleClass="report-title" text="Отчёт о продукте" />
+                <Text fx:id="reportDate" styleClass="report-date" text="12.23-2025" />
+            </HBox>
+         <HBox prefHeight="155.0" prefWidth="723.0" style="-fx-spacing: 300;">
+            <children>
+                  <Text fx:id="reportAuthor" styleClass="report-author" text="Manager" />
+               <Label fx:id="reportDataLabel" prefHeight="107.0" prefWidth="349.0" style="-fx-text-fill: black;" text="Отчет по товару: Кухонный гарнитур 'Премиум'  Период: 28.03.2025 - 28.04.2025   Количество продаж: 2  Общая выручка: 20000.00 руб.  Общая прибыль: 4000.00 руб." wrapText="true" />
+            </children>
+         </HBox>
+        </VBox>
+    </HBox>
 </AnchorPane>

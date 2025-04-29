@@ -1,0 +1,221 @@
+/* Основные стили */
+.root {
+    -fx-background-color: #f5f7fa;
+    -fx-font-family: 'Segoe UI', Roboto, sans-serif;
+    -fx-padding: 20 25;
+}
+
+/* Шапка */
+.header-box {
+    -fx-padding: 20 25;
+    -fx-background-color: #4CAF50;
+    -fx-background-radius: 8 8 0 0;
+    -fx-spacing: 15;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.header-icon {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 3, 0, 0, 1);
+}
+
+.header-text {
+    -fx-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* Панель фильтров */
+.filter-panel {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 15 25;
+}
+
+/* Список отчетов */
+.report-list-container {
+    -fx-background-color: #f5f7fa;
+    -fx-padding: 3;
+}
+
+.report-list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 2;
+}
+
+.report-list-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 12;
+}
+
+
+
+.report-list-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #bdbdbd;
+    -fx-background-radius: 6;
+}
+
+.empty-list-label {
+    -fx-text-fill: #757575;
+    -fx-font-size: 16px;
+    -fx-alignment: CENTER;
+}
+
+/* Ячейка отчета */
+.report-cell {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 1);
+}
+
+.report-cell:hover {
+    -fx-background-color: #f1f8e9;
+}
+
+.report-icon-container {
+    -fx-background-color: #e8f5e9;
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+    -fx-alignment: CENTER;
+}
+
+.report-title {
+    -fx-fill: #2e7d32;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.report-date {
+    -fx-fill: #757575;
+    -fx-font-size: 14px;
+}
+
+.report-author {
+    -fx-fill: #616161;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
+
+.report-preview {
+    -fx-fill: #424242;
+    -fx-font-size: 13px;
+}
+
+
+.danger-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #c62828;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-border-color: #ef5350;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+}
+
+.danger-button:hover {
+    -fx-background-color: #ffebee;
+}
+
+/* Переключатели */
+.toggle-button {
+    -fx-pref-width: 150;
+    -fx-pref-height: 35;
+    -fx-background-color: #e8f5e9;
+    -fx-text-fill: #2e7d32;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #66BB6A;
+    -fx-text-fill: white;
+}
+
+.toggle-button-left {
+    -fx-background-radius: 6 0 0 6;
+}
+
+.toggle-button-right {
+    -fx-background-radius: 0 6 6 0;
+}
+
+
+.modern-combo:hover {
+    -fx-border-color: #a5d6a7;
+}
+
+.modern-date-picker {
+    -fx-pref-height: 35;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #c8e6c9;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-font-size: 14px;
+}
+
+.modern-date-picker .arrow-button {
+    -fx-background-color: #81c784;
+    -fx-background-radius: 0 3 3 0;
+}
+
+.modern-date-picker .arrow {
+    -fx-background-color: white;
+}
+
+.date-separator {
+    -fx-text-fill: #a5d6a7;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 5;
+}
+
+
+.report-list-view .list-cell:filled:selected,
+.report-list-view .list-cell:filled:selected:hover {
+    -fx-background-color: rgba(174, 171, 171, 0.31);
+    -fx-text-fill: black;
+}
+
+.report-list-view .list-cell:filled:focused {
+    -fx-background-color: rgba(73, 255, 2, 0.16);
+    -fx-text-fill: inherit;
+}
+
+.report-list-view {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.report-cell {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 1);
+    -fx-background-insets: 0;
+}
+
+.report-cell:hover {
+    -fx-background-color: #f1f8e9;
+}
+
+.report-cell:pressed {
+    -fx-background-color: #f1f8e9;
+}
+.primary-button {
+    -fx-background-color: #66BB6A;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #4CAF50;
+}
