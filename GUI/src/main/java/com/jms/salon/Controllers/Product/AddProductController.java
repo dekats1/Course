@@ -71,7 +71,7 @@ public class AddProductController implements Initializable {
             if (validateFields()) {
                 Product product = createProductFromFields();
                if (Model.getInstance().getCurrentRole().equals("admin")) {
-                   Model.getInstance().getConnectionServer().sendObject(new AdminRequest("AddProduct", product));
+                   Model.getInstance().getConnectionServer().sendObject(new AdminRequest("AddProduct", product,Model.getInstance().getCurrentUser()));
                    AdminRequest res = (AdminRequest) Model.getInstance().getConnectionServer().receiveObject();
                    if(res.getSuccess()) {
                        Model.getInstance().addProduct(product);
@@ -83,7 +83,7 @@ public class AddProductController implements Initializable {
                    }
                 }
                else if (Model.getInstance().getCurrentRole().equals("manager")) {
-                   Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("AddProduct", product));
+                   Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("AddProduct", product,Model.getInstance().getCurrentUser()));
                    ManagerRequest res = (ManagerRequest) Model.getInstance().getConnectionServer().receiveObject();
                    if(res.getSuccess()) {
                        Model.getInstance().addProduct(product);

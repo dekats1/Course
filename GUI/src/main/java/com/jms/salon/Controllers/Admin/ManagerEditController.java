@@ -49,7 +49,7 @@ public class ManagerEditController implements Initializable {
             String lastName = lastNameField.getText();
             String password = passwordField.getText();
             String date = LocalDate.now().toString();
-            connectionServer.sendObject(new AdminRequest("AddManager", new Manager(login, firstName, lastName, password, date)));
+            connectionServer.sendObject(new AdminRequest("AddManager", new Manager(login, firstName, lastName, password, date),Model.getInstance().getCurrentUser()));
            AdminRequest res = (AdminRequest) connectionServer.receiveObject();
             if(res.getSuccess())
                 addManager(new Manager(login, firstName, lastName, password, date));
@@ -93,7 +93,7 @@ public class ManagerEditController implements Initializable {
             FadeTransition ft = new FadeTransition(Duration.millis(300), managerCell);
             ft.setFromValue(1.0);
             ft.setToValue(0.0);
-            Model.getInstance().getConnectionServer().sendObject(new AdminRequest("DelManager", manager.getUserName()));
+            Model.getInstance().getConnectionServer().sendObject(new AdminRequest("DelManager", manager.getUserName(),Model.getInstance().getCurrentUser()));
             ft.setOnFinished(event -> managerListView.getItems().remove(managerCell));
             ft.play();
         });

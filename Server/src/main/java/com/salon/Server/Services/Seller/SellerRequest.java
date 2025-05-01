@@ -18,6 +18,7 @@ public class SellerRequest implements Serializable {
     private String password;
     private String newPassword;
     private Date dateInfo;
+    private String ownerName;
 
     public SellerRequest(String request) {
         this.request = request;
@@ -50,7 +51,7 @@ public class SellerRequest implements Serializable {
 
     }
 
-    public SellerRequest(String request, String userName, Product product, int quantity) {
+    public SellerRequest(String request, String userName, Product product, int quantity, String ownerName) {
         this.request = request;
         this.product = product;
         this.success = null;
@@ -59,6 +60,10 @@ public class SellerRequest implements Serializable {
         this.quantity = quantity;
         this.photoPath = null;
         this.sale = null;
+        this.password = null;
+        this.newPassword = null;
+        this.dateInfo = null;
+        this.ownerName = ownerName;
     }
 
     public SellerRequest(Boolean success,String errorMessage, Sale sale) {
@@ -70,7 +75,7 @@ public class SellerRequest implements Serializable {
         this.photoPath = null;
     }
 
-    public SellerRequest(String request, String name, String password, String newPassword) {
+    public SellerRequest(String request, String name, String password, String newPassword, String ownerName) {
         this.request = request;
         this.success = null;
         this.errorMessage = null;
@@ -80,10 +85,12 @@ public class SellerRequest implements Serializable {
         this.password = password;
         this.newPassword = newPassword;
         this.photoPath = null;
+        this.dateInfo = null;
+        this.ownerName = ownerName;
 
     }
 
-    public SellerRequest(String request, String name, String photoPath) {
+    public SellerRequest(String request, String name, String photoPath, String ownerName) {
         this.request = request;
         this.product = null;
         this.photoPath = photoPath;
@@ -91,6 +98,10 @@ public class SellerRequest implements Serializable {
         this.success = null;
         this.errorMessage = null;
         this.sale = null;
+        this.password = null;
+        this.newPassword = null;
+        this.dateInfo = null;
+        this.ownerName = ownerName;
     }
 
     public SellerRequest(String name, Date date) {
@@ -148,5 +159,9 @@ public class SellerRequest implements Serializable {
 
     public Date getDateInfo() {
         return dateInfo;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
     }
 }

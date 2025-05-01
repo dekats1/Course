@@ -3,6 +3,7 @@ package com.salon.Server.Services.Admin.Service;
 import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Seller;
+import com.salon.Server.Services.LogService;
 import com.salon.Server.Utils.PasswordUtil;
 
 import java.sql.*;
@@ -28,7 +29,7 @@ public class SellerService {
         return sellers;
     }
 
-    public static AdminRequest addSeller(Seller seller) {
+    public static AdminRequest addSeller(Seller seller, String ownerName) {
         String checkSql = "SELECT COUNT(*) FROM Users WHERE UserName = ?";
         String insertSql = "INSERT INTO Users (UserName, Password, Salt, FirstName, LastName, RoleID, dateAt) " +
                 "VALUES (?, ?, ?, ?, ?, (SELECT RoleID FROM Roles WHERE RoleName = 'seller'), ?)";
@@ -51,6 +52,7 @@ public class SellerService {
 
                         int affectedRows = insertStmt.executeUpdate();
                         if (affectedRows > 0) {
+                            LogService.addLog(ownerName,"Был добавлен новый продавец: "+ seller.getUserName());
                             System.out.println("Seller account created successfully");
                         } else {
                             System.out.println("Failed to create seller account");
@@ -69,7 +71,7 @@ public class SellerService {
         return new AdminRequest(true,"");
     }
 
-    public static boolean delSeller(String userName) {
+    public static boolean delSeller(String userName, String ownerName) {
         String deleteDetailsSql = "DELETE sd FROM saledetails sd " +
                 "JOIN sales s ON sd.SaleID = s.SaleID " +
                 "WHERE s.SellerUserName = ?";
@@ -94,6 +96,7 @@ public class SellerService {
                 int affectedRows = deleteUserStmt.executeUpdate();
 
                 conn.commit();
+                LogService.addLog(ownerName,"Был удален продавец: "+ userName);
                 return affectedRows > 0;
 
             } catch (SQLException e) {

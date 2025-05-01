@@ -3,6 +3,7 @@ package com.salon.Server.Services.Admin.Service;
 import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Manager;
+import com.salon.Server.Services.LogService;
 import com.salon.Server.Utils.PasswordUtil;
 
 import java.sql.*;
@@ -32,7 +33,7 @@ public class ManagerService {
         return managers;
     }
 
-    public static AdminRequest addManager(Manager manager) {
+    public static AdminRequest addManager(Manager manager, String ownerName) {
         String checkSql = "SELECT COUNT(*) FROM Users WHERE UserName = ?";
         String insertSql = "INSERT INTO Users (UserName, Password, Salt, FirstName, LastName, RoleID, dateAt) "
                 + "VALUES (?, ?, ?, ?, ?, (SELECT RoleID FROM Roles WHERE RoleName = 'manager'), ?)";
@@ -70,10 +71,11 @@ public class ManagerService {
             e.printStackTrace();
             throw new RuntimeException("Error adding manager: " + e.getMessage(), e);
         }
+        LogService.addLog(ownerName,"Был добавлен новый менеджер: "+ manager.getUserName());
         return new AdminRequest(true,"");
     }
 
-    public static boolean delManager(String username) {
+    public static boolean delManager(String username, String ownerName) {
         if (!isManager(username)) {
             System.out.println("Пользователь не является менеджером");
             return false;
@@ -96,6 +98,7 @@ public class ManagerService {
                 int affectedRows = deleteUserStmt.executeUpdate();
 
                 conn.commit();
+                LogService.addLog(ownerName,"Был удалён менеджер: "+ username);
                 return affectedRows > 0;
 
             } catch (SQLException e) {

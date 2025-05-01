@@ -19,13 +19,34 @@ public class ManagerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listener = (observable, oldValue, newValue) -> {
             switch (newValue) {
-                case ManagerMenuOption.Report -> managerParent.setCenter(Model.getInstance().getViewFactory().getReportView());
-                case ManagerMenuOption.HistoryReport -> managerParent.setCenter(Model.getInstance().getViewFactory().getReportHistoryView());
-                case ManagerMenuOption.Statistics -> managerParent.setCenter(Model.getInstance().getViewFactory().getStatisticsView());
-                case ManagerMenuOption.Products -> managerParent.setCenter(Model.getInstance().getViewFactory().getProductView());
-                case ManagerMenuOption.AddProduct -> managerParent.setCenter(Model.getInstance().getViewFactory().getAddProductView());
-                case ManagerMenuOption.EditProduct -> managerParent.setCenter(Model.getInstance().getViewFactory().getEditProductView());
-                case ManagerMenuOption.Profile -> managerParent.setCenter(Model.getInstance().getViewFactory().getManagerProfileView());
+                case ManagerMenuOption.Report ->{
+                    Model.getInstance().getViewFactory().clearManagerRofRequest();
+                    managerParent.setCenter(Model.getInstance().getViewFactory().getReportView());
+                }
+                case ManagerMenuOption.HistoryReport ->{
+                    Model.getInstance().getViewFactory().clearManagerRofRequest();
+                    managerParent.setCenter(Model.getInstance().getViewFactory().getReportHistoryView());
+                }
+                case ManagerMenuOption.Statistics ->{
+                    Model.getInstance().getViewFactory().clearManagerRofRequest();
+                    managerParent.setCenter(Model.getInstance().getViewFactory().getStatisticsView());
+                }
+                case ManagerMenuOption.Products ->{
+                    Model.getInstance().getViewFactory().clearManagerRofRequest();
+                    managerParent.setCenter(Model.getInstance().getViewFactory().getProductView());
+                }
+                case ManagerMenuOption.AddProduct ->{
+                    Model.getInstance().getViewFactory().clearManagerRofRequest();
+                    managerParent.setCenter(Model.getInstance().getViewFactory().getAddProductView());
+                }
+                case ManagerMenuOption.EditProduct ->{
+                    Model.getInstance().getViewFactory().clearManagerRofRequest();
+                    managerParent.setCenter(Model.getInstance().getViewFactory().getEditProductView());
+                }
+                case ManagerMenuOption.Profile ->{
+                    Model.getInstance().getViewFactory().clearManagerRofRequest();
+                    managerParent.setCenter(Model.getInstance().getViewFactory().getManagerProfileView());
+                }
                 case ManagerMenuOption.Exit -> {
                     // Удаляем listener
                     Model.getInstance().getViewFactory().getManagerSelectedMenuItem().removeListener(listener);

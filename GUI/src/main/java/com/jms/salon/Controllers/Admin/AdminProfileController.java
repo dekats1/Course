@@ -92,7 +92,8 @@ public class AdminProfileController {
                 "ChangePassword",
                 Model.getInstance().getCurrentUser(),
                 oldPassword,
-                newPassword
+                newPassword,
+                Model.getInstance().getCurrentUser()
         );
 
         Model.getInstance().getConnectionServer().sendObject(request);
@@ -120,7 +121,7 @@ public class AdminProfileController {
     private void loadUserData() {
         // Загрузка данных пользователя
         loginLabel.setText(Model.getInstance().getCurrentUser());
-        Model.getInstance().getConnectionServer().sendObject(new AdminRequest("UserData", Model.getInstance().getCurrentUser()));
+        Model.getInstance().getConnectionServer().sendObject(new AdminRequest("UserData", Model.getInstance().getCurrentUser(), Model.getInstance().getCurrentUser()));
         AdminRequest userData = (AdminRequest) Model.getInstance().getConnectionServer().receiveObject();
         nameLabel.setText(userData.getName());
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -128,7 +129,7 @@ public class AdminProfileController {
 
         // Загрузка аватара
         Model.getInstance().getConnectionServer()
-                .sendObject(new AdminRequest("GetPhoto", Model.getInstance().getCurrentUser()));
+                .sendObject(new AdminRequest("GetPhoto", Model.getInstance().getCurrentUser(), Model.getInstance().getCurrentUser(), Model.getInstance().getCurrentUser()));
         String path = (String) Model.getInstance().getConnectionServer().receiveObject();
         inputImage(new File(path));
     }

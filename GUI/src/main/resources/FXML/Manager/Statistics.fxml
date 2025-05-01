@@ -1,9 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.jms.salon.Controllers.Manager.StatisticsController"
-            prefHeight="750.0" prefWidth="850.0">
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
+<AnchorPane prefHeight="750" prefWidth="850" styleClass="root" stylesheets="@../../Styles/Statistics.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Manager.StatisticsController">
+
+    <VBox fx:id="mainContainer" spacing="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+
+        <HBox prefHeight="112.0" prefWidth="721.0" styleClass="header-box">
+            <ImageView fitHeight="48" fitWidth="48" styleClass="header-icon">
+                <Image url="@../../Images/description.png" />
+            </ImageView>
+            <Text styleClass="header-text" text="Статистика продаж" />
+        </HBox>
+
+        <GridPane styleClass="content-grid" VBox.vgrow="ALWAYS">
+            <VBox styleClass="stat-card" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <ImageView fitHeight="50" fitWidth="50" styleClass="stat-icon">
+                        <Image url="@../../Images/best-product.png" />
+                    </ImageView>
+                    <VBox spacing="2">
+                        <Text styleClass="stat-title" text="Лучший продукт" />
+                        <Text styleClass="stat-subtitle" text="по количеству продаж" />
+                    </VBox>
+                </HBox>
+                <VBox styleClass="stat-content">
+                    <Label fx:id="bestSellingProductName" styleClass="stat-value" />
+                    <Label fx:id="bestSellingProductCount" styleClass="stat-detail" />
+                </VBox>
+            </VBox>
+
+            <VBox styleClass="stat-card" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <ImageView fitHeight="50" fitWidth="50" styleClass="stat-icon">
+                        <Image url="@../../Images/high-value.png" />
+                    </ImageView>
+                    <VBox spacing="2">
+                        <Text styleClass="stat-title" text="Прибыльный продукт" />
+                        <Text styleClass="stat-subtitle" text="по маржинальности" />
+                    </VBox>
+                </HBox>
+                <VBox styleClass="stat-content">
+                    <Label fx:id="mostProfitableProductName" styleClass="stat-value" />
+                    <Label fx:id="mostProfitableProductProfit" styleClass="stat-detail" />
+                </VBox>
+            </VBox>
+
+            <VBox maxWidth="1123.0" minWidth="470.0" prefHeight="312.0" prefWidth="470.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="15" styleClass="vboxContent">
+                    <ImageView fitHeight="50" fitWidth="50" styleClass="stat-icon">
+                        <Image url="@../../Images/best-seller.png" />
+                    </ImageView>
+                    <VBox prefHeight="50.0" prefWidth="200.0" spacing="2" styleClass="vboxContent">
+                        <Text styleClass="stat-title" text="Лучший продавец" />
+                        <Text styleClass="stat-subtitle" text="по объёму продаж" />
+                    </VBox>
+                </HBox>
+                <VBox styleClass="stat-content">
+                    <Label fx:id="topSellerName" styleClass="stat-value" />
+                    <Label fx:id="topSellerSalesCount" styleClass="stat-detail" />
+                    <Label fx:id="topSellerProfit" styleClass="stat-detail" />
+                </VBox>
+                <styleClass>
+                    <String fx:value="stat-card" />
+                    <String fx:value="last-card" />
+                </styleClass>
+            </VBox>
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </VBox>
 </AnchorPane>

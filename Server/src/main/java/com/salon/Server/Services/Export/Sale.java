@@ -40,6 +40,16 @@ public class Sale implements Serializable{
         this.cost = cost;
     }
 
+    public Sale(String productName, double price) {
+        this.saleId = -1;
+        this.productName = productName;
+        this.quantity = 0;
+        this.price = price;
+        this.cost = 0;
+        this.date = null;
+        this.sellerName = null;
+    }
+
 
     public int getSaleId() {
         return saleId;

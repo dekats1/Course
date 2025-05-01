@@ -18,32 +18,41 @@ public class AdminRequest implements java.io.Serializable {
     private String errorMassage;
     private Boolean isSuccess;
     private Date dateInfo;
+    private String ownerName;
 
-    public AdminRequest(String request, Seller seller) {
+    public AdminRequest(String request, Seller seller, String ownerName) {
         this.request = request;
         this.seller = seller;
         this.manager = null;
         this.product = null;
         this.photoPath = null;
         this.name = null;
+        this.ownerName = ownerName;
     }
 
-    public AdminRequest(String request, Manager manager) {
+    public AdminRequest(String request, Manager manager, String ownerName) {
         this.request = request;
         this.seller = null;
         this.manager = manager;
         this.product = null;
         this.photoPath = null;
         this.name = null;
+        this.password = null;
+        this.newPassword = null;
+        this.errorMassage = null;
+        this.isSuccess = null;
+        this.dateInfo = null;
+        this.ownerName = ownerName;
     }
 
-    public AdminRequest(String request, Product product) {
+    public AdminRequest(String request, Product product, String ownerName) {
         this.request = request;
         this.seller = null;
         this.manager = null;
         this.product = product;
         this.photoPath = null;
         this.name = null;
+        this.ownerName = ownerName;
     }
 
     public AdminRequest(String request) {
@@ -55,16 +64,17 @@ public class AdminRequest implements java.io.Serializable {
         this.name = null;
     }
 
-    public AdminRequest(String request, String name, String photoPath) {
+    public AdminRequest(String request, String name, String photoPath, String ownerName) {
         this.request = request;
         this.seller = null;
         this.manager = null;
         this.product = null;
         this.photoPath = photoPath;
         this.name = name;
+        this.ownerName = ownerName;
     }
 
-    public AdminRequest(String request, String name) {
+    public AdminRequest(String request, String name, String ownerName) {
         this.request = request;
         this.seller = null;
         this.manager = null;
@@ -73,6 +83,7 @@ public class AdminRequest implements java.io.Serializable {
         this.name = name;
         this.isSuccess = false;
         this.errorMassage = null;
+        this.ownerName = ownerName;
     }
 
     public AdminRequest(Boolean isSuccess, String errorMassage) {
@@ -87,7 +98,7 @@ public class AdminRequest implements java.io.Serializable {
         this.dateInfo = null;
     }
 
-    public AdminRequest(String request, String name, String password, String newPassword) {
+    public AdminRequest(String request, String name, String password, String newPassword, String ownerName) {
         this.request = request;
         this.seller = null;
         this.manager = null;
@@ -99,6 +110,7 @@ public class AdminRequest implements java.io.Serializable {
         this.isSuccess = false;
         this.errorMassage = null;
         this.dateInfo = null;
+        this.ownerName = ownerName;
     }
 
     public AdminRequest(String name, Date date) {
@@ -162,6 +174,10 @@ public class AdminRequest implements java.io.Serializable {
 
     public Date getDate() {
         return dateInfo;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
     }
 }
 

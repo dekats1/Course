@@ -1,0 +1,80 @@
+.root {
+    -fx-background-color: #f5f7fa;
+    -fx-font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.header-box {
+    -fx-background-color: #4CAF50;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 30;
+    -fx-spacing: 20;
+}
+
+.header-icon {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 3, 0, 0, 1);
+}
+
+.header-text {
+    -fx-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.content-grid {
+    -fx-padding: 25;
+    -fx-hgap: 25;
+    -fx-vgap: 25;
+    -fx-alignment: CENTER;
+}
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 25;
+    -fx-spacing: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 0, 4, 5, 0);
+    -fx-min-width: 375px;
+    -fx-max-width: 375px;
+    -fx-min-height: 250px;
+}
+
+.stat-title {
+    -fx-fill: #2e7d32;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.stat-subtitle {
+    -fx-fill: #78909c;
+    -fx-font-size: 14px;
+}
+
+.stat-content {
+    -fx-spacing: 10;
+    -fx-padding: 15 0 0 5;
+    -fx-alignment: center;
+}
+
+.stat-value {
+    -fx-text-fill: #263238;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+}
+
+.stat-detail {
+    -fx-text-fill: #78909c;
+    -fx-font-size: 18px;
+
+}
+
+.last-card {
+    -fx-min-width: 795px;
+    -fx-max-width: 795px;
+    -fx-min-height: 200px;
+}
+
+.vboxContent{
+    -fx-alignment: center;
+
+}

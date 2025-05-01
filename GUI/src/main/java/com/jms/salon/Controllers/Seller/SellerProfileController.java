@@ -94,7 +94,8 @@ public class SellerProfileController {
                 "ChangePassword",
                 Model.getInstance().getCurrentUser(),
                 oldPassword,
-                newPassword
+                newPassword,
+                Model.getInstance().getCurrentUser()
         );
 
         Model.getInstance().getConnectionServer().sendObject(request);
@@ -120,7 +121,6 @@ public class SellerProfileController {
 
 
     private void loadUserData() {
-        // Загрузка данных пользователя
         loginLabel.setText(Model.getInstance().getCurrentUser());
         Model.getInstance().getConnectionServer().sendObject(new SellerRequest("UserData", Model.getInstance().getCurrentUser()));
         SellerRequest userData = (SellerRequest) Model.getInstance().getConnectionServer().receiveObject();
@@ -155,7 +155,7 @@ public class SellerProfileController {
                 new FileChooser.ExtensionFilter("Изображения", "*.png", "*.jpg", "*.jpeg")
         );
         File selectedFile = fileChooser.showOpenDialog(getStage());
-        Model.getInstance().getConnectionServer().sendObject(new SellerRequest("SetPhoto", Model.getInstance().getCurrentUser(),selectedFile.getPath()));
+        Model.getInstance().getConnectionServer().sendObject(new SellerRequest("SetPhoto", Model.getInstance().getCurrentUser(),selectedFile.getPath(),Model.getInstance().getCurrentUser()));
 
         inputImage(selectedFile);
     }

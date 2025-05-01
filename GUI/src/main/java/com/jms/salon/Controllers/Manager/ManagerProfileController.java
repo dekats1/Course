@@ -92,7 +92,8 @@ public class ManagerProfileController {
                 "ChangePassword",
                 Model.getInstance().getCurrentUser(),
                 oldPassword,
-                newPassword
+                newPassword,
+                Model.getInstance().getCurrentUser()
         );
 
         Model.getInstance().getConnectionServer().sendObject(request);
@@ -154,7 +155,7 @@ public class ManagerProfileController {
                 new FileChooser.ExtensionFilter("Изображения", "*.png", "*.jpg", "*.jpeg")
         );
         File selectedFile = fileChooser.showOpenDialog(getStage());
-        Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("SetPhoto", Model.getInstance().getCurrentUser(),selectedFile.getPath()));
+        Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("SetPhoto", Model.getInstance().getCurrentUser(),selectedFile.getPath(),Model.getInstance().getCurrentUser()));
 
         inputImage(selectedFile);
     }

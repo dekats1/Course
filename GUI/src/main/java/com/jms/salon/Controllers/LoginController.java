@@ -41,6 +41,10 @@ public class LoginController implements Initializable {
         //System.out.println(username);
 
         ConnectionServer connection = Model.getInstance().getConnectionServer();
+        if(connection == null) {
+            errorLbl.setText("Не удалось подключиться к серверу");
+            return;
+        }
         connection.sendObject(new AuthRequest(username, password));
 
         AuthResponse response = (AuthResponse) connection.receiveObject();

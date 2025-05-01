@@ -3,6 +3,7 @@ package com.salon.Server.Services.Product;
 import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Product;
+import com.salon.Server.Services.LogService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class ProductsService {
         return categories;
     }
 
-    public static AdminRequest addProduct(Product product) {
+    public static AdminRequest addProduct(Product product, String ownerName) {
         String checkSql = "SELECT COUNT(*) FROM Products WHERE ProductName = ?";
 
         String insertSql = "INSERT INTO Products (ProductName, Description, CategoryID, SalePrice, CostPrice, StockLevel) " +
@@ -84,7 +85,9 @@ public class ProductsService {
 
                         int affectedRows = insertStmt.executeUpdate();
                         if (affectedRows > 0) {
-                            System.out.println("Продукт успешно добавлен в базу данных");
+                            LogService.addLog(ownerName,product.getName() + "был добавлен");
+
+                           // System.out.println("Продукт успешно добавлен в базу данных");
                         } else {
                             System.out.println("Не удалось добавить продукт");
                             return new AdminRequest(false, "Не удалось добавить продукт");
@@ -102,7 +105,7 @@ public class ProductsService {
         return new AdminRequest(true, "");
     }
 
-    public static boolean deleteProduct(String productName) {
+    public static boolean deleteProduct(String productName, String ownerName) {
         String deleteDetailsSql = "DELETE sd FROM SaleDetails sd " +
                 "JOIN Products p ON sd.ProductID = p.ProductID " +
                 "WHERE p.ProductName = ?";
@@ -122,6 +125,8 @@ public class ProductsService {
                 int affectedRows = deleteProductStmt.executeUpdate();
 
                 conn.commit();
+                LogService.addLog(ownerName,productName + "был удален");
+
                 return affectedRows > 0;
 
             } catch (SQLException e) {
@@ -134,7 +139,7 @@ public class ProductsService {
     }
 
 
-    public static void editProduct(Product product) {
+    public static void editProduct(Product product, String ownerName) {
         if (product == null) {
             throw new IllegalArgumentException("Product cannot be null");
         }
@@ -164,10 +169,11 @@ public class ProductsService {
                         throw new RuntimeException("Product with ID " + product.getProductId() + " not found");
                     }
                 }
+                LogService.addLog(ownerName,product.getName() + "был изменен");
 
-                System.out.println("Product with ID " + product.getProductId() + " updated");
+                // System.out.println("Product with ID " + product.getProductId() + " updated");
             } catch (SQLException e) {
-                throw new RuntimeException("Failed to update product", e);  // Пробрасываем исключение дальше
+                throw new RuntimeException("Failed to update product", e);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Database connection error", e);

@@ -7,9 +7,8 @@ import com.salon.Server.Services.Manager.ManagerRequest;
 import com.salon.Server.Services.Manager.Service.ProfileService;
 import com.salon.Server.Services.Manager.Service.ReportHistoryService;
 import com.salon.Server.Services.Manager.Service.ReportService;
+import com.salon.Server.Services.Manager.Service.StatisticsService;
 import com.salon.Server.Services.Product.ProductsServiceForManager;
-import com.salon.Server.Services.Seller.Service.HistoryService;
-
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -59,36 +58,41 @@ public class ManagerHandler extends RoleHandler {
                     break;
                 }
                 case "SaveReport"->{
-                    out.writeObject(ReportService.saveReport(request.getReportType().toString(),request.getErrorMassage(),request.getUserName()));
+                    out.writeObject(ReportService.saveReport(request.getReportType().toString(), request.getErrorMassage(), request.getUserName(), request.getOwnerName()));
                 }
                 case "AddProduct"->{
-                    out.writeObject(ProductsServiceForManager.addProduct(request.getProduct()));
+                    out.writeObject(ProductsServiceForManager.addProduct(request.getProduct(), request.getOwnerName()));
                     break;
                 }
                 case "DelProduct"->{
-                    ProductsServiceForManager.deleteProduct(request.getUserName());
+                    ProductsServiceForManager.deleteProduct(request.getUserName(), request.getOwnerName());
                     break;
                 }
                 case "EditProduct"->{
-                    ProductsServiceForManager.editProduct(request.getProduct());
+                    ProductsServiceForManager.editProduct(request.getProduct(), request.getOwnerName());
                     //request.setProduct(null);
                 }
                 case "ReportsForUser"->{
                     out.writeObject(ReportHistoryService.getReportHistory(request.getUserName()));
                     break;
                 }
+                case "GetStatistics" -> {
+                    out.writeObject(StatisticsService.takeProductByCount());
+                    out.writeObject(StatisticsService.takeProductByProfit());
+                    out.writeObject(StatisticsService.takeBestSellerByCount());
+                }
                 case "DeleteReport"->{
-                    out.writeObject(ReportHistoryService.deleteReport(request.getId()));
+                    out.writeObject(ReportHistoryService.deleteReport(request.getId(), request.getOwnerName()));
                 }
                 case "GetPhoto"->{
                     out.writeObject(ProfileService.getPhoto(request.getUserName()));
                     break;
                 }
                 case "SetPhoto"->{
-                    ProfileService.updateUserPhoto(request.getUserName(),request.getPhotoPath());
+                    ProfileService.updateUserPhoto(request.getUserName(), request.getPhotoPath(), request.getOwnerName());
                 }
                 case "ChangePassword"->{
-                    out.writeObject(ProfileService.changePassword(request.getUserName(),request.getPassword(),request.getNewPassword()));
+                    out.writeObject(ProfileService.changePassword(request.getUserName(), request.getPassword(), request.getNewPassword(), request.getOwnerName()));
                 }
                 case "UserData"->{
                     out.writeObject(ProfileService.userData(request.getUserName()));

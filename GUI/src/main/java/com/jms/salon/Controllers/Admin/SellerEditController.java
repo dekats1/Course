@@ -50,7 +50,7 @@ public class SellerEditController implements Initializable {
             String lastName = lastNameField.getText();
             String password = passwordField.getText();
             String date = LocalDate.now().toString();
-            connectionServer.sendObject(new AdminRequest("AddSeller", new Seller(login, firstName, lastName, password, date)));
+            connectionServer.sendObject(new AdminRequest("AddSeller", new Seller(login, firstName, lastName, password, date),Model.getInstance().getCurrentUser()));
             AdminRequest res =(AdminRequest) connectionServer.receiveObject();
             if(res.getSuccess())
                 addSeller(new Seller(login, firstName, lastName, password, date));
@@ -96,7 +96,7 @@ public class SellerEditController implements Initializable {
             FadeTransition ft = new FadeTransition(Duration.millis(300), sellerCell);
             ft.setFromValue(1.0);
             ft.setToValue(0.0);
-            Model.getInstance().getConnectionServer().sendObject(new AdminRequest("DelSeller", seller.getUserName()));
+            Model.getInstance().getConnectionServer().sendObject(new AdminRequest("DelSeller", seller.getUserName(),Model.getInstance().getCurrentUser()));
             ft.setOnFinished(event -> Model.getInstance().getSellers().remove(sellerCell));
             ft.play();
         });

@@ -1,9 +1,9 @@
 package com.salon.Server.Services.Manager.Service;
 
 import com.salon.Server.BD.DataBaseConnection;
+import com.salon.Server.Services.LogService;
 import com.salon.Server.Services.Manager.ManagerRequest;
 import com.salon.Server.Utils.PasswordUtil;
-
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,7 +31,8 @@ public class ProfileService {
             throw new RuntimeException("Failed to get photo for user: " + userName, e);
         }
     }
-    public static void updateUserPhoto(String userName, String photoPath) {
+
+    public static void updateUserPhoto(String userName, String photoPath, String ownerName) {
         final String sql = "UPDATE Users SET ProfilePhotoPath = ? WHERE UserName = ?";
 
         try (Connection connection = DataBaseConnection.getConnection();
@@ -41,13 +42,14 @@ public class ProfileService {
             preparedStatement.setString(2, userName);
 
             int affectedRows = preparedStatement.executeUpdate();
+            LogService.addLog(ownerName,  "Фото профиля было изменено");
 
         } catch (SQLException e) {
             throw new RuntimeException("Failed to update photo for user: " + userName, e);
         }
     }
 
-    public static ManagerRequest changePassword(String userName, String oldPassword, String newPassword) {
+    public static ManagerRequest changePassword(String userName, String oldPassword, String newPassword, String ownerName) {
         String sql = "SELECT Password, Salt FROM Users WHERE UserName = ?";
         try (Connection connection = DataBaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -69,6 +71,8 @@ public class ProfileService {
                         if (affectedRows == 0) {
                             return new ManagerRequest(false, "Не удалось обновить пароль");
                         }
+                        LogService.addLog(ownerName, "был изменен пароль");
+
                         return new ManagerRequest(true, "Пароль успешно изменён");
                     }
                 } else {

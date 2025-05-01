@@ -5,38 +5,40 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="750.0" prefWidth="850.0" styleClass="anchor-pane" stylesheets="@../../Styles/Logs.css"
-            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.jms.salon.Controllers.Admin.LogController">
+<AnchorPane prefHeight="750.0" prefWidth="850.0" styleClass="anchor-pane" stylesheets="@../../Styles/Logs.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jms.salon.Controllers.Admin.LogController">
 
     <children>
-        <VBox layoutX="25" layoutY="25" spacing="20" styleClass="hBox" stylesheets="@../../Styles/Log.css"
-              AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0"
-              AnchorPane.topAnchor="25.0">
-            <!-- Заголовок -->
-            <Text styleClass="header-text" text="Логи системы"/>
 
-            <!-- Фильтр по дате -->
+        <VBox layoutX="25" layoutY="25" spacing="20" styleClass="hBox" stylesheets="@../../Styles/Logs.css" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+   
+           <HBox prefHeight="112" prefWidth="850.0" styleClass="header-box">
+               <ImageView fitHeight="48" fitWidth="48" styleClass="header-icon">
+                   <Image url="@../../Images/wood.png" />
+               </ImageView>
+               <Text styleClass="header-text" text="Логи системы" />
+           </HBox>
+
             <HBox spacing="10" styleClass="hBox">
-                <Label text="С:"/>
-                <DatePicker fx:id="startDatePicker"/>
-                <Label text="По:"/>
-                <DatePicker fx:id="endDatePicker"/>
-                <Button fx:id="filterButton" styleClass="button" text="Фильтровать"/>
+                <Label text="С:" />
+                <DatePicker fx:id="startDatePicker" />
+                <Label text="По:" />
+                <DatePicker fx:id="endDatePicker" />
+                <Button fx:id="filterButton" styleClass="button" text="Фильтровать" />
             </HBox>
 
-            <!-- Таблица логов -->
-            <TableView fx:id="logTable" prefHeight="600" stylesheets="@../../Styles/Log.css">
+            <TableView fx:id="logTable" prefHeight="600" stylesheets="@../../Styles/Logs.css">
                 <columns>
-                    <TableColumn fx:id="timeColumn" editable="false" prefWidth="150" text="Время"/>
-                    <TableColumn fx:id="actionColumn" editable="false" prefWidth="300" text="Действие"/>
-                    <TableColumn fx:id="userColumn" editable="false" prefWidth="200" text="Пользователь"/>
-                    <TableColumn fx:id="statusColumn" editable="false" prefWidth="150" text="Статус"/>
+                    <TableColumn fx:id="timeColumn" editable="false" prefWidth="150" text="Время" />
+                    <TableColumn fx:id="actionColumn" editable="false" prefWidth="300" text="Действие" />
+                    <TableColumn fx:id="userColumn" editable="false" prefWidth="200" text="Пользователь" />
+                    <TableColumn fx:id="statusColumn" editable="false" prefWidth="150" text="Статус" />
                 </columns>
             </TableView>
         </VBox>

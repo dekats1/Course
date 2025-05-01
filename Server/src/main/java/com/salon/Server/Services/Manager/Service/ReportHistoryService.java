@@ -2,6 +2,7 @@ package com.salon.Server.Services.Manager.Service;
 
 import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Export.Report;
+import com.salon.Server.Services.LogService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,13 +36,14 @@ public class ReportHistoryService {
         }
     }
 
-    public static Boolean deleteReport(int id) {
+    public static Boolean deleteReport(int id, String ownerName) {
         String sql = "DELETE FROM Reports WHERE ReportID = ?";
         try (Connection connection = DataBaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, id);
             int affectedRows = preparedStatement.executeUpdate();
+            LogService.addLog(ownerName,  "Удалил отчет");
 
             return affectedRows == 1;
 

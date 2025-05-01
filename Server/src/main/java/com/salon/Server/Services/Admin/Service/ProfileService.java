@@ -2,6 +2,7 @@ package com.salon.Server.Services.Admin.Service;
 
 import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Admin.AdminRequest;
+import com.salon.Server.Services.LogService;
 import com.salon.Server.Utils.PasswordUtil;
 
 
@@ -31,7 +32,7 @@ public class ProfileService {
             throw new RuntimeException("Failed to get photo for user: " + userName, e);
         }
     }
-    public static void updateUserPhoto(String userName, String photoPath) {
+    public static void updateUserPhoto(String userName, String photoPath, String ownerName) {
         final String sql = "UPDATE Users SET ProfilePhotoPath = ? WHERE UserName = ?";
 
         try (Connection connection = DataBaseConnection.getConnection();
@@ -41,13 +42,13 @@ public class ProfileService {
             preparedStatement.setString(2, userName);
 
             int affectedRows = preparedStatement.executeUpdate();
-
+            LogService.addLog(ownerName,"Фото профиля было изменено");
         } catch (SQLException e) {
             throw new RuntimeException("Failed to update photo for user: " + userName, e);
         }
     }
 
-    public static AdminRequest changePassword(String userName, String oldPassword, String newPassword) {
+    public static AdminRequest changePassword(String userName, String oldPassword, String newPassword, String ownerName) {
         String sql = "SELECT Password, Salt FROM Users WHERE UserName = ?";
         try (Connection connection = DataBaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -69,6 +70,7 @@ public class ProfileService {
                         if (affectedRows == 0) {
                             return new AdminRequest(false, "Не удалось обновить пароль");
                         }
+                        LogService.addLog(ownerName,"Был изменен пароль");
                         return new AdminRequest(true, "Пароль успешно изменён");
                     }
                 } else {

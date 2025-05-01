@@ -15,7 +15,7 @@ public class ManagerRequest implements Serializable {
     private  String password;
     private String newPassword;
     private String photoPath;
-    private Boolean success;
+    private final Boolean success;
     private Date date;
     private Report report;
     private String message;
@@ -24,6 +24,7 @@ public class ManagerRequest implements Serializable {
     private LocalDate endDate;
     private TypeReport reportType;
     private int id;
+    private String ownerName;
 
     public ManagerRequest(String request) {
         this.request = request;
@@ -37,7 +38,7 @@ public class ManagerRequest implements Serializable {
         this.message = null;
     }
 
-    public ManagerRequest(String request, Product product) {
+    public ManagerRequest(String request, Product product, String ownerName) {
         this.request = request;
         this.userName = null;
         this.password = null;
@@ -48,8 +49,21 @@ public class ManagerRequest implements Serializable {
         this.report = null;
         this.message = null;
         this.product = product;
+        this.ownerName = ownerName;
     }
-
+    public ManagerRequest(String request, String userName, String ownerName) {
+        this.request = request;
+        this.userName = userName;
+        this.password = null;
+        this.newPassword = null;
+        this.photoPath = null;
+        this.success = null;
+        this.date = null;
+        this.report = null;
+        this.message = null;
+        this.product = null;
+        this.ownerName = ownerName;
+    }
     public ManagerRequest(String request, String userName) {
         this.request = request;
         this.userName = userName;
@@ -85,7 +99,7 @@ public class ManagerRequest implements Serializable {
         this.message = null;
     }
 
-    public ManagerRequest(String request, String userName, String password, String newPassword) {
+    public ManagerRequest(String request, String userName, String password, String newPassword, String ownerName) {
         this.request = request;
         this.userName = userName;
         this.password = password;
@@ -95,9 +109,10 @@ public class ManagerRequest implements Serializable {
         this.date = null;
         this.report = null;
         this.message = null;
+        this.ownerName = ownerName;
     }
 
-    public ManagerRequest(String request, String userName, String photoPath) {
+    public ManagerRequest(String request, String userName, String photoPath, String ownerName) {
         this.request = request;
         this.userName = userName;
         this.password = null;
@@ -107,6 +122,7 @@ public class ManagerRequest implements Serializable {
         this.date = null;
         this.report = null;
         this.message = null;
+        this.ownerName = ownerName;
     }
 
     public ManagerRequest(String request, String userName, LocalDate startDate, LocalDate endDate) {
@@ -120,7 +136,7 @@ public class ManagerRequest implements Serializable {
         this.endDate = endDate;
     }
 
-    public ManagerRequest(String request, TypeReport typeReport, String message, String currentUser) {
+    public ManagerRequest(String request, TypeReport typeReport, String message, String currentUser, String ownerName) {
         this.request = request;
         this.reportType = typeReport;
         this.message = message;
@@ -128,9 +144,10 @@ public class ManagerRequest implements Serializable {
         this.success = null;
         this.date = null;
         this.report = null;
+        this.ownerName = ownerName;
     }
 
-    public ManagerRequest(String request, int id) {
+    public ManagerRequest(String request, int id, String ownerName) {
         this.request = request;
         this.userName = null;
         this.reportType = null;
@@ -140,6 +157,7 @@ public class ManagerRequest implements Serializable {
         this.report = null;
         this.message = null;
         this.id = id;
+        this.ownerName = ownerName;
     }
 
 
@@ -184,5 +202,9 @@ public class ManagerRequest implements Serializable {
     }
     public int getId() {
         return id;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
     }
 }

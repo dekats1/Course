@@ -212,7 +212,8 @@ public class ReportController implements Initializable {
             Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("SaveReport",
                     report,
                     reportContent.getText(),
-                    currentUser
+                    currentUser,
+                    Model.getInstance().getCurrentUser()
             ));
             Boolean success = (Boolean) Model.getInstance().getConnectionServer().receiveObject();
             if (success) {

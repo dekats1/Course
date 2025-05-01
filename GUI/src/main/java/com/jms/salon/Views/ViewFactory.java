@@ -315,6 +315,7 @@ public class ViewFactory {
         sellHistoryView = null;
         sellerProfileView = null;
         productsForSellerView = null;
+        sellerSelectedMenuItem.set(null);
     }
 
 
@@ -326,7 +327,12 @@ public class ViewFactory {
         productView = null;
         editProductView = null;
         addProductView = null;
+        managerSelectedMenuItem.set(null);
+    }
 
+    public void clearManagerRofRequest(){
+        reportHistoryView = null;
+        statisticsView = null;
     }
 
 }

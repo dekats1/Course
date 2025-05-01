@@ -3,13 +3,14 @@ package com.salon.Server.Services.Seller.Service;
 import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Export.Product;
 import com.salon.Server.Services.Export.Sale;
+import com.salon.Server.Services.LogService;
 import com.salon.Server.Services.Seller.SellerRequest;
 
 import java.sql.*;
 
 
 public class SaleService {
-    public static SellerRequest makeSale(String userName, Product product, int quantity) {
+    public static SellerRequest makeSale(String userName, Product product, int quantity, String ownerName) {
         Connection connection = null;
         try {
             connection = DataBaseConnection.getConnection();
@@ -83,10 +84,14 @@ public class SaleService {
             }
 
             connection.commit();
-            return new SellerRequest(true, "Продажа успешно оформлена. ID: " + saleId, new Sale(saleId, product.getName(), quantity, product.getPrice(), new java.util.Date(), userName));
+            LogService.addLog(ownerName, product.getName()+" был продан в количестве "+quantity);
+
+            return new SellerRequest(true,
+                    "Продажа успешно оформлена. ID: " + saleId,
+                                 new Sale(saleId, product.getName(), quantity, product.getPrice(), new java.util.Date(),
+                                userName));
 
         } catch (SQLException e) {
-            // Откатываем транзакцию в случае ошибки
             if (connection != null) {
                 try {
                     connection.rollback();

@@ -75,10 +75,10 @@ public class ProductController implements Initializable {
             controller.setProductInfo(product);
             controller.setDeleteAction(() -> {
                 if (Model.getInstance().getCurrentRole().equals("admin")) {
-                    Model.getInstance().getConnectionServer().sendObject(new AdminRequest("DelProduct", product.getName()));
+                    Model.getInstance().getConnectionServer().sendObject(new AdminRequest("DelProduct", product.getName(),Model.getInstance().getCurrentUser()));
                 }
                 else if(Model.getInstance().getCurrentRole().equals("manager")) {
-                    Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("DelProduct", product.getName()));
+                    Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("DelProduct", product.getName(),Model.getInstance().getCurrentUser()));
                 }
                 Model.getInstance().removeProduct(product);
             });

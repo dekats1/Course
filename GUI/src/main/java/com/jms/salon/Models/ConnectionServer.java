@@ -21,7 +21,9 @@ public class ConnectionServer implements AutoCloseable {
             in = new ObjectInputStream(socket.getInputStream());
             System.out.println("Подключение к серверу успешно установлено.");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Не удалось подключиться к серверу");
+            return;
+            //throw new RuntimeException(e);
         }
 
     }

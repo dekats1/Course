@@ -131,9 +131,9 @@ public class ProductEditController implements Initializable {
         ProductController.setSelectedProduct(ProductController.getSelectedProduct());
 
         if (Model.getInstance().getCurrentRole().equals("admin")) {
-            Model.getInstance().getConnectionServer().sendObject(new AdminRequest("EditProduct",ProductController.getSelectedProduct()));
+            Model.getInstance().getConnectionServer().sendObject(new AdminRequest("EditProduct",ProductController.getSelectedProduct(),Model.getInstance().getCurrentUser()));
         }else if (Model.getInstance().getCurrentRole().equals("manager")) {
-            Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("EditProduct",ProductController.getSelectedProduct()));
+            Model.getInstance().getConnectionServer().sendObject(new ManagerRequest("EditProduct",ProductController.getSelectedProduct(),Model.getInstance().getCurrentUser()));
         }
 
     }

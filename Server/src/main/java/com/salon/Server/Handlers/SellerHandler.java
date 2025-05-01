@@ -36,7 +36,7 @@ public class SellerHandler extends RoleHandler {
                     break;
                 }
                 case "MakeSale" ->{
-                    out.writeObject(SaleService.makeSale(request.getUserName(),request.getProduct(),request.getQuantity()));
+                    out.writeObject(SaleService.makeSale(request.getUserName(),request.getProduct(),request.getQuantity(), request.getOwnerName()));
                     break;
                 }
                 case "HistorySales"->{
@@ -49,10 +49,10 @@ public class SellerHandler extends RoleHandler {
                     break;
                 }
                 case "SetPhoto"->{
-                   ProfileService.updateUserPhoto(request.getUserName(),request.getPhotoPath());
+                   ProfileService.updateUserPhoto(request.getUserName(),request.getPhotoPath(), request.getOwnerName());
                 }
                 case "ChangePassword"->{
-                    out.writeObject(ProfileService.changePassword(request.getUserName(),request.getPassword(),request.getNewPassword()));
+                    out.writeObject(ProfileService.changePassword(request.getUserName(),request.getPassword(),request.getNewPassword(), request.getOwnerName()));
                 }
                 case "UserData"->{
                     out.writeObject(ProfileService.userData(request.getUserName()));

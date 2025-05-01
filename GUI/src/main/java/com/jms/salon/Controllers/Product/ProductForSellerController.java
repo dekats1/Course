@@ -35,7 +35,9 @@ public class ProductForSellerController implements Initializable {
         });
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            List<Product> filterProducts = Model.getInstance().getProducts().stream().filter(product -> product.getName().toLowerCase().contains(newValue.toLowerCase())).collect(Collectors.toList());
+            List<Product> filterProducts = Model.getInstance().getProducts().stream()
+                    .filter(product -> product.getName().toLowerCase().contains(newValue.toLowerCase()))
+                    .collect(Collectors.toList());
             refreshProductList(filterProducts);
         });
 

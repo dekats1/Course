@@ -1,5 +1,24 @@
 /* Logs.css */
 
+.header-box {
+    -fx-background-color: #4CAF50;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 30;
+    -fx-spacing: 20;
+    -fx-background-radius: 10 10 0 0;
+    -fx-border-radius:  10 10 0 0;
+}
+
+.header-icon {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 3, 0, 0, 1);
+}
+
+.header-text {
+    -fx-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
 .anchor-pane {
     -fx-background-color: #f2f2f2;
 }

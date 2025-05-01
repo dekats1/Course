@@ -168,7 +168,7 @@ public class ReportHistoryController implements Initializable {
 
             // Отправка запроса на удаление
             Model.getInstance().getConnectionServer().sendObject(
-                    new ManagerRequest("DeleteReport", selected.getId())
+                    new ManagerRequest("DeleteReport", selected.getId(),Model.getInstance().getCurrentUser())
             );
 
             Boolean isDeleted = (Boolean) Model.getInstance().getConnectionServer().receiveObject();
