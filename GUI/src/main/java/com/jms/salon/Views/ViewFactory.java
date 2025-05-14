@@ -121,7 +121,7 @@ public class ViewFactory {
     }
 
     public void showAdminWindow(){
-        System.out.println("showAdminWindow");
+        //System.out.println("showAdminWindow");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/Admin/Admin.fxml"));
         createStage(fxmlLoader);
     }
@@ -273,7 +273,7 @@ public class ViewFactory {
      */
 
     public void showLoginWindow() {
-        System.out.println("showLoginWindow");
+        //System.out.println("showLoginWindow");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));
         createStage(fxmlLoader);
     }

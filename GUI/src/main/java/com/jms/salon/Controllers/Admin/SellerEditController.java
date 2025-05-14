@@ -45,12 +45,19 @@ public class SellerEditController implements Initializable {
 
         addSellerBtn.setOnAction(event -> {
             errorLbl.setVisible(false);
+
+            if (!validateFields()) {
+                return;
+            }
+
             String login = loginField.getText();
             String firstName = firstNameField.getText();
             String lastName = lastNameField.getText();
             String password = passwordField.getText();
             String date = LocalDate.now().toString();
-            connectionServer.sendObject(new AdminRequest("AddSeller", new Seller(login, firstName, lastName, password, date),Model.getInstance().getCurrentUser()));
+
+            connectionServer.sendObject(new AdminRequest("AddSeller", new Seller(login, firstName, lastName, password, date),
+                                                        Model.getInstance().getCurrentUser()));
             AdminRequest res =(AdminRequest) connectionServer.receiveObject();
             if(res.getSuccess())
                 addSeller(new Seller(login, firstName, lastName, password, date));
@@ -60,7 +67,6 @@ public class SellerEditController implements Initializable {
             }
         });
 
-
 //        List<Seller> sel = new ArrayList<>();
 //        Model.getInstance().getSellers().setAll(sel);
         Model.getInstance().getSellers().setAll((List<Seller>) connectionServer.receiveObject());
@@ -69,6 +75,54 @@ public class SellerEditController implements Initializable {
             refreshSellerList();
         });
         refreshSellerList();
+    }
+
+    private boolean validateFields() {
+        if (!validateLogin(loginField.getText().trim())) {
+            errorLbl.setText("Логин должен содержать от 4 до 20 символов (буквы, цифры, _)");
+            errorLbl.setVisible(true);
+            return false;
+        }
+
+        if (!validateName(firstNameField.getText().trim())) {
+            errorLbl.setText("Имя должно содержать только буквы (2-30 символов)");
+            errorLbl.setVisible(true);
+            return false;
+        }
+
+        if (!validateName(lastNameField.getText().trim())) {
+            errorLbl.setText("Фамилия должна содержать только буквы (2-30 символов)");
+            errorLbl.setVisible(true);
+            return false;
+        }
+
+        if (!validatePassword(passwordField.getText())) {
+            errorLbl.setText("Пароль должен содержать от 6 до 30 символов");
+            errorLbl.setVisible(true);
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validateLogin(String login) {
+        return login.matches("^[a-zA-Z0-9_]{4,20}$");
+    }
+
+    private boolean validateName(String name) {
+        return name.matches("^[a-zA-Zа-яА-Я\\s\\-]{2,30}$");
+    }
+
+    private boolean validatePassword(String password) {
+        return password.length() >= 6 && password.length() <= 30;
+    }
+
+    private void clearFields() {
+        loginField.clear();
+        firstNameField.clear();
+        lastNameField.clear();
+        passwordField.clear();
+        errorLbl.setVisible(false);
     }
 
     private void refreshSellerList() {

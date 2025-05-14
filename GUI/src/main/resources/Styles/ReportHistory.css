@@ -1,11 +1,9 @@
-/* Основные стили */
 .root {
     -fx-background-color: #f5f7fa;
     -fx-font-family: 'Segoe UI', Roboto, sans-serif;
     -fx-padding: 20 25;
 }
 
-/* Шапка */
 .header-box {
     -fx-padding: 20 25;
     -fx-background-color: #4CAF50;
@@ -24,7 +22,6 @@
     -fx-font-weight: bold;
 }
 
-/* Панель фильтров */
 .filter-panel {
     -fx-background-color: white;
     -fx-border-color: #e0e0e0;
@@ -32,7 +29,6 @@
     -fx-padding: 15 25;
 }
 
-/* Список отчетов */
 .report-list-container {
     -fx-background-color: #f5f7fa;
     -fx-padding: 3;
@@ -62,7 +58,6 @@
     -fx-alignment: CENTER;
 }
 
-/* Ячейка отчета */
 .report-cell {
     -fx-background-color: white;
     -fx-background-radius: 8;
@@ -120,7 +115,6 @@
     -fx-background-color: #ffebee;
 }
 
-/* Переключатели */
 .toggle-button {
     -fx-pref-width: 150;
     -fx-pref-height: 35;

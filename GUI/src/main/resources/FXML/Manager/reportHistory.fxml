@@ -28,7 +28,7 @@
 
         <VBox styleClass="filter-panel">
             <HBox alignment="CENTER_LEFT">
-                <ToggleButton fx:id="sellerReportBtn" maxWidth="130.0" prefWidth="74.0" text="По продавцам">
+                <ToggleButton fx:id="sellerReportBtn" maxWidth="153.0" prefWidth="153.0" text="По продавцам">
                 <styleClass>
                     <String fx:value="toggle-button-left" />
                     <String fx:value="toggle-button" />

@@ -36,7 +36,6 @@ public class AddProductController implements Initializable {
     }
 
     private void setupNumericFields() {
-        // Валидация числовых полей
         priceField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*(\\.\\d*)?")) {
                 priceField.setText(oldValue);
@@ -58,6 +57,7 @@ public class AddProductController implements Initializable {
 
     private void setupButtonActions() {
         cancelButton.setOnAction(event -> {
+            errorLbl.setVisible(false);
             clearFields();
             if (Model.getInstance().getCurrentRole().equals("admin")) {
                 Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOption.Products);
@@ -67,6 +67,7 @@ public class AddProductController implements Initializable {
         });
 
         saveButton.setOnAction(event -> {
+            errorLbl.setVisible(false);
             errorLbl.setVisible(false);
             if (validateFields()) {
                 Product product = createProductFromFields();
@@ -106,7 +107,7 @@ public class AddProductController implements Initializable {
                 quantityField.getText().isEmpty() ||
                 categoryComboBox.getValue() == null) {
 
-            showAlert("Ошибка", "Заполните все обязательные поля");
+            showError("Заполните все обязательные поля");
             return false;
         }
 
@@ -114,9 +115,13 @@ public class AddProductController implements Initializable {
             Double.parseDouble(priceField.getText());
             Double.parseDouble(costField.getText());
             Integer.parseInt(quantityField.getText());
+            if(Double.parseDouble(priceField.getText()) <= 0 || Double.parseDouble(costField.getText()) <= 0 || Integer.parseInt(quantityField.getText()) < 0) {
+                showError("Некорректные числовые значения");
+                return false;
+            }
             return true;
         } catch (NumberFormatException e) {
-            showAlert("Ошибка", "Некорректные числовые значения");
+            showError("Некорректные числовые значения");
             return false;
         }
     }
@@ -141,11 +146,8 @@ public class AddProductController implements Initializable {
         quantityField.clear();
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private void showError(String message) {
+        errorLbl.setText(message);
+        errorLbl.setVisible(true);
     }
 }

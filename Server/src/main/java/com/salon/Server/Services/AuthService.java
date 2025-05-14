@@ -29,12 +29,12 @@ public class AuthService {
 
                         if (roleRs.next()) {
                             String roleName = roleRs.getString("roleName");
-                            return new AuthResponse(true, roleName, "Authentication successful");
+                            return new AuthResponse(true, roleName, "Успешная аутентификация");
                         }
                     }
                 }
             }
-            return new AuthResponse(false, null, "Invalid credentials");
+            return new AuthResponse(false, null, "Неверный логин или пароль");
         } catch (SQLException e) {
             System.err.println("Database error: " + e.getMessage());
             return new AuthResponse(false, null, "Database error");

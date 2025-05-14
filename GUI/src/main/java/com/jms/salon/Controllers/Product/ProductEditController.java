@@ -125,9 +125,9 @@ public class ProductEditController implements Initializable {
 
         ProductController.setSelectedProduct(updatedProduct);
         for (Product product : Model.getInstance().getProducts()) {
-            System.out.println(product.toString());
+            //System.out.println(product.toString());
         }
-        System.out.println(ProductController.getSelectedProduct().toString());
+        //System.out.println(ProductController.getSelectedProduct().toString());
         ProductController.setSelectedProduct(ProductController.getSelectedProduct());
 
         if (Model.getInstance().getCurrentRole().equals("admin")) {

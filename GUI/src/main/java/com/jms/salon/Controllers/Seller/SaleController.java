@@ -67,7 +67,7 @@ public class SaleController implements Initializable {
                         Model.getInstance().getCurrentUser(), Model.getInstance()
                         .getProducts().stream()
                         .filter(product -> product.getName().equals(productComboBox.getValue())).findFirst().get(),
-                        quantitySpinner.getValue(),Model.getInstance().getCurrentUser()));
+                        quantitySpinner.getValue(), Model.getInstance().getCurrentUser()));
                 SellerRequest result = (SellerRequest) Model.getInstance().getConnectionServer().receiveObject();
                 if (result.getSuccess()) {
                     Model.getInstance().getSales().add(result.getSale());

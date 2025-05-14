@@ -136,7 +136,7 @@ public class AdminProfileController {
 
 
     private void inputImage(File file) {
-        System.out.println(file);
+       // System.out.println(file);
         if (file != null) {
             Image image = new Image(file.toURI().toString());
             avatarImage.setImage(image);

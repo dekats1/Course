@@ -57,7 +57,7 @@ public class ProductСellController implements Initializable {
     public void setProductInfo(Product product) {
         nameLabel.setText(product.getName());
         priceLabel.setText(String.format("%.2f", product.getPrice()));
-        System.out.println(priceLabel.getText());
+        //System.out.println(priceLabel.getText());
         costLabel.setText(String.format("%.2f", product.getCost()));
         quantityLabel.setText(String.valueOf(product.getQuantity()));
         descriptionLabel.setText(product.getDescription());

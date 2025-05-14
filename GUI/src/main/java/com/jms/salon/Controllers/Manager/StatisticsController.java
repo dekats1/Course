@@ -4,9 +4,9 @@ import com.jms.salon.Models.Model;
 import com.salon.Server.Services.Export.Sale;
 import com.salon.Server.Services.Export.Seller;
 import com.salon.Server.Services.Manager.ManagerRequest;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.fxml.FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,7 +51,4 @@ public class StatisticsController implements Initializable {
         topSellerName.setText(bestSeller.getUserName());
         topSellerSalesCount.setText(String.valueOf(bestSeller.getSellCount()));
     }
-
-
-
 }

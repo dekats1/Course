@@ -19,7 +19,7 @@ public class ProfileService {
         final String sql = "SELECT ProfilePhotoPath FROM Users WHERE UserName = ?";
 
         try (Connection connection = DataBaseConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, userName);
 
