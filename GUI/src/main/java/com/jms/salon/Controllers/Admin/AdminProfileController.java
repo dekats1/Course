@@ -131,7 +131,12 @@ public class AdminProfileController {
         Model.getInstance().getConnectionServer()
                 .sendObject(new AdminRequest("GetPhoto", Model.getInstance().getCurrentUser(), Model.getInstance().getCurrentUser(), Model.getInstance().getCurrentUser()));
         String path = (String) Model.getInstance().getConnectionServer().receiveObject();
-        inputImage(new File(path));
+        if(path != null) {
+            inputImage(new File(path));
+        }
+        else {
+            inputImage(new File("E:\\Лабы\\Курсач\\Проект\\Course\\GUI\\src\\main\\resources\\Images\\sale.png"));
+        }
     }
 
 
@@ -154,7 +159,7 @@ public class AdminProfileController {
                 new FileChooser.ExtensionFilter("Изображения", "*.png", "*.jpg", "*.jpeg")
         );
         File selectedFile = fileChooser.showOpenDialog(getStage());
-        Model.getInstance().getConnectionServer().sendObject(new AdminRequest("SetPhoto", Model.getInstance().getCurrentUser(),selectedFile.getPath()));
+        Model.getInstance().getConnectionServer().sendObject(new AdminRequest("SetPhoto", Model.getInstance().getCurrentUser(),selectedFile.getPath(), Model.getInstance().getCurrentUser()));
 
         inputImage(selectedFile);
     }

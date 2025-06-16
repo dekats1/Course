@@ -4,9 +4,12 @@ import com.salon.Server.BD.DataBaseConnection;
 import com.salon.Server.Services.Export.Log;
 
 import java.sql.*;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.Date;
-import java.util.List;
 
 public class LogService {
     public static void addLog(String userName, String message) {
@@ -79,7 +82,10 @@ public class LogService {
                     }
                 }
 
-                Date logDate = new Date(rs.getTimestamp("LogDate").getTime());
+                LocalDateTime localDateTime = rs.getObject("LogDate", LocalDateTime.class);
+// Конвертируем в Date через Instant
+                Date logDate = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
                 String message = rs.getString("LogData");
 
                 logs.add(new Log(userName, role, logDate, message));

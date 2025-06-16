@@ -26,28 +26,20 @@
             <version>17.0.6</version>
         </dependency>
 
-            <dependency>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-fxml</artifactId>
-                <version>17.0.6</version>
-            </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!-- Удалены дубликаты зависимостей -->
+
         <dependency>
             <groupId>com.salon</groupId>
             <artifactId>Server</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+
+        <!-- Обновлена зависимость MySQL Connector/J с правильными координатами и версией -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.2.0</version>
         </dependency>
 
     </dependencies>

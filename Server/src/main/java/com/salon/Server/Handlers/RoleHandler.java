@@ -5,7 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public abstract class RoleHandler {
+public abstract class RoleHandler implements Handler {
     protected Socket userSocket;
     protected ObjectInputStream in;
     protected ObjectOutputStream out;

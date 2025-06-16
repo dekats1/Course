@@ -4,7 +4,6 @@ module com.salon.project {
     requires java.desktop;
     requires jdk.jdi;
     requires com.salon.Server;
-    requires mysql.connector.j;
 
     opens com.jms.salon to javafx.fxml;
     opens com.jms.salon.Controllers to javafx.fxml;

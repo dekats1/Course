@@ -33,7 +33,7 @@
                 <Button fx:id="filterButton" styleClass="button" text="Фильтровать" />
             </HBox>
 
-            <TableView fx:id="logTable" prefHeight="600" stylesheets="@../../Styles/Logs.css">
+            <TableView fx:id="logTable" editable="true" prefHeight="600" stylesheets="@../../Styles/Logs.css">
                 <columns>
                     <TableColumn fx:id="timeColumn" editable="false" prefWidth="150" text="Время" />
                     <TableColumn fx:id="actionColumn" editable="false" prefWidth="300" text="Действие" />

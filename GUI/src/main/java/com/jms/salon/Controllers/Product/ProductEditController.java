@@ -6,6 +6,7 @@ import com.jms.salon.Views.ManagerMenuOption;
 import com.salon.Server.Services.Admin.AdminRequest;
 import com.salon.Server.Services.Export.Product;
 import com.salon.Server.Services.Manager.ManagerRequest;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -74,7 +75,6 @@ public class ProductEditController implements Initializable {
         saveButton.setOnAction(event -> {
             saveProduct();
             closeWindow();
-
         });
 
         cancelButton.setOnAction(event -> {

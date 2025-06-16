@@ -5,9 +5,12 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import java.util.Locale;
 
+import static java.lang.Thread.sleep;
+
 public class App extends Application {
     @Override
-    public void start(Stage stage){
+    public void start(Stage stage) throws InterruptedException {
+        sleep(2000);
         Locale.setDefault(Locale.US);
         Model.getInstance().getConnectionServer();
         Model.getInstance().getViewFactory().showLoginWindow();
